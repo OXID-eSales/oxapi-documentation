@@ -107,11 +107,10 @@ html_context = {
     'show_sphinx': False,
     'display_github': True,
     'github_user': 'OXID-eSales',
-    'github_repo': 'graphql-base-module',
-    'github_version': 'master',
-    'conf_py_path': '/docs/',
+    'github_repo': 'oxapi-documentation',
+    'github_version': '8.0-en/',
+    'conf_py_path': '',
 }
-
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
