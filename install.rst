@@ -35,13 +35,13 @@ After the installation you need to run the migrations for the **GraphQL Base** m
 
 .. code-block:: bash
 
-    ./vendor/bin/oe-eshop-doctrine_migration migration:migrate oe_graphql_base
+    ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oe_graphql_base
 
 And if you decided to go with the **GraphQL Storefront** module, you must execute migrations for this one as well:
 
 .. code-block:: bash
 
-    ./vendor/bin/oe-eshop-doctrine_migration migration:migrate oe_graphql_storefront
+    ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oe_graphql_storefront
 
 Activation
 ----------
