@@ -6,11 +6,12 @@ env:
 
 on:
   workflow_dispatch:
-    storefront_version:
-      description: 'Storefront Version for schema'
-      required: true
-      default: 'latest'
-      type: string
+    inputs:
+      storefront_version:
+        description: 'Storefront Version for schema'
+        required: true
+        default: 'latest'
+        type: string
 
 jobs:
   build:
