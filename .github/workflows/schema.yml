@@ -6,7 +6,11 @@ env:
 
 on:
   workflow_dispatch:
-
+    storefront_version:
+      description: 'Storefront Version for schema'
+      required: true
+      default: 'latest'
+      type: string
 
 jobs:
   build:
@@ -64,7 +68,7 @@ jobs:
 
       - name: Install module and dependencies
         run: |
-          docker-compose exec -T php composer require oxid-esales/graphql-storefront:${{ github.ref_name }} --no-update
+          docker-compose exec -T php composer require oxid-esales/graphql-storefront:${{ inputs.storefront_version }} --no-update
           docker-compose exec -T php composer update --no-interaction
 
       - name: Reset shop
