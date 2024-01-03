@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>VariantSelectionList</title>
+    <title>InvoiceAddressInput</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -163,11 +163,6 @@
         <li  title="Category">
             <a href="category.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Category
-            </a>
-        </li>
-        <li  title="CategoryAttribute">
-            <a href="categoryattribute.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
-                CategoryAttribute
             </a>
         </li>
         <li  title="Content">
@@ -425,16 +420,6 @@
                 User
             </a>
         </li>
-        <li class="slds-is-active" title="VariantSelectionList">
-            <a href="variantselectionlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
-                VariantSelectionList
-            </a>
-        </li>
-        <li  title="VariantSelections">
-            <a href="variantselections.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
-                VariantSelections
-            </a>
-        </li>
         <li  title="Vendor">
             <a href="vendor.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 Vendor
@@ -550,9 +535,19 @@
                 DateFilterInput
             </a>
         </li>
+        <li  title="DeliveryAddressInput">
+            <a href="deliveryaddressinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DeliveryAddressInput
+            </a>
+        </li>
         <li  title="IDFilterInput">
             <a href="idfilterinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 IDFilterInput
+            </a>
+        </li>
+        <li class="slds-is-active" title="InvoiceAddressInput">
+            <a href="invoiceaddressinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                InvoiceAddressInput
             </a>
         </li>
         <li  title="LinkFilterList">
@@ -600,6 +595,11 @@
                 ProductSorting
             </a>
         </li>
+        <li  title="ReviewInput">
+            <a href="reviewinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ReviewInput
+            </a>
+        </li>
         <li  title="StateSorting">
             <a href="statesorting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 StateSorting
@@ -628,6 +628,11 @@
         <li  title="VendorSorting">
             <a href="vendorsorting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 VendorSorting
+            </a>
+        </li>
+        <li  title="WishedPriceInput">
+            <a href="wishedpriceinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                WishedPriceInput
             </a>
         </li>
     </ul>
@@ -665,8 +670,8 @@
         </div>
     </div>
     <div class="container">
-        <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
-        <h1 class="slds-text-heading--large">VariantSelectionList</h1>
+        <p class="slds-text-title--caps slds-text-color--weak">INPUT_OBJECT</p>
+        <h1 class="slds-text-heading--large">InvoiceAddressInput</h1>
         <div class="slds-text-body--regular"></div>
     </div>
 </section>
@@ -678,7 +683,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">VariantSelectionList</span> {</li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">label</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">activeSelection</span>: <a class="support type" href="selection.doc.html">Selection</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">fields</span>: [<a class="support type" href="selection.doc.html">Selection</a>!]! </span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">input</span> <span class="identifier">InvoiceAddressInput</span> {</li><li><span class="tab"><li><span class="tab"><span class="meta">salutation</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">firstName</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">lastName</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">company</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">additionalInfo</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">street</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">streetNumber</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">zipCode</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">city</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">countryId</span>: <a class="support type" href="id.doc.html">ID</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">stateId</span>: <a class="support type" href="id.doc.html">ID</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">vatID</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">phone</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">mobile</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">fax</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li>}</li></ul></code>
     </div>
 </section>
 <section>
@@ -689,7 +694,7 @@
             </a>
             Require by
         </h2>
-        <ul class="require-by"><li><a href="variantselections.doc.html" title="VariantSelections - ">VariantSelections<em>null</em></a><li></ul>
+        <ul class="require-by"><li><a href="mutation.doc.html" title="Mutation - ">Mutation<em>null</em></a><li></ul>
     </div>
 </section>
 <footer>

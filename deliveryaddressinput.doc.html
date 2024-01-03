@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>VoucherSeries</title>
+    <title>DeliveryAddressInput</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -430,7 +430,7 @@
                 Voucher
             </a>
         </li>
-        <li class="slds-is-active" title="VoucherSeries">
+        <li  title="VoucherSeries">
             <a href="voucherseries.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 VoucherSeries
             </a>
@@ -535,7 +535,7 @@
                 DateFilterInput
             </a>
         </li>
-        <li  title="DeliveryAddressInput">
+        <li class="slds-is-active" title="DeliveryAddressInput">
             <a href="deliveryaddressinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 DeliveryAddressInput
             </a>
@@ -670,8 +670,8 @@
         </div>
     </div>
     <div class="container">
-        <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
-        <h1 class="slds-text-heading--large">VoucherSeries</h1>
+        <p class="slds-text-title--caps slds-text-color--weak">INPUT_OBJECT</p>
+        <h1 class="slds-text-heading--large">DeliveryAddressInput</h1>
         <div class="slds-text-body--regular"></div>
     </div>
 </section>
@@ -683,7 +683,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">VoucherSeries</span> {</li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">title</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">description</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">validFrom</span>: <a class="support type" href="datetime.doc.html">DateTime</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">validTo</span>: <a class="support type" href="datetime.doc.html">DateTime</a> </span></li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">discount</span>: <a class="support type" href="float.doc.html">Float</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">discountType</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">input</span> <span class="identifier">DeliveryAddressInput</span> {</li><li><span class="tab"><li><span class="tab"><span class="meta">salutation</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">firstName</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">lastName</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">company</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">additionalInfo</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">street</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">streetNumber</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">zipCode</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">city</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">countryId</span>: <a class="support type" href="id.doc.html">ID</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">stateId</span>: <a class="support type" href="id.doc.html">ID</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">phone</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li><span class="tab"><li><span class="tab"><span class="meta">fax</span>: <a class="support type" href="string.doc.html">String</a></span></li></span></li><li>}</li></ul></code>
     </div>
 </section>
 <section>
@@ -694,7 +694,7 @@
             </a>
             Require by
         </h2>
-        <ul class="require-by"><li><a href="voucher.doc.html" title="Voucher - ">Voucher<em>null</em></a><li></ul>
+        <ul class="require-by"><li><a href="mutation.doc.html" title="Mutation - ">Mutation<em>null</em></a><li></ul>
     </div>
 </section>
 <footer>
