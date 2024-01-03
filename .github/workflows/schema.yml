@@ -13,7 +13,9 @@ jobs:
 
     steps:
       - name: Clone testing environment
-        run: git clone https://github.com/OXID-eSales/docker-eshop-sdk.git .
+        run: |
+          git clone https://github.com/OXID-eSales/docker-eshop-sdk.git .
+          git clone https://github.com/OXID-eSales/docker-eshop-sdk-recipes recipes/oxid-esales
 
       - name: Clone the shop
         run: git clone --depth 1 https://github.com/OXID-eSales/oxideshop_ce.git --branch b-7.0.x --single-branch source
@@ -79,9 +81,10 @@ jobs:
 
       - name: Generate documentation
         run: |
+          ./recipes/oxid-esales/parts/shared/create_admin.sh
           sudo npm install -g @2fd/graphdoc
           sleep 2;
-          TOKEN=$(curl --silent http://localhost/graphql?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"admin\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
+          TOKEN=$(curl --silent http://localhost/graphql?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"noreply@oxid-esales.com\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
           graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema -f -x "Authorization: Bearer $TOKEN"
 
       - name: Deploy
