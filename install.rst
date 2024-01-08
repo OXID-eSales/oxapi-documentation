@@ -18,7 +18,13 @@ Then you can simply install the module(s) by using ``composer require`` command.
 
     composer require oxid-esales/graphql-storefront
 
-This will automatically install the **OXID GraphQL Base** module, which is needed for general GraphQL integration into the OXID eShop. In case you only need the basic GraphQL integration and want to implement your own queries and mutations, you can also install the **GraphQL Base** module exclusively:
+If you want to read and update configurations you should also install the **OXID GraphQL Configuration Access** module:
+
+.. code-block:: bash
+
+    composer require oxid-esales/graphql-configuration-access
+
+Both modules will automatically install the **OXID GraphQL Base** module, which is needed for general GraphQL integration into the OXID eShop. In case you only need the basic GraphQL integration and want to implement your own queries and mutations, you can also install the **GraphQL Base** module exclusively:
 
 .. code-block:: bash
 
@@ -39,11 +45,12 @@ Now you need to activate the modules. You can do this in the OXID eShop administ
 
     vendor/bin/oe-console oe:module:activate oe_graphql_base
     vendor/bin/oe-console oe:module:activate oe_graphql_storefront
+    vendor/bin/oe-console oe:module:activate oe_graphql_configuration_access
 
 .. important::
 
     Keep in mind the **GraphQL Base** module should be activated first, before activating dependent modules
-    like GraphQL Storefront. Also before deactivating GraphQL Base module please ensure dependent modules are
+    like GraphQL Storefront or GraphQL Configuration Access. Also before deactivating GraphQL Base module please ensure dependent modules are
     deactivated first.
 
     In case you are using the OXID eShop Enterprise Edition, it is important for **GraphQL Base** module to be active

@@ -32,6 +32,9 @@ prepacked and configured, but please feel free to use anything that fits your ne
 For PHPStan to work, we added a preconfigured ``phpstan.neon`` configuration file,
 as well as the OXID eShop as a dev dependency.
 
+In the ``GraphQL Configuration Access`` module the static code analysis can be simply
+done with composer scripts using ``composer static``.
+
 Dependencies between software layers
 ------------------------------------
 
@@ -59,6 +62,12 @@ You can run them via
 ``vendor/bin/phpunit -c vendor/oxid-esales/graphql-base/tests/phpunit.xml``
 or (for Codeception) via
 ``vendor/bin/codecept run acceptance -c vendor/oxid-esales/graphql-base/tests/codeception.yml``.
+
+In ``GraphQL Configuration Access`` module we use composer scripts to execute tests.
+Unit and Integration tests are executed with
+``composer phpunit``
+and codeception tests with
+``composer codeception``.
 
 Using PHPUnit
 ^^^^^^^^^^^^^
