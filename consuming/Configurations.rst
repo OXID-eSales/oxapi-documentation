@@ -102,8 +102,8 @@ To update a setting, the ``name``, the new ``value`` and in our case the ``modul
 .. code-block:: graphql
    :caption: call to ``moduleSettingBooleanChange`` query
 
-    query booleanSetting {
-        moduleSettingBoolean(
+    mutation changeBooleanSetting {
+        moduleSettingBooleanChange(
             name: "booleanSetting",
             value: true
             moduleId: "awesomeModule"
@@ -118,7 +118,7 @@ To update a setting, the ``name``, the new ``value`` and in our case the ``modul
 
     {
         "data": {
-            "moduleSettings": {
+            "moduleSettingsBooleanChange": {
                 "name": "booleanSetting",
                 "value": true,
             }
