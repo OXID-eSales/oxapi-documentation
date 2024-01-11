@@ -75,11 +75,13 @@ Graphql schema appears incomplete
 
 Your client's introspection requests get the available schema based upon your access rights. Make sure you are logged in and using the correct token in the ``Authorization`` header.
 
-If you're having trouble finding admin panel requests, this could also be caused by insufficient account rights.
+The rights are depending on the user group. If you're having trouble finding admin panel requests, this could also be caused by insufficient account rights.
+If queries or mutations are missing, please check the user groups and the depending rights in the PermissionProvider-Classes of the modules.
 
-.. note::
+.. important::
 
-    You may want to doublecheck this in the database, as the administrative dashboard setting name could be different. E.g. it could say a user has been granted ``admin`` rights, but actually they are a ``malladmin``. It is not the same and does not give enough access to query, as an example, the shop version
+    You may want to doublecheck this in the database, as the administrative dashboard setting name could be different. E.g. it could say a user has been granted ``admin`` rights, but actually they are a ``malladmin``. It is not the same and does not give enough access to query, as an example, the shop version.
+    To gain admin rights, the user group ``oxidadmin`` needs to be assigned.
 
 Installation issues for dev environment
 ---------------------------------------
