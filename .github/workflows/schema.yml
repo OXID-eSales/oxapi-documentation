@@ -66,7 +66,7 @@ jobs:
       - name: Install module and dependencies
         run: |
           docker-compose exec -T php composer require oxid-esales/graphql-storefront --no-update
-          docker-compose exec -T php composer require oxid-esales/graphql-configuration-access:dev-b-7.0.x-create_documentation-OXDEV-7354 --no-update
+          docker-compose exec -T php composer require oxid-esales/graphql-configuration-access --no-update
           docker-compose exec -T php composer update --no-interaction
 
       - name: Reset shop
