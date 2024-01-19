@@ -84,6 +84,11 @@ In case you need to have more control on how the authorization service decides,
 you may register a handler for the ``OxidEsales\GraphQL\Base\Event\BeforeAuthorization``
 event and oversteer the result in your event subscriber, see :ref:`events-BeforeAuthorization`.
 
+.. important::
+
+   We decided to show queries and mutations in the schema even if the user is unauthorized.
+   This means that the ``@HideIfUnauthorized``-annotation shouldn't be used.
+
 Map rights to groups
 ^^^^^^^^^^^^^^^^^^^^
 
