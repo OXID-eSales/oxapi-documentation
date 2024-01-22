@@ -7,27 +7,35 @@ env:
 on:
   workflow_dispatch:
     inputs:
-      doc_version:
-        description: version where the schema should be generated for
-        required: true
-        default: '8.0'
-        type: choice
-        options:
-      base_version:
-        description: graphql-base version for schema generation
-        required: true
-        default: latest
+      updated_module:
+        description: the module that triggered the schema workflow
+        require: true
         type: string
-      storefront_version:
-        description: graphql-storefront version for schema generation
-        required: true
-        default: latest
+      updated_module_version:
+        description: the version of the triggering module
+        require: true
         type: string
-      configuration_access_version:
-        description: graphql-configuration access version for schema generation
-        required: true
-        default: latest
-        type: string
+#      doc_version:
+#        description: version where the schema should be generated for
+#        required: true
+#        default: '8.0'
+#        type: choice
+#        options:
+#      base_version:
+#        description: graphql-base version for schema generation
+#        required: true
+#        default: latest
+#        type: string
+#      storefront_version:
+#        description: graphql-storefront version for schema generation
+#        required: true
+#        default: latest
+#        type: string
+#      configuration_access_version:
+#        description: graphql-configuration access version for schema generation
+#        required: true
+#        default: latest
+#        type: string
 
 
 jobs:
@@ -86,6 +94,22 @@ jobs:
           make up
           sleep 2
 
+      - name: Install module and dependencies if base
+        if: ${{ inputs.updated_module != graphql_storefront }}
+        run: |
+          docker-compose exec -T php composer require oxid-esales/graphql-base:${{inputs.updated_module_version}} --no-update
+          docker-compose exec -T php composer require oxid-esales/graphql-storefront --no-update
+          docker-compose exec -T php composer update --no-interaction
+
+      - name: Install module and dependencies if storefront
+        if: ${{ inputs.updated_module == graphql_storefront }}
+        run: |
+          docker-compose exec -T php composer require oxid-esales/graphql-storefront:${{inputs.updated_module_version}} --no-update
+          docker-compose exec -T php composer update --no-interaction
+
+      - name: Get documentation version for schema
+        run: DOCUMENTATION_VERSION = ${docker-compose exec -T php composer show 'oxid-esales/graphql-base' | sed -n '/versions/s/^[^0-9]\+\([^,]\+\).[^0-9]$/\1/p'}
+
       - name: Install module and dependencies
         run: |
           docker-compose exec -T php composer require oxid-esales/graphql-storefront --no-update
@@ -102,13 +126,25 @@ jobs:
           docker-compose exec -T php php bin/oe-console oe:module:activate oe_graphql_base
           docker-compose exec -T php php bin/oe-console oe:module:activate oe_graphql_storefront
 
+      - name: Checkout documentation
+        uses: actions/checkout@v4
+        with:
+          ref: schema
+          path: $GITHUB_WORKSPACE/docs/_static/schema
+
+      - name: Remove old schema for version
+        run: |
+          if [ -d "$GITHUB_WORKSPACE/docs/_static/schema/$DOCUMENTATION_VERSION" ]; then
+            rm -Rf $GITHUB_WORKSPACE/docs/_static/schema/$DOCUMENTATION_VERSION;
+          fi
+
       - name: Generate documentation
         run: |
           ./recipes/oxid-esales/parts/shared/create_admin.sh
           sudo npm install -g @2fd/graphdoc
           sleep 2;
           TOKEN=$(curl --silent http://localhost/graphql?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"noreply@oxid-esales.com\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
-          graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema -f -x "Authorization: Bearer $TOKEN"
+          graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema/$DOCUMENTATION_VERSION -f -x "Authorization: Bearer $TOKEN"
 
 #      - name: Deploy
 #        uses: JamesIves/github-pages-deploy-action@releases/v3
