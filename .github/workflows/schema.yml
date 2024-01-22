@@ -93,7 +93,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: schema
-          path: $GITHUB_WORKSPACE/docs/_static/schema
+          path: ./docs/_static/schema
 
       - name: Remove old schema for version
         run: |
