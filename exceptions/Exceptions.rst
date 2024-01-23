@@ -16,6 +16,19 @@ Exists        requesterror     Thrown when a record exists (when we want to regi
 OutOfBounds   requesterror     Thrown when values are out of bounds
 ============  ===============  ==================================================================================
 
+The ``graphql-configuration-access`` module provides the following exceptions
+
+================================  ==================================================================================
+Class                             Description
+================================  ==================================================================================
+CollectionEncodingException       Thrown when collection couldn't be encoded into string for database
+InvalidCollectionException        Thrown when a database string can't be decoded into an array
+WrongSettingValueException        Thrown if the returned value doesn't fit to the requested setting type (e.g.: float was requested but integer was returned)
+NoSettingsFoundForShopException   Thrown when requesting all Settings for a shop, but none exist
+WrongSettingTypeException         Thrown if the returned setting type doesn't fit to the requested setting type
+NoSettingsFoundForThemeException  Thrown when requesting all Settings for a theme, but none exist
+================================  ==================================================================================
+
 Exception to GraphQL Error
 --------------------------
 

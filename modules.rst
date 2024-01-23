@@ -28,3 +28,16 @@ mission is to
 * support placing new orders. It is possible to manage multiple userbaskets, add/remove products
   from those baskets, query and chose delivery address, shipping method and payment and in the end
   place the order. See :doc:`Consuming the API - Place an Order <./consuming/PlaceOrder>`.
+
+GraphQL-Configuration Access module
+-----------------------------------
+
+`GraphQL-Configuration module <https://github.com/OXID-eSales/graphql-configuration-access/>`_
+is needed if you want to
+
+* read configurations
+* update configurations
+* list existing configurations.
+
+All functionality is possible for module/theme and shop-configurations.
+See :doc:`Consuming the API - Read and update configurations <./consuming/Configurations>`.

@@ -84,6 +84,10 @@ In case you need to have more control on how the authorization service decides,
 you may register a handler for the ``OxidEsales\GraphQL\Base\Event\BeforeAuthorization``
 event and oversteer the result in your event subscriber, see :ref:`events-BeforeAuthorization`.
 
+.. note::
+   If the admin is created, it isn't assigned to the ``oxidadmin`` group by default. As the rights are
+   dependent on the group, the user would have no special rights. Be sure the group is set.
+
 .. important::
 
    We decided to show queries and mutations in the schema even if the user is unauthorized.

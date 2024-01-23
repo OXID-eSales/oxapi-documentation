@@ -9,3 +9,4 @@ Consuming the API
         BrowseStorefront
         AdministrateCustomer
         PlaceOrder
+        Configurations
