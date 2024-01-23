@@ -8,7 +8,6 @@ In case the chosen payment method requires some extra action (like approval with
 this needs to be built into the module's GraphQL API.
 
 .. uml::
-   :align: center
 
    "Client (PWA)" -> "Storefront GraphQL API": basketCreate mutation
    "Client (PWA)" <- "Storefront GraphQL API": Basket datatype or error

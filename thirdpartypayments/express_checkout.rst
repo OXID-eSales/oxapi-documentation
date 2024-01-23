@@ -6,7 +6,6 @@ even already have an account in that shop. It's just fill the basket, approve th
 with the 3rd party and all necessary information to place the order is provided to the shop.
 
 .. uml::
-   :align: center
 
    "Client (PWA)" -> "Base GraphQL API": token query (JWT for anonymous or existing user)
    "Client (PWA)" -> "Storefront GraphQL API": basketCreate mutation
