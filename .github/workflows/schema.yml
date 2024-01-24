@@ -1,7 +1,7 @@
 name: Schema
 
 env:
-  PHP_VERSION: '8.0'
+  PHP_VERSION: '7.4'
   MYSQL_VERSION: '5.7'
   DOCUMENTATION_VERSION: '6.0'
   BASE_MODULE_VERSION: '^6.0.0'
