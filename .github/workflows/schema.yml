@@ -1,0 +1,106 @@
+name: Schema
+
+env:
+  PHP_VERSION: '7.4'
+  MYSQL_VERSION: '5.7'
+  DOCUMENTATION_VERSION: '5.0'
+  BASE_MODULE_VERSION: '^5.0.0'
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone testing environment
+        run: |
+          git clone https://github.com/OXID-eSales/docker-eshop-sdk.git .
+          git clone https://github.com/OXID-eSales/docker-eshop-sdk-recipes recipes/oxid-esales
+
+      - name: Clone the shop
+        run: git clone --depth 1 https://github.com/OXID-eSales/oxideshop_ce.git --branch b-6.4.x --single-branch source
+
+      - name: Prepare container configuration
+        run: |
+          make setup
+          make addbasicservices
+
+          perl -pi\
+            -e "s#PHP_VERSION=.*#PHP_VERSION='${{ env.PHP_VERSION }}'#g;"\
+            -e "s#MYSQL_VERSION=.*#MYSQL_VERSION='${{ env.MYSQL_VERSION }}'#g;"\
+            .env
+
+          perl -pi\
+            -e 's#display_errors =.*#display_errors = false#g;'\
+            -e 'print "xdebug.max_nesting_level=1000\nxdebug.mode=coverage\n\n";'\
+            -e 'print "error_reporting = E_ALL & ~E_DEPRECATED & ~E_NOTICE & ~E_WARNING\n"'\
+            containers/php/custom.ini
+
+          perl -pi\
+            -e 's#/var/www/#/var/www/source/#g;'\
+            containers/httpd/project.conf
+
+      - name: Prepare shop configuration
+        run: |
+          cp source/source/config.inc.php.dist source/source/config.inc.php
+          perl -pi\
+            -e 'print "SetEnvIf Authorization \"(.*)\" HTTP_AUTHORIZATION=\$1\n\n" if $. == 1'\
+            source/source/.htaccess
+
+          perl -pi\
+            -e 's#<dbHost>#mysql#g;'\
+            -e 's#<dbUser>#root#g;'\
+            -e 's#<dbName>#example#g;'\
+            -e 's#<dbPwd>#root#g;'\
+            -e 's#<dbPort>#3306#g;'\
+            -e 's#<sShopURL>#http://localhost/#g;'\
+            -e 's#<sShopDir>#/var/www/source/#g;'\
+            -e 's#<sCompileDir>#/var/www/source/tmp/#g;'\
+            source/source/config.inc.php
+
+      - name: Start containers
+        run: |
+          make up
+          sleep 2
+
+      - name: Install module and dependencies
+        run: |
+          docker-compose exec -T php composer require oxid-esales/graphql-base:${{env.BASE_MODULE_VERSION}} --no-update
+          docker-compose exec -T php composer update --no-interaction
+
+      - name: Reset shop
+        run: docker-compose exec -T php php vendor/bin/reset-shop
+
+      - name: Activate modules
+        run: |
+          docker-compose exec -T php php bin/oe-console oe:module:activate oe_graphql_base
+
+      - name: Checkout documentation
+        uses: actions/checkout@v4
+        with:
+          ref: schema
+          path: ./docs/_static/schema
+
+      - name: Remove old schema for version
+        run: |
+          if [ -d "$GITHUB_WORKSPACE/docs/_static/schema/${{env.DOCUMENTATION_VERSION}}" ]; then
+            rm -Rf $GITHUB_WORKSPACE/docs/_static/schema/${{env.DOCUMENTATION_VERSION}};
+          fi
+
+      - name: Generate documentation
+        run: |
+          ./recipes/oxid-esales/parts/shared/create_admin.sh
+          sudo npm install -g @2fd/graphdoc
+          sleep 2;
+          TOKEN=$(curl --silent http://localhost/graphql?skipSession=1 -H 'Content-Type: application/json' --data-binary '{"query":"query {token(username: \"noreply@oxid-esales.com\", password:\"admin\")}"}' | sed -n 's|.*"token":"\(.*\)\"}}|\1|p')
+          graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema/${{env.DOCUMENTATION_VERSION}} -f -x "Authorization: Bearer $TOKEN"
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: schema
+          FOLDER: docs/_static/schema
