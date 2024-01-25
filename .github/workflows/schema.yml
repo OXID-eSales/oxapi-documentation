@@ -102,8 +102,8 @@ jobs:
           graphdoc -e http://localhost/graphql?skipSession=1 -o $GITHUB_WORKSPACE/docs/_static/schema/${{env.DOCUMENTATION_VERSION}} -f -x "Authorization: Bearer $TOKEN"
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: schema
-          FOLDER: docs/_static/schema
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: schema
+          folder: docs/_static/schema
