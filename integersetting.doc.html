@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>ProductDeliveryTime</title>
+    <title>IntegerSetting</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -220,7 +220,7 @@
                 Inquirer
             </a>
         </li>
-        <li  title="IntegerSetting">
+        <li class="slds-is-active" title="IntegerSetting">
             <a href="integersetting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 IntegerSetting
             </a>
@@ -335,7 +335,7 @@
                 ProductAttribute
             </a>
         </li>
-        <li class="slds-is-active" title="ProductDeliveryTime">
+        <li  title="ProductDeliveryTime">
             <a href="productdeliverytime.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 ProductDeliveryTime
             </a>
@@ -696,7 +696,7 @@
     </div>
     <div class="container">
         <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
-        <h1 class="slds-text-heading--large">ProductDeliveryTime</h1>
+        <h1 class="slds-text-heading--large">IntegerSetting</h1>
         <div class="slds-text-body--regular"></div>
     </div>
 </section>
@@ -708,7 +708,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">ProductDeliveryTime</span> {</li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">minDeliveryTime</span>: <a class="support type" href="int.doc.html">Int</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   </span></span></li><li><span class="tab"><span class="meta">maxDeliveryTime</span>: <a class="support type" href="int.doc.html">Int</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Value can be one of:</span></span></li><li><span class="tab"><span class="comment line">#   - DAY</span></span></li><li><span class="tab"><span class="comment line">#   - WEEK</span></span></li><li><span class="tab"><span class="comment line">#   - MONTH</span></span></li><li><span class="tab"><span class="meta">deliveryTimeUnit</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:28px"><li><span class="keyword operator ts">type</span> <span class="identifier">IntegerSetting</span> {</li><li></li><li><span class="tab"><span class="comment line">#   Field of Configuration Access module's IntegerSetting-Type</span></span></li><li><span class="tab"><span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Field of Configuration Access module's IntegerSetting-Type</span></span></li><li><span class="tab"><span class="meta">value</span>: <a class="support type" href="int.doc.html">Int</a>! </span></li><li>}</li></ul></code>
     </div>
 </section>
 <section>
@@ -719,7 +719,7 @@
             </a>
             Require by
         </h2>
-        <ul class="require-by"><li><a href="product.doc.html" title="Product - ">Product<em>null</em></a><li></ul>
+        <ul class="require-by"><li><a href="mutation.doc.html" title="Mutation - ">Mutation<em>null</em></a><li><li><a href="query.doc.html" title="Query - ">Query<em>null</em></a><li></ul>
     </div>
 </section>
 <footer>
