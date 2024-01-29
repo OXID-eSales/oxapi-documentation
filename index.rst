@@ -22,7 +22,7 @@ Interface Documentation
         architecture
         development
         consuming/index
-        GraphQL schema <https://oxid-esales.github.io/graphql-storefront-module/>
+        GraphQL schema <https://oxid-esales.github.io/graphql-storefront-module/7.0>
         specification
         troubleshooting
         thirdpartypayments/index
