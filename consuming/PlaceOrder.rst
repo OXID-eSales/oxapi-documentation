@@ -41,7 +41,6 @@ Keep in mind, that you will need to send a valid
 JWT in Authorization header for any of the following queries or mutations.
 
 .. uml::
-   :align: center
 
    "Client (PWA)" -> "GraphQL API": basketCreate mutation
    "Client (PWA)" <- "GraphQL API": Basket datatype or error
