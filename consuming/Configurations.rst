@@ -4,6 +4,8 @@ Read and update configurations
 .. important::
    To read and update configurations you need the  `GraphQL Configuration Access module
    <https://github.com/OXID-eSales/graphql-configuration-access/>`_ installed and activated.
+   To use the queries and mutations of this module, admin rights are needed.
+   This means that the user has to be assigned to the ``oxidadmin``-group.
 
 List configurations
 -------------------
