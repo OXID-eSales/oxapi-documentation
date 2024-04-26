@@ -30,10 +30,11 @@ Both modules will automatically install the **OXID GraphQL Base** module, which 
 
     composer require oxid-esales/graphql-base
 
-If you decided to go with the **GraphQL Storefront** module, you need to run migrations after the installation was successfully executed:
+After the installation was successfully executed, you need to run migrations:
 
 .. code-block:: bash
 
+    ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oe_graphql_base
     ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oe_graphql_storefront
 
 Activation
