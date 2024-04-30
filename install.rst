@@ -30,7 +30,7 @@ Both modules will automatically install the **OXID GraphQL Base** module, which 
 
     composer require oxid-esales/graphql-base
 
-After the installation was successfully executed, you need to run migrations:
+You should run migrations both after installing the module and after each module update:
 
 .. code-block:: bash
 
