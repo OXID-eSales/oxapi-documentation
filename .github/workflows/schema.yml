@@ -73,7 +73,6 @@ jobs:
           docker-compose exec -T php composer require oxid-esales/graphql-base:${{env.BASE_MODULE_VERSION}} --no-update
           docker-compose exec -T php composer require oxid-esales/graphql-storefront:${{env.STOREFRONT_MODULE_VERSION}} --no-update
           docker-compose exec -T php composer require oxid-esales/graphql-configuration-access:${{env.CONFIGURATION_MODULE_VERSION}} --no-update
-          docker-compose exec -T php composer require oxid-esales/graphql-configuration-access --no-update
           docker-compose exec -T php composer update --no-interaction
 
       - name: Reset shop
