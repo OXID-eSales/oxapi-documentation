@@ -44,7 +44,7 @@ File structure
 
 As stated in the `Introduction <tutorials/introduction.html>`_, we need Controller,
 DataType, Service, Infrastructure and maybe some Exception. Please also have a look
-at the documentation section about the `Architecture <architecture.html>`_ of
+at the documentation section about the `Architecture <../architecture.html>`_ of
 our modules.
 
 .. code-block:: bash

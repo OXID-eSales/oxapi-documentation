@@ -6,15 +6,16 @@ Exceptions in your module
 
 The ``graphql-base`` module provides the following exceptions you can use or extend from
 
-============  ===============  ==================================================================================
-Class         Category         Description
-============  ===============  ==================================================================================
-InvalidLogin  permissionerror  Thrown when we have an invalid login
-InvalidToken  permissionerror  Thrown when a token is invalid
-NotFound      requesterror     Thrown when a record was not found
-Exists        requesterror     Thrown when a record exists (when we want to register already registered customer)
-OutOfBounds   requesterror     Thrown when values are out of bounds
-============  ===============  ==================================================================================
+===============================  ===============  ==================================================================================
+Class                            Category         Description
+===============================  ===============  ==================================================================================
+InvalidLogin                     permissionerror  Thrown when we have an invalid login
+InvalidToken                     permissionerror  Thrown when a token is invalid
+NotFound                         requesterror     Thrown when a record was not found
+Exists                           requesterror     Thrown when a record exists (when we want to register already registered customer)
+OutOfBounds                      requesterror     Thrown when values are out of bounds
+InvalidArgumentMultiplePossible  requesterror     Thrown when filter or sorting argument has an invalid value
+===============================  ===============  ==================================================================================
 
 The ``graphql-configuration-access`` module provides the following exceptions
 
