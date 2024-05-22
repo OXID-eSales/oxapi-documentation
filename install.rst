@@ -30,12 +30,20 @@ Both modules will automatically install the **OXID GraphQL Base** module, which 
 
     composer require oxid-esales/graphql-base
 
-You should run migrations both after installing the module and after each module update:
+You should run migrations both after installing the module and after each module update, example how to run migrations for one specific module:
 
 .. code-block:: bash
 
     ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oe_graphql_base
     ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oe_graphql_storefront
+    ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oe_graphql_configuration_access
+
+Alternatively, we can run all currently installed modules and shop migrations together if we do not specify the component:
+
+.. code-block:: bash
+
+    ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate
+
 
 Activation
 ----------
