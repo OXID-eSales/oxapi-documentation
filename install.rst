@@ -12,19 +12,19 @@ First navigate to your shop's root directory where the project ``composer.json``
 
     cd <shop_directory>
 
-Then you can simply install the module(s) by using ``composer require`` command. In most cases you want the full GraphQL integration by OXID including the schema for the OXID eShop storefront. To achieve this you need to install the **OXID GraphQL Storefront** module:
+Then you can simply install the module(s) by using ``composer require`` command. In most cases you want the full GraphQL integration by OXID including the schema for the OXID eShop storefront. To achieve this you need to install the **OXID GraphQL Storefront** module.
 
 .. code-block:: bash
 
     composer require oxid-esales/graphql-storefront
 
-If you want to read and update configurations you should also install the **OXID GraphQL Configuration Access** module:
+If you want to read and update configurations you should also install the **OXID GraphQL Configuration Access** module. In case you are updating your module from v1.0.0  (which is compatible with OXID eShop 7.0.x) to OXID eShop 7.1.x compatible module version, please run **“composer require oxid-esales/graphql-configuration-access ^v1.1.0-rc.1 --with-all-dependencies”**
 
 .. code-block:: bash
 
     composer require oxid-esales/graphql-configuration-access
 
-Both modules will automatically install the **OXID GraphQL Base** module, which is needed for general GraphQL integration into the OXID eShop. In case you only need the basic GraphQL integration and want to implement your own queries and mutations, you can also install the **GraphQL Base** module exclusively:
+Both modules will automatically install the **OXID GraphQL Base** module, which is needed for general GraphQL integration into the OXID eShop. In case you are updating your module from v8.1.x  (which is compatible with OXID eShop 7.0.x) to OXID eShop 7.1.x compatible module version, please run **“composer require oxid-esales/graphql-base ^v9.0.0-rc.1 --with-all-dependencies”**
 
 .. code-block:: bash
 
@@ -46,7 +46,6 @@ Now you need to activate the modules. You can do this in the OXID eShop administ
 
     vendor/bin/oe-console oe:module:activate oe_graphql_base
     vendor/bin/oe-console oe:module:activate oe_graphql_storefront
-    vendor/bin/oe-console oe:module:activate oe_graphql_configuration_access
 
 .. important::
 
