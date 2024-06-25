@@ -127,6 +127,76 @@ To update a setting, the ``name``, the new ``value`` and in our case the ``modul
         }
     }
 
+List Themes
+-----------
+
+Use this queries to get the list of all themes. You can use filter like ``title`` to filter theme by its title or ``title`` to filter theme on basis of its status.
+
+.. code-block:: graphql
+   :caption: call to ``themesList`` query
+
+    query themeListFilter {
+      themesList(
+        filters: {
+          title: {
+            contains: "Theme"
+          }
+          active: {
+            equals: true
+          }
+        }) {
+        title
+        identifier
+        version
+        description
+        active
+      }
+    }
+
+.. code-block:: json
+   :caption: ``themesList`` query response
+
+    {
+      "data": {
+        "themesList": [
+          {
+            "title": "APEX Theme",
+            "identifier": "apex",
+            "version": "1.3.0",
+            "description": "APEX - Bootstrap 5 TWIG Theme",
+            "active": true
+          },
+          {
+            "title": "Wave",
+            "identifier": "wave",
+            "version": "3.0.1",
+            "description": "Wave is OXID`s official responsive theme based on the CSS framework Bootstrap 4.",
+            "active": false
+          }
+        ]
+      }
+    }
+
+Switch Theme
+------------
+
+In order to activate a theme by a given it pass themeId as ``identifier``, you will receive response as Bool value whether given them was activated or not.
+
+.. code-block:: graphql
+   :caption: call to ``switchTheme`` query
+
+    mutation switchTheme{
+      switchTheme(identifier: "apex")
+    }
+
+.. code-block:: json
+   :caption: ``switchTheme`` query response
+
+    {
+      "data": {
+        "switchTheme": true
+      }
+    }
 
 .. important::
    Pay attention that the types for module/theme/shop-queries or mutations can be different.
