@@ -130,7 +130,7 @@ To update a setting, the ``name``, the new ``value`` and in our case the ``modul
 List Themes
 -----------
 
-Use this queries to get the list of all themes. You can use filter like ``title`` to filter theme by its title or ``title`` to filter theme on basis of its status.
+Use this queries to get the list of all themes. You can use filter like ``title`` to filter theme by its title or ``active`` to filter theme on basis of its status.
 
 .. code-block:: graphql
    :caption: call to ``themesList`` query
@@ -180,7 +180,7 @@ Use this queries to get the list of all themes. You can use filter like ``title`
 Switch Theme
 ------------
 
-In order to activate a theme by a given it pass themeId as ``identifier``, you will receive response as Bool value whether given them was activated or not.
+In order to activate a theme by a given it pass themeId as ``identifier``, you will receive response as Bool value whether given theme was activated or not.
 
 .. code-block:: graphql
    :caption: call to ``switchTheme`` query
@@ -195,6 +195,102 @@ In order to activate a theme by a given it pass themeId as ``identifier``, you w
     {
       "data": {
         "switchTheme": true
+      }
+    }
+
+List Modules
+------------
+
+Use this queries to get the list of all modules. You can use filter like ``title`` to filter theme by its title or ``active`` to filter module on basis of its status.
+
+.. code-block:: graphql
+   :caption: call to ``modulesList`` query
+
+    query modulesList {
+      modulesList(
+        filters: {
+          title: {
+            contains: "Base"
+          }
+          active: {
+            equals: true
+          }
+        }){
+            id
+            version
+            title
+            description
+            thumbnail
+            author
+            url
+            email
+            active
+      }
+    }
+
+.. code-block:: json
+   :caption: ``modulesList`` query response
+
+    {
+      "data": {
+        "modulesList": [
+          {
+            "id": "moduleId",
+            "version": "1.3.0",
+            "title": "GraphQL Storefront",
+            "description": "GraphQL Storefront",
+            "thumbnail": "http://www.someUrl.com",
+            "author": "oxid",
+            "url": "url",
+            "email": "some@email.com",
+            "active": true
+          },
+          {
+            ....
+          }
+        ]
+      }
+    }
+
+Activate Module
+---------------
+
+In order to activate a module by a given it pass module id as ``moduleId``, you will receive response as Bool value whether given module was activated or not.
+
+.. code-block:: graphql
+   :caption: call to ``activateModule`` query
+
+    mutation activateModule{
+      activateModule(moduleId: "awesomeModule")
+    }
+
+.. code-block:: json
+   :caption: ``activateModule`` query response
+
+    {
+      "data": {
+        "activateModule": true
+      }
+    }
+
+Deactivate Module
+---------------
+
+In order to deactivate a module by a given it pass module id as ``moduleId``, you will receive response as Bool value whether given module was deactivated or not.
+
+.. code-block:: graphql
+   :caption: call to ``deactivateModule`` query
+
+    mutation deactivateModule{
+      deactivateModule(moduleId: "awesomeModule")
+    }
+
+.. code-block:: json
+   :caption: ``deactivateModule`` query response
+
+    {
+      "data": {
+        "deactivateModule": true
       }
     }
 
