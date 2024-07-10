@@ -282,3 +282,72 @@ its own information.
             }
         }
     }
+
+To reset a forgotten password, you need to use the following mutations:
+
+1. ``customerPasswordForgotRequest``: This mutation sends an email to the customer with a link for password reset,
+the same as they would receive if using this functionality from the shop's frontend. The link contains
+a unique hash for password reset. This hash key can be found as the ``uid`` parameter of the  password reset link.
+The hash will need to be passed as an ``updateHash`` parameter in the ``customerPasswordReset`` mutation.
+
+.. code-block:: graphql
+   :caption: call to ``customerPasswordForgotRequest`` mutation
+
+    mutation {
+        customerPasswordForgotRequest(email: "customer@example.com")
+    }
+
+.. code-block:: json
+   :caption: customerPasswordForgotRequest mutation response
+
+    {
+        "data": {
+            "customerPasswordForgotRequest": true
+        }
+    }
+
+Returns a boolean indicating if the email was sent successfully.
+
+2. ``customerPasswordReset``: This mutation allows the customer to reset their password using the unique hash sent in the email.
+
+.. code-block:: graphql
+   :caption: call to customerPasswordReset mutation
+
+    mutation {
+        customerPasswordReset(
+            updateHash: "7cd138fe6d558234af927f2fc6764280"
+            newPassword: "newSecurePassword123"
+            repeatPassword: "newSecurePassword123"
+        )
+    }
+
+.. code-block:: json
+   :caption: customerPasswordReset mutation response
+
+    {
+        "data": {
+            "customerPasswordReset": true
+        }
+    }
+
+Returns a boolean indicating if the password was reset successfully.
+
+By default, the hash key is included in the password reset link sent via email. However, you can customize the email
+content to include the hash key separately.
+
+Here is and example how to include the hash key separately in your email template:
+
+.. code-block:: html
+   :caption: email template example
+
+    <p>Click the following link to reset your password:</p>
+    <a href="https://example.com/index.php?cl=forgotpwd&uid={{ user.getUpdateId }}&lang=0&shp=1">Reset Password</a>
+
+    <p>Or you can use the following hash key:</p>
+    <p>Hash Key: {{ user.getUpdateId }}</p>
+
+By including ``{{ user.getUpdateId }}`` in your email template, you ensure that the unique hash key is added
+to the email content, allowing customers to manually use the hash key if needed.
+
+For more details on editing CMS pages, refer to `Editing CMS pages
+<https://docs.oxid-esales.com/eshop/en/latest/configuration/customer-information.html#editing-customer-information-pages>`_.
