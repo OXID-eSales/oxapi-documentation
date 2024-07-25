@@ -140,7 +140,7 @@ To update a setting, the ``name``, the new ``value`` and in our case the ``modul
 List Themes
 -----------
 
-Use this queries to get the list of all themes. You can use filter like ``title`` to filter theme by its title or ``active`` to filter theme on basis of its status.
+Use this query to get the list of all themes. You can use filter like ``title`` to filter theme by its title or ``active`` to filter theme on basis of its status.
 
 .. code-block:: graphql
    :caption: call to ``themesList`` query
@@ -191,7 +191,7 @@ Use this queries to get the list of all themes. You can use filter like ``title`
 Switch Theme
 ------------
 
-In order to activate a theme by a given it pass themeId as ``identifier``, you will receive response as Bool value whether given theme was activated or not.
+In order to activate a theme by a given ID pass themeId as ``identifier``. If errors during the activation process occur, they will be raised and shown.
 
 .. code-block:: graphql
    :caption: call to ``switchTheme`` query
@@ -200,19 +200,9 @@ In order to activate a theme by a given it pass themeId as ``identifier``, you w
         switchTheme(identifier: "apex")
     }
 
-.. code-block:: json
-   :caption: ``switchTheme`` query response
-
-    {
-      "data": {
-        "switchTheme": true
-      }
-    }
-
 List Modules
 ------------
-
-Use this queries to get the list of all modules. You can use filter like ``title`` to filter theme by its title or ``active`` to filter module on basis of its status.
+Use this query to get the list of all modules. You can use filter like ``title`` to filter theme by its title or ``active`` to filter module on basis of its status.
 
 .. code-block:: graphql
    :caption: call to ``modulesList`` query
@@ -294,7 +284,7 @@ In order to activate a module by a given it pass module id as ``moduleId``, you 
     }
 
 Deactivate Module
----------------
+-----------------
 
 In order to deactivate a module by a given it pass module id as ``moduleId``, you will receive response as Bool value whether given module was deactivated or not.
 
