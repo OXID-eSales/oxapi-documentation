@@ -146,45 +146,46 @@ Use this queries to get the list of all themes. You can use filter like ``title`
    :caption: call to ``themesList`` query
 
     query themeListFilter {
-      themesList(
-        filters: {
-          title: {
-            contains: "Theme"
-          }
-          active: {
-            equals: true
-          }
-        }) {
-        title
-        identifier
-        version
-        description
-        active
-      }
+        themesList(
+            filters: {
+            title: {
+                contains: "Theme"
+            }
+            active: {
+                equals: true
+            }
+        }
+        ) {
+            title
+            identifier
+            version
+            description
+            active
+        }
     }
 
 .. code-block:: json
    :caption: ``themesList`` query response
 
     {
-      "data": {
-        "themesList": [
-          {
-            "title": "APEX Theme",
-            "identifier": "apex",
-            "version": "1.3.0",
-            "description": "APEX - Bootstrap 5 TWIG Theme",
-            "active": true
-          },
-          {
-            "title": "Wave",
-            "identifier": "wave",
-            "version": "3.0.1",
-            "description": "Wave is OXID`s official responsive theme based on the CSS framework Bootstrap 4.",
-            "active": false
-          }
-        ]
-      }
+        "data": {
+            "themesList": [
+                {
+                    "title": "APEX Theme",
+                    "identifier": "apex",
+                    "version": "1.3.0",
+                    "description": "APEX - Bootstrap 5 TWIG Theme",
+                    "active": true
+                },
+                {
+                    "title": "Wave Theme",
+                    "identifier": "wave",
+                    "version": "3.0.1",
+                    "description": "Wave is OXID`s official responsive theme based on the CSS framework Bootstrap 4.",
+                    "active": true
+                }
+            ]
+        }
     }
 
 Switch Theme
@@ -196,7 +197,7 @@ In order to activate a theme by a given it pass themeId as ``identifier``, you w
    :caption: call to ``switchTheme`` query
 
     mutation switchTheme{
-      switchTheme(identifier: "apex")
+        switchTheme(identifier: "apex")
     }
 
 .. code-block:: json
@@ -217,15 +218,16 @@ Use this queries to get the list of all modules. You can use filter like ``title
    :caption: call to ``modulesList`` query
 
     query modulesList {
-      modulesList(
-        filters: {
-          title: {
-            contains: "Base"
-          }
-          active: {
-            equals: true
-          }
-        }){
+        modulesList(
+            filters: {
+                title: {
+                    contains: "GraphQL"
+                }
+                active: {
+                    equals: true
+                }
+            }
+        ) {
             id
             version
             title
@@ -235,31 +237,39 @@ Use this queries to get the list of all modules. You can use filter like ``title
             url
             email
             active
-      }
+        }
     }
 
 .. code-block:: json
    :caption: ``modulesList`` query response
 
     {
-      "data": {
-        "modulesList": [
-          {
-            "id": "moduleId",
-            "version": "1.3.0",
-            "title": "GraphQL Storefront",
-            "description": "GraphQL Storefront",
-            "thumbnail": "http://www.someUrl.com",
-            "author": "oxid",
-            "url": "url",
-            "email": "some@email.com",
-            "active": true
-          },
-          {
-            ....
-          }
-        ]
-      }
+        "data": {
+            "modulesList": [
+                {
+                    "id": "oe_graphql_base",
+                    "version": "9.0.0",
+                    "title": "GraphQL Base",
+                    "description": "<span>OXID GraphQL API Framework</span>",
+                    "thumbnail": "logo.png",
+                    "author": "OXID eSales",
+                    "url": "www.oxid-esales.com",
+                    "email": "info@oxid-esales.com",
+                    "active": true
+                },
+                {
+                    "id": "oe_graphql_storefront",
+                    "version": "3.0.0",
+                    "title": "GraphQL Storefront",
+                    "description": "OXID GraphQL Storefront",
+                    "thumbnail": "logo.png",
+                    "author": "OXID eSales",
+                    "url": "https://github.com/OXID-eSales/graphql-storefront-module",
+                    "email": "some@email.com",
+                    "active": true
+                }
+            ]
+        }
     }
 
 Activate Module
@@ -271,16 +281,16 @@ In order to activate a module by a given it pass module id as ``moduleId``, you 
    :caption: call to ``activateModule`` query
 
     mutation activateModule{
-      activateModule(moduleId: "awesomeModule")
+        activateModule(moduleId: "awesomeModule")
     }
 
 .. code-block:: json
    :caption: ``activateModule`` query response
 
     {
-      "data": {
-        "activateModule": true
-      }
+        "data": {
+            "activateModule": true
+        }
     }
 
 Deactivate Module
@@ -292,20 +302,15 @@ In order to deactivate a module by a given it pass module id as ``moduleId``, yo
    :caption: call to ``deactivateModule`` query
 
     mutation deactivateModule{
-      deactivateModule(moduleId: "awesomeModule")
+        deactivateModule(moduleId: "awesomeModule")
     }
 
 .. code-block:: json
    :caption: ``deactivateModule`` query response
 
     {
-      "data": {
-        "deactivateModule": true
-      }
+        "data": {
+            "deactivateModule": true
+        }
     }
-
-.. important::
-   Pay attention that the types for module/theme/shop-queries or mutations can be different.
-   Also the handling of the values depends on the implementation in the shop.
-   Only the handling of Theme-configurations are currently implemented by the module itself.
 
