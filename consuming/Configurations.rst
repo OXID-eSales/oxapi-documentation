@@ -23,7 +23,11 @@ Here is one example how to use it:
     query settings {
         moduleSettings(
             moduleId: "awesomeModule"
-        )
+        ) {
+            name
+            type
+            supported
+        }
     }
 
 .. code-block:: json
@@ -126,6 +130,12 @@ To update a setting, the ``name``, the new ``value`` and in our case the ``modul
             }
         }
     }
+
+.. important::
+   Pay attention that the types for module/theme/shop-queries or mutations can be different.
+   Also the handling of the values depends on the implementation in the shop.
+   Only the handling of Theme-configurations are currently implemented by the module itself.
+
 
 List Themes
 -----------
