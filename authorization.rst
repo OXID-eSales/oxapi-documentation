@@ -12,6 +12,9 @@ with a valid token.
 Consumer usage
 --------------
 
+Using only JWT access tokens
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The `graphql-base` module provides you with a `token` query that returns a JWT
 to be used in future requests.
 
@@ -36,7 +39,7 @@ to be used in future requests.
         }
     }
 
-This `token` is then to be send in the HTTP `Authorization` header as a bearer
+This `token` is then to be sent in the HTTP `Authorization` header as a bearer
 token.
 
 .. code-block:: yaml
@@ -45,6 +48,90 @@ token.
 
 If you want to have a brief look into the JWT you received head over
 to `jwt.io <https://jwt.io>`_.
+
+Using refresh tokens
+^^^^^^^^^^^^^^
+
+Refresh tokens add a layer of security to the authentication workflow of your clientside application.
+
+Simply put, a refresh token is what the application uses instead of saving, or
+asking for, the user's credentials. With this workflow, the access token can
+(and should) be issued a much shorter lifespan without deteriorating user
+experience through frequent login requests and provide security through rapid
+iteration of the identification through which the API is accessed.
+
+Typical lifetime of an access token should be from a few minutes to a few hours.
+Refresh tokens should be a few days to a few months respectively.
+These lifetimes are configurable in the `graphql-base` module settings.
+The access token contains an expiration datetime under the `exp` JWT claim.
+
+The workflow involves using two queries - `login` and `refresh`.
+Logging in as a user should be done through the following query.
+
+**Request:**
+
+.. code-block:: graphql
+
+   query ($username: String!, $password: String!) { login (username: $username, password: $password)
+      {
+         accessToken
+         refreshToken
+      }
+   }
+
+**Response:**
+
+.. code-block:: json
+
+   {
+      "data": {
+         "accessToken": "a-very-long-jwt-encoded-token"
+         "refreshToken": "your-refresh-token"
+      }
+   }
+
+An `HttpOnly` cookie, for token sidejack prevention, will be set, which the
+client infrastructure should be able to handle appropriately. In the case of a
+browser this means setting up the cookie for either cross origin or same origin
+operation in the module settings. Along with the cookie, a `fingerprintHash`
+claim is set in the JWT access token. This will need to be passed in the next
+step.
+
+After the access token's lifetime elapses it will need to be refreshed. The
+`refresh` query looks as follows.
+
+**Request:**
+
+.. code-block:: graphql
+
+   query {
+      refresh (
+         refreshToken: "your-refresh-token",
+         fingerprintHash: "from-access-token-claims"
+      )
+   }
+
+This request must have the `HttpOnly` fingerprint cookie set during login.
+If both the token and the fingerprint-fingerprintHash pair are correct the
+client will receive a new `accessToken` in the response payload, containing a
+new `fingerprintHash` claim to go with a newly set `fingerprint` cookie.
+
+**Response:**
+
+.. code-block:: json
+
+{
+    "data": {
+        "refresh": "a-new-very-long-jwt-encoded-token"
+    }
+}
+
+For more examples of using refresh tokens in a frontend client scenario please
+check out `hasura's sample code on the topic <https://github.com/hasura/jwt-guide>`_
+as well as their `"Ultimate guide to handling JWTs on frontend clients" <https://hasura.io/blog/best-practices-of-using-jwt-with-graphql#silent-refresh>`_
+which contains a more in-depth look on both the client and server side along
+with graphical explanations of how all information flows between thefrontend
+application and the authentication server.
 
 Protect your queries/mutations/types
 ------------------------------------
