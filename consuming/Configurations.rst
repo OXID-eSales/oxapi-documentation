@@ -140,7 +140,7 @@ To update a setting, the ``name``, the new ``value`` and in our case the ``modul
 List Themes
 -----------
 
-Use this query to get the list of all themes. You can use filter like ``title`` to filter theme by its title or ``active`` to filter theme on basis of its status.
+Use this query to get the list of all themes. You can use filter like ``title`` to filter themes by there titles or ``active`` to filter themes on basis of the status.
 
 .. code-block:: graphql
    :caption: call to ``themes`` query
@@ -202,7 +202,7 @@ In order to activate a theme by a given ID pass themeId as ``identifier``. If er
 
 List Modules
 ------------
-Use this query to get the list of all modules. You can use filter like ``title`` to filter theme by its title or ``active`` to filter module on basis of its status.
+Use this query to get the list of all modules. You can use filter like ``title`` to filter themes by there titles or ``active`` to filter modules on basis of the status.
 
 .. code-block:: graphql
    :caption: call to ``modules`` query
@@ -262,10 +262,10 @@ Use this query to get the list of all modules. You can use filter like ``title``
         }
     }
 
-Activate Module
+Activate/Deactivate Module
 ---------------
 
-In order to activate a module by a given it pass module id as ``moduleId``, you will receive response as Bool value whether given module was activated or not.
+In order to de/activate a module by a given module id as ``moduleId``, you will receive response as Bool value if the module was de/activated. Otherwise you will receive an error message.
 
 .. code-block:: graphql
    :caption: call to ``activateModule`` query
@@ -282,25 +282,3 @@ In order to activate a module by a given it pass module id as ``moduleId``, you 
             "activateModule": true
         }
     }
-
-Deactivate Module
------------------
-
-In order to deactivate a module by a given it pass module id as ``moduleId``, you will receive response as Bool value whether given module was deactivated or not.
-
-.. code-block:: graphql
-   :caption: call to ``deactivateModule`` query
-
-    mutation deactivateModule{
-        deactivateModule(moduleId: "awesomeModule")
-    }
-
-.. code-block:: json
-   :caption: ``deactivateModule`` query response
-
-    {
-        "data": {
-            "deactivateModule": true
-        }
-    }
-
