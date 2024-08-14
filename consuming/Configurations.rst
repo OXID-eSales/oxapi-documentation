@@ -140,7 +140,8 @@ To update a setting, the ``name``, the new ``value`` and in our case the ``modul
 List Themes
 -----------
 
-Use this query to get the list of all themes. You can use filter like ``title`` to filter themes by there titles or ``active`` to filter themes on basis of the status.
+Use this query to get the list of all themes. You can use filter like ``title`` to filter themes by there titles or
+``active`` to filter themes on basis of the status.
 
 .. code-block:: graphql
    :caption: call to ``themes`` query
@@ -191,7 +192,8 @@ Use this query to get the list of all themes. You can use filter like ``title`` 
 Switch Theme
 ------------
 
-In order to activate a theme by a given ID pass themeId as ``identifier``. If errors during the activation process occur, they will be raised and shown.
+In order to activate a theme by a given ID pass themeId as ``identifier``. If errors during the activation process
+occur, they will be raised and shown.
 
 .. code-block:: graphql
    :caption: call to ``switchTheme`` query
@@ -202,7 +204,8 @@ In order to activate a theme by a given ID pass themeId as ``identifier``. If er
 
 List Modules
 ------------
-Use this query to get the list of all modules. You can use filter like ``title`` to filter themes by there titles or ``active`` to filter modules on basis of the status.
+Use this query to get the list of all modules. You can use filter like ``title`` to filter themes by there titles or
+``active`` to filter modules on basis of the status.
 
 .. code-block:: graphql
    :caption: call to ``modules`` query
@@ -263,9 +266,10 @@ Use this query to get the list of all modules. You can use filter like ``title``
     }
 
 Activate/Deactivate Module
----------------
+--------------------------
 
-In order to de/activate a module by a given module id as ``moduleId``, you will receive response as Bool value if the module was de/activated. Otherwise you will receive an error message.
+In order to de/activate a module by a given module id as ``moduleId``, you will receive response as Bool value if the
+module was de/activated. Otherwise you will receive an error message.
 
 .. code-block:: graphql
    :caption: call to ``activateModule`` query
@@ -282,3 +286,9 @@ In order to de/activate a module by a given module id as ``moduleId``, you will 
             "activateModule": true
         }
     }
+
+.. important::
+   Some modules can't be deactivated as they are listed in the ``module_blocklist.yaml``.`
+   This yaml-file contains a list of modules which are necessary to handle configurations or de/activate modules via
+   GraphQL. Modules like ``oe_graphql_base`` and ``oe_graphql_configuration_access`` are listed there.
+
