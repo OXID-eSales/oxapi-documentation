@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
+    <title>Query</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
+</head>
+<body class="slds-scrollable--y">
+    <nav class="slds-grid slds-grid--vertical slds-col--rule-right">
+        <header class="slds-p-around--medium slds-col slds-shrik slds-grow-none">
+            <button class="slds-button slds-button--icon slds-float--right js-toggle-navigation less-than-medium">
+                <i class="material-icons">close</i>
+            </button>
+                <h3 class="slds-text-heading--medium"><a href="./">GraphQL Schema</a></h3>
+            <div class="slds-p-top--small">
+                <input id="type-search" type="text" placeholder="Search a type" autofocus="" class="slds-input" />
+            </div>
+        </header>
+        <div id="navication-scroll" class="slds-scrollable--y slds-col slds-grow">
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Schema</h4>
+    <ul>
+        <li class="slds-is-active" title="Query">
+            <a href="query.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Query
+            </a>
+        </li>
+        <li  title="Mutation">
+            <a href="mutation.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Mutation
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Scalars</h4>
+    <ul>
+        <li  title="Boolean">
+            <a href="boolean.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Boolean
+            </a>
+        </li>
+        <li  title="DateTime">
+            <a href="datetime.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DateTime
+            </a>
+        </li>
+        <li  title="Float">
+            <a href="float.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Float
+            </a>
+        </li>
+        <li  title="ID">
+            <a href="id.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ID
+            </a>
+        </li>
+        <li  title="Int">
+            <a href="int.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Int
+            </a>
+        </li>
+        <li  title="String">
+            <a href="string.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                String
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Enums</h4>
+    <ul>
+        <li  title="__DirectiveLocation">
+            <a href="directivelocation.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __DirectiveLocation
+            </a>
+        </li>
+        <li  title="__TypeKind">
+            <a href="typekind.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __TypeKind
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Interfaces</h4>
+    <ul>
+        <li  title="DeliveryMethodInterface">
+            <a href="deliverymethodinterface.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DeliveryMethodInterface
+            </a>
+        </li>
+        <li  title="PaymentInterface">
+            <a href="paymentinterface.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                PaymentInterface
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Objects</h4>
+    <ul>
+        <li  title="Action">
+            <a href="action.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Action
+            </a>
+        </li>
+        <li  title="Attribute">
+            <a href="attribute.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Attribute
+            </a>
+        </li>
+        <li  title="Banner">
+            <a href="banner.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Banner
+            </a>
+        </li>
+        <li  title="Basket">
+            <a href="basket.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Basket
+            </a>
+        </li>
+        <li  title="BasketCost">
+            <a href="basketcost.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BasketCost
+            </a>
+        </li>
+        <li  title="BasketDeliveryMethod">
+            <a href="basketdeliverymethod.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BasketDeliveryMethod
+            </a>
+        </li>
+        <li  title="BasketItem">
+            <a href="basketitem.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BasketItem
+            </a>
+        </li>
+        <li  title="BasketOwner">
+            <a href="basketowner.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BasketOwner
+            </a>
+        </li>
+        <li  title="BasketPayment">
+            <a href="basketpayment.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BasketPayment
+            </a>
+        </li>
+        <li  title="BasketProductBruttoSum">
+            <a href="basketproductbruttosum.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BasketProductBruttoSum
+            </a>
+        </li>
+        <li  title="BasketProductVats">
+            <a href="basketproductvats.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BasketProductVats
+            </a>
+        </li>
+        <li  title="BooleanSetting">
+            <a href="booleansetting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BooleanSetting
+            </a>
+        </li>
+        <li  title="Category">
+            <a href="category.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Category
+            </a>
+        </li>
+        <li  title="CategoryAttribute">
+            <a href="categoryattribute.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                CategoryAttribute
+            </a>
+        </li>
+        <li  title="Content">
+            <a href="content.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Content
+            </a>
+        </li>
+        <li  title="Country">
+            <a href="country.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Country
+            </a>
+        </li>
+        <li  title="Currency">
+            <a href="currency.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Currency
+            </a>
+        </li>
+        <li  title="Customer">
+            <a href="customer.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Customer
+            </a>
+        </li>
+        <li  title="DeliveryAddress">
+            <a href="deliveryaddress.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DeliveryAddress
+            </a>
+        </li>
+        <li  title="DeliveryMethod">
+            <a href="deliverymethod.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DeliveryMethod
+            </a>
+        </li>
+        <li  title="DeliveryProvider">
+            <a href="deliveryprovider.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DeliveryProvider
+            </a>
+        </li>
+        <li  title="File">
+            <a href="file.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                File
+            </a>
+        </li>
+        <li  title="FloatSetting">
+            <a href="floatsetting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                FloatSetting
+            </a>
+        </li>
+        <li  title="Inquirer">
+            <a href="inquirer.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Inquirer
+            </a>
+        </li>
+        <li  title="IntegerSetting">
+            <a href="integersetting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                IntegerSetting
+            </a>
+        </li>
+        <li  title="InvoiceAddress">
+            <a href="invoiceaddress.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                InvoiceAddress
+            </a>
+        </li>
+        <li  title="Language">
+            <a href="language.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Language
+            </a>
+        </li>
+        <li  title="Link">
+            <a href="link.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Link
+            </a>
+        </li>
+        <li  title="Manufacturer">
+            <a href="manufacturer.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Manufacturer
+            </a>
+        </li>
+        <li  title="ManufacturerImage">
+            <a href="manufacturerimage.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ManufacturerImage
+            </a>
+        </li>
+        <li  title="NewsletterStatus">
+            <a href="newsletterstatus.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NewsletterStatus
+            </a>
+        </li>
+        <li  title="NewsletterStatusSubscribe">
+            <a href="newsletterstatussubscribe.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NewsletterStatusSubscribe
+            </a>
+        </li>
+        <li  title="NewsletterStatusUnsubscribe">
+            <a href="newsletterstatusunsubscribe.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NewsletterStatusUnsubscribe
+            </a>
+        </li>
+        <li  title="Order">
+            <a href="order.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Order
+            </a>
+        </li>
+        <li  title="OrderCost">
+            <a href="ordercost.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                OrderCost
+            </a>
+        </li>
+        <li  title="OrderDelivery">
+            <a href="orderdelivery.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                OrderDelivery
+            </a>
+        </li>
+        <li  title="OrderDeliveryAddress">
+            <a href="orderdeliveryaddress.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                OrderDeliveryAddress
+            </a>
+        </li>
+        <li  title="OrderFile">
+            <a href="orderfile.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                OrderFile
+            </a>
+        </li>
+        <li  title="OrderInvoiceAddress">
+            <a href="orderinvoiceaddress.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                OrderInvoiceAddress
+            </a>
+        </li>
+        <li  title="OrderItem">
+            <a href="orderitem.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                OrderItem
+            </a>
+        </li>
+        <li  title="OrderPayment">
+            <a href="orderpayment.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                OrderPayment
+            </a>
+        </li>
+        <li  title="OrderPaymentValue">
+            <a href="orderpaymentvalue.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                OrderPaymentValue
+            </a>
+        </li>
+        <li  title="OrderProductBruttoSum">
+            <a href="orderproductbruttosum.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                OrderProductBruttoSum
+            </a>
+        </li>
+        <li  title="OrderProductVats">
+            <a href="orderproductvats.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                OrderProductVats
+            </a>
+        </li>
+        <li  title="Payment">
+            <a href="payment.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Payment
+            </a>
+        </li>
+        <li  title="Price">
+            <a href="price.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Price
+            </a>
+        </li>
+        <li  title="Product">
+            <a href="product.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Product
+            </a>
+        </li>
+        <li  title="ProductAttribute">
+            <a href="productattribute.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ProductAttribute
+            </a>
+        </li>
+        <li  title="ProductDeliveryTime">
+            <a href="productdeliverytime.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ProductDeliveryTime
+            </a>
+        </li>
+        <li  title="ProductDimensions">
+            <a href="productdimensions.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ProductDimensions
+            </a>
+        </li>
+        <li  title="ProductImage">
+            <a href="productimage.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ProductImage
+            </a>
+        </li>
+        <li  title="ProductImageGallery">
+            <a href="productimagegallery.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ProductImageGallery
+            </a>
+        </li>
+        <li  title="ProductRating">
+            <a href="productrating.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ProductRating
+            </a>
+        </li>
+        <li  title="ProductScalePrice">
+            <a href="productscaleprice.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ProductScalePrice
+            </a>
+        </li>
+        <li  title="ProductStock">
+            <a href="productstock.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ProductStock
+            </a>
+        </li>
+        <li  title="ProductUnit">
+            <a href="productunit.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ProductUnit
+            </a>
+        </li>
+        <li  title="Promotion">
+            <a href="promotion.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Promotion
+            </a>
+        </li>
+        <li  title="PublicBasket">
+            <a href="publicbasket.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                PublicBasket
+            </a>
+        </li>
+        <li  title="Review">
+            <a href="review.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Review
+            </a>
+        </li>
+        <li  title="Reviewer">
+            <a href="reviewer.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Reviewer
+            </a>
+        </li>
+        <li  title="Selection">
+            <a href="selection.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Selection
+            </a>
+        </li>
+        <li  title="SelectionList">
+            <a href="selectionlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                SelectionList
+            </a>
+        </li>
+        <li  title="Seo">
+            <a href="seo.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Seo
+            </a>
+        </li>
+        <li  title="SettingType">
+            <a href="settingtype.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                SettingType
+            </a>
+        </li>
+        <li  title="State">
+            <a href="state.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                State
+            </a>
+        </li>
+        <li  title="StringSetting">
+            <a href="stringsetting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                StringSetting
+            </a>
+        </li>
+        <li  title="Subscriber">
+            <a href="subscriber.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Subscriber
+            </a>
+        </li>
+        <li  title="Token">
+            <a href="token.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Token
+            </a>
+        </li>
+        <li  title="Translation">
+            <a href="translation.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Translation
+            </a>
+        </li>
+        <li  title="User">
+            <a href="user.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                User
+            </a>
+        </li>
+        <li  title="VariantSelectionList">
+            <a href="variantselectionlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                VariantSelectionList
+            </a>
+        </li>
+        <li  title="VariantSelections">
+            <a href="variantselections.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                VariantSelections
+            </a>
+        </li>
+        <li  title="Vendor">
+            <a href="vendor.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Vendor
+            </a>
+        </li>
+        <li  title="Voucher">
+            <a href="voucher.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                Voucher
+            </a>
+        </li>
+        <li  title="VoucherSeries">
+            <a href="voucherseries.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                VoucherSeries
+            </a>
+        </li>
+        <li  title="WishedPrice">
+            <a href="wishedprice.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                WishedPrice
+            </a>
+        </li>
+        <li  title="__Directive">
+            <a href="directive.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Directive
+            </a>
+        </li>
+        <li  title="__EnumValue">
+            <a href="enumvalue.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __EnumValue
+            </a>
+        </li>
+        <li  title="__Field">
+            <a href="field.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Field
+            </a>
+        </li>
+        <li  title="__InputValue">
+            <a href="inputvalue.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __InputValue
+            </a>
+        </li>
+        <li  title="__Schema">
+            <a href="schema.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Schema
+            </a>
+        </li>
+        <li  title="__Type">
+            <a href="type.spec.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                __Type
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Input Objects</h4>
+    <ul>
+        <li  title="ActionFilterList">
+            <a href="actionfilterlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ActionFilterList
+            </a>
+        </li>
+        <li  title="AttributeFilterList">
+            <a href="attributefilterlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                AttributeFilterList
+            </a>
+        </li>
+        <li  title="BasketInput">
+            <a href="basketinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                BasketInput
+            </a>
+        </li>
+        <li  title="CategoryFilterList">
+            <a href="categoryfilterlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                CategoryFilterList
+            </a>
+        </li>
+        <li  title="CategoryIDFilterInput">
+            <a href="categoryidfilterinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                CategoryIDFilterInput
+            </a>
+        </li>
+        <li  title="CategorySorting">
+            <a href="categorysorting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                CategorySorting
+            </a>
+        </li>
+        <li  title="ContactRequestInput">
+            <a href="contactrequestinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ContactRequestInput
+            </a>
+        </li>
+        <li  title="ContentFilterList">
+            <a href="contentfilterlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ContentFilterList
+            </a>
+        </li>
+        <li  title="CountryFilterList">
+            <a href="countryfilterlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                CountryFilterList
+            </a>
+        </li>
+        <li  title="CountrySorting">
+            <a href="countrysorting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                CountrySorting
+            </a>
+        </li>
+        <li  title="CustomerInput">
+            <a href="customerinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                CustomerInput
+            </a>
+        </li>
+        <li  title="DateFilterInput">
+            <a href="datefilterinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DateFilterInput
+            </a>
+        </li>
+        <li  title="DeliveryAddressInput">
+            <a href="deliveryaddressinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                DeliveryAddressInput
+            </a>
+        </li>
+        <li  title="IDFilterInput">
+            <a href="idfilterinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                IDFilterInput
+            </a>
+        </li>
+        <li  title="InvoiceAddressInput">
+            <a href="invoiceaddressinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                InvoiceAddressInput
+            </a>
+        </li>
+        <li  title="LinkFilterList">
+            <a href="linkfilterlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                LinkFilterList
+            </a>
+        </li>
+        <li  title="ManufacturerFilterList">
+            <a href="manufacturerfilterlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ManufacturerFilterList
+            </a>
+        </li>
+        <li  title="ManufacturerSorting">
+            <a href="manufacturersorting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ManufacturerSorting
+            </a>
+        </li>
+        <li  title="NewsletterStatusInput">
+            <a href="newsletterstatusinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NewsletterStatusInput
+            </a>
+        </li>
+        <li  title="NewsletterStatusSubscribeInput">
+            <a href="newsletterstatussubscribeinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NewsletterStatusSubscribeInput
+            </a>
+        </li>
+        <li  title="NewsletterStatusUnsubscribeInput">
+            <a href="newsletterstatusunsubscribeinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                NewsletterStatusUnsubscribeInput
+            </a>
+        </li>
+        <li  title="PaginationFilterInput">
+            <a href="paginationfilterinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                PaginationFilterInput
+            </a>
+        </li>
+        <li  title="ProductFilterList">
+            <a href="productfilterlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ProductFilterList
+            </a>
+        </li>
+        <li  title="ProductSorting">
+            <a href="productsorting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ProductSorting
+            </a>
+        </li>
+        <li  title="ReviewInput">
+            <a href="reviewinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                ReviewInput
+            </a>
+        </li>
+        <li  title="StateSorting">
+            <a href="statesorting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                StateSorting
+            </a>
+        </li>
+        <li  title="StringFilterInput">
+            <a href="stringfilterinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                StringFilterInput
+            </a>
+        </li>
+        <li  title="TokenFilterList">
+            <a href="tokenfilterlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                TokenFilterList
+            </a>
+        </li>
+        <li  title="TokenSorting">
+            <a href="tokensorting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                TokenSorting
+            </a>
+        </li>
+        <li  title="VendorFilterList">
+            <a href="vendorfilterlist.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                VendorFilterList
+            </a>
+        </li>
+        <li  title="VendorSorting">
+            <a href="vendorsorting.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                VendorSorting
+            </a>
+        </li>
+        <li  title="WishedPriceInput">
+            <a href="wishedpriceinput.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                WishedPriceInput
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="slds-grid slds-grid--vertical slds-navigation-list--vertical">
+    <h4 class="slds-text-title--caps slds-p-around--medium">Directives</h4>
+    <ul>
+        <li  title="deprecated">
+            <a href="deprecated.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                deprecated
+            </a>
+        </li>
+        <li  title="include">
+            <a href="include.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                include
+            </a>
+        </li>
+        <li  title="skip">
+            <a href="skip.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
+                skip
+            </a>
+        </li>
+    </ul>
+</div>
+        </div>
+    </nav>
+    <main><section class="title slds-theme--inverse">
+    <div class="container slds-grid">
+        <div>
+        <button class="slds-button js-toggle-navigation less-than-medium">
+            <i class="material-icons slds-button__icon slds-button__icon--left">menu</i>
+            <span class="slds-text-title--caps">Types<span>
+        </button>
+        </div>
+        </div>
+    </div>
+    <div class="container">
+        <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
+        <h1 class="slds-text-heading--large">Query</h1>
+        <div class="slds-text-body--regular"></div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2 id="graphql-schema-definition" class="graphdoc-section__title slds-text-heading--medium slds-m-top--small">
+            <a href="#graphql-schema-definition">
+                <i class="material-icons">link</i>
+            </a>
+            GraphQL Schema definition
+        </h2>
+        <code class="highlight"><ul class="code" style="padding-left:56px"><li><span class="keyword operator ts">type</span> <span class="identifier">Query</span> {</li><li></li><li><span class="tab"><span class="comment line">#   Query of Base Module.</span></span></li><li><span class="tab"><span class="comment line">#   Retrieve a JWT for authentication of further requests</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>username</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>password</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">token</span>(<span class="meta">username</span>: <a class="support type" href="string.doc.html">String</a>, <span class="meta">password</span>: <a class="support type" href="string.doc.html">String</a>): <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Base Module.</span></span></li><li><span class="tab"><span class="comment line">#   Query a customer's active JWT.</span></span></li><li><span class="tab"><span class="comment line">#   User with right 'VIEW_ANY_TOKEN' can query any customer's tokens.</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>filter</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>pagination</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">tokens</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">filter</span>: <a class="support type" href="tokenfilterlist.doc.html">TokenFilterList</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">pagination</span>: <a class="support type" href="paginationfilterinput.doc.html">PaginationFilterInput</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="tokensorting.doc.html">TokenSorting</a></span></span></li><li><span class="tab">): [<a class="support type" href="token.doc.html">Token</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>productId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">product</span>(<span class="meta">productId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="product.doc.html">Product</a>! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>filter</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>pagination</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">products</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">filter</span>: <a class="support type" href="productfilterlist.doc.html">ProductFilterList</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">pagination</span>: <a class="support type" href="paginationfilterinput.doc.html">PaginationFilterInput</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="productsorting.doc.html">ProductSorting</a></span></span></li><li><span class="tab">): [<a class="support type" href="product.doc.html">Product</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>productId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>varSelIds</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">variantSelections</span>(<span class="meta">productId</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">varSelIds</span>: [<a class="support type" href="string.doc.html">String</a>!]): <a class="support type" href="variantselections.doc.html">VariantSelections</a> </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>vendorId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">vendor</span>(<span class="meta">vendorId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="vendor.doc.html">Vendor</a>! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>filter</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">vendors</span>(<span class="meta">filter</span>: <a class="support type" href="vendorfilterlist.doc.html">VendorFilterList</a>, <span class="meta">sort</span>: <a class="support type" href="vendorsorting.doc.html">VendorSorting</a>): [<a class="support type" href="vendor.doc.html">Vendor</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>categoryId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">category</span>(<span class="meta">categoryId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="category.doc.html">Category</a>! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>filter</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">categories</span>(<span class="meta">filter</span>: <a class="support type" href="categoryfilterlist.doc.html">CategoryFilterList</a>, <span class="meta">sort</span>: <a class="support type" href="categorysorting.doc.html">CategorySorting</a>): [<a class="support type" href="category.doc.html">Category</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>manufacturerId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">manufacturer</span>(<span class="meta">manufacturerId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="manufacturer.doc.html">Manufacturer</a>! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>filter</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">manufacturers</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">filter</span>: <a class="support type" href="manufacturerfilterlist.doc.html">ManufacturerFilterList</a>,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">sort</span>: <a class="support type" href="manufacturersorting.doc.html">ManufacturerSorting</a></span></span></li><li><span class="tab">): [<a class="support type" href="manufacturer.doc.html">Manufacturer</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>linkId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">link</span>(<span class="meta">linkId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="link.doc.html">Link</a>! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>filter</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">links</span>(<span class="meta">filter</span>: <a class="support type" href="linkfilterlist.doc.html">LinkFilterList</a>): [<a class="support type" href="link.doc.html">Link</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>actionId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">action</span>(<span class="meta">actionId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="action.doc.html">Action</a>! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>filter</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">actions</span>(<span class="meta">filter</span>: <a class="support type" href="actionfilterlist.doc.html">ActionFilterList</a>): [<a class="support type" href="action.doc.html">Action</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>bannerId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">banner</span>(<span class="meta">bannerId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="banner.doc.html">Banner</a>! </span></li><li></li><li><span class="tab"><span class="meta">banners</span>: [<a class="support type" href="banner.doc.html">Banner</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>promotionId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">promotion</span>(<span class="meta">promotionId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="promotion.doc.html">Promotion</a>! </span></li><li></li><li><span class="tab"><span class="meta">promotions</span>: [<a class="support type" href="promotion.doc.html">Promotion</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>contentId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">content</span>(<span class="meta">contentId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="content.doc.html">Content</a>! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>filter</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">contents</span>(<span class="meta">filter</span>: <a class="support type" href="contentfilterlist.doc.html">ContentFilterList</a>): [<a class="support type" href="content.doc.html">Content</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line">#   If `name` is ommited, gives you the currently active currency</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">currency</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>): <a class="support type" href="currency.doc.html">Currency</a>! </span></li><li></li><li><span class="tab"><span class="meta">currencies</span>: [<a class="support type" href="currency.doc.html">Currency</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>attributeId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">attribute</span>(<span class="meta">attributeId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="attribute.doc.html">Attribute</a>! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>filter</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">attributes</span>(<span class="meta">filter</span>: <a class="support type" href="attributefilterlist.doc.html">AttributeFilterList</a>): [<a class="support type" href="attribute.doc.html">Attribute</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>reviewId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">review</span>(<span class="meta">reviewId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="review.doc.html">Review</a>! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>wishedPriceId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">wishedPrice</span>(<span class="meta">wishedPriceId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="wishedprice.doc.html">WishedPrice</a>! </span></li><li></li><li><span class="tab"><span class="meta">wishedPrices</span>: [<a class="support type" href="wishedprice.doc.html">WishedPrice</a>!]! </span></li><li></li><li><span class="tab"><span class="meta">customer</span>: <a class="support type" href="customer.doc.html">Customer</a>! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>countryId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">country</span>(<span class="meta">countryId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="country.doc.html">Country</a>! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>filter</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>sort</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">countries</span>(<span class="meta">filter</span>: <a class="support type" href="countryfilterlist.doc.html">CountryFilterList</a>, <span class="meta">sort</span>: <a class="support type" href="countrysorting.doc.html">CountrySorting</a>): [<a class="support type" href="country.doc.html">Country</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line">#   Returns information for any basket the customer owns.</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>basketId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">basket</span>(<span class="meta">basketId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="basket.doc.html">Basket</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Returns information for any basket marked as public.</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>basketId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">publicBasket</span>(<span class="meta">basketId</span>: <a class="support type" href="id.doc.html">ID</a>!): <a class="support type" href="publicbasket.doc.html">PublicBasket</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Argument `owner` will be matched exactly against lastname and / or email</span></span></li><li><span class="tab"><span class="comment line">#   Query for public baskets by owner.</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>owner</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">baskets</span>(<span class="meta">owner</span>: <a class="support type" href="string.doc.html">String</a>!): [<a class="support type" href="publicbasket.doc.html">PublicBasket</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>basketId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">basketDeliveryMethods</span>(<span class="meta">basketId</span>: <a class="support type" href="id.doc.html">ID</a>!): [<a class="support type" href="basketdeliverymethod.doc.html">BasketDeliveryMethod</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line">#   Returns all payments that can be used for particular basket.</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>basketId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">basketPayments</span>(<span class="meta">basketId</span>: <a class="support type" href="id.doc.html">ID</a>!): [<a class="support type" href="basketpayment.doc.html">BasketPayment</a>!]! </span></li><li></li><li><span class="tab"><span class="meta">customerInvoiceAddress</span>: <a class="support type" href="invoiceaddress.doc.html">InvoiceAddress</a>! </span></li><li></li><li><span class="tab"><span class="meta">customerDeliveryAddresses</span>: [<a class="support type" href="deliveryaddress.doc.html">DeliveryAddress</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>key</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">translation</span>(<span class="meta">key</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="translation.doc.html">Translation</a>! </span></li><li></li><li><span class="tab"><span class="meta">translations</span>: [<a class="support type" href="translation.doc.html">Translation</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>moduleId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">moduleSettingBoolean</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">moduleId</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="booleansetting.doc.html">BooleanSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>moduleId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">moduleSettingCollection</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">moduleId</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="stringsetting.doc.html">StringSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>moduleId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">moduleSettingFloat</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">moduleId</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="floatsetting.doc.html">FloatSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>moduleId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">moduleSettingInteger</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">moduleId</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="integersetting.doc.html">IntegerSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>moduleId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">moduleSettingString</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">moduleId</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="stringsetting.doc.html">StringSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>moduleId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">moduleSettings</span>(<span class="meta">moduleId</span>: <a class="support type" href="string.doc.html">String</a>!): [<a class="support type" href="settingtype.doc.html">SettingType</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">shopSettingAssocCollection</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="stringsetting.doc.html">StringSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">shopSettingBoolean</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="booleansetting.doc.html">BooleanSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">shopSettingCollection</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="stringsetting.doc.html">StringSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">shopSettingFloat</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="floatsetting.doc.html">FloatSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">shopSettingInteger</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="integersetting.doc.html">IntegerSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">shopSettingSelect</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="stringsetting.doc.html">StringSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">shopSettingString</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="stringsetting.doc.html">StringSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="meta">shopSettings</span>: [<a class="support type" href="settingtype.doc.html">SettingType</a>!]! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>themeId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">themeSettingAssocCollection</span>(</span></li><li><span class="tab"><span class="tab"><span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!,</span></span></li><li><span class="tab"><span class="tab"><span class="meta">themeId</span>: <a class="support type" href="string.doc.html">String</a>!</span></span></li><li><span class="tab">): <a class="support type" href="stringsetting.doc.html">StringSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>themeId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">themeSettingBoolean</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">themeId</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="booleansetting.doc.html">BooleanSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>themeId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">themeSettingCollection</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">themeId</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="stringsetting.doc.html">StringSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>themeId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">themeSettingFloat</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">themeId</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="floatsetting.doc.html">FloatSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>themeId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">themeSettingInteger</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">themeId</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="integersetting.doc.html">IntegerSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>themeId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">themeSettingSelect</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">themeId</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="stringsetting.doc.html">StringSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>name</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="comment line">#   <strong>themeId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">themeSettingString</span>(<span class="meta">name</span>: <a class="support type" href="string.doc.html">String</a>!, <span class="meta">themeId</span>: <a class="support type" href="string.doc.html">String</a>!): <a class="support type" href="stringsetting.doc.html">StringSetting</a>! </span></li><li></li><li><span class="tab"><span class="comment line">#   Query of Configuration Access Module</span></span></li><li><span class="tab"><span class="comment line"># </span></span></li><li><span class="tab"><span class="comment line"># Arguments</span></span></li><li><span class="tab"><span class="comment line">#   <strong>themeId</strong>: [<strong>Not documented</strong>]</span></span></li><li><span class="tab"><span class="meta">themeSettings</span>(<span class="meta">themeId</span>: <a class="support type" href="string.doc.html">String</a>!): [<a class="support type" href="settingtype.doc.html">SettingType</a>!]! </span></li><li>}</li></ul></code>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <h2 id="require-by" class="graphdoc-section__title slds-text-heading--medium slds-m-top--small">
+            <a href="#require-by">
+                <i class="material-icons">link</i>
+            </a>
+            Require by
+        </h2>
+        <div class="require-by anyone">This element is not required by anyone</div>
+    </div>
+</section>
+<footer>
+<div class="container slds-p-around--large">
+    <p class="slds-text-align--right slds-text-title--caps">
+        Generated with <a href="https://github.com/2fd/graphdoc#readme" target="_blank">graphdoc 2.4.0</a>
+    </p>
+</div>
+</footer>
+</main>
+    <script src="./scripts/focus-active.js"></script>
+    <script src="./scripts/filter-types.js"></script>
+    <script src="./scripts/toggle-navigation.js"></script>
+</body>
