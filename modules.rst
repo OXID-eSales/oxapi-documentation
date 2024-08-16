@@ -35,9 +35,9 @@ GraphQL-Configuration Access module
 `GraphQL-Configuration module <https://github.com/OXID-eSales/graphql-configuration-access/>`_
 is needed if you want to
 
-* read configurations
-* update configurations
-* list existing configurations.
+* read/update/list configurations
+* list modules and themes
+* switch themes
+* activate/deactivate modules
 
-All functionality is possible for module/theme and shop-configurations.
 See :doc:`Consuming the API - Read and update configurations <./consuming/Configurations>`.

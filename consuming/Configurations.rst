@@ -23,7 +23,11 @@ Here is one example how to use it:
     query settings {
         moduleSettings(
             moduleId: "awesomeModule"
-        )
+        ) {
+            name
+            type
+            supported
+        }
     }
 
 .. code-block:: json
@@ -127,9 +131,164 @@ To update a setting, the ``name``, the new ``value`` and in our case the ``modul
         }
     }
 
-
 .. important::
    Pay attention that the types for module/theme/shop-queries or mutations can be different.
    Also the handling of the values depends on the implementation in the shop.
    Only the handling of Theme-configurations are currently implemented by the module itself.
+
+
+List Themes
+-----------
+
+Use this query to get the list of all themes. You can use filter like ``title`` to filter themes by there titles or
+``active`` to filter themes on basis of the status.
+
+.. code-block:: graphql
+   :caption: call to ``themes`` query
+
+    query themeListFilter {
+        themes(
+            filters: {
+            title: {
+                contains: "Theme"
+            }
+            active: {
+                equals: true
+            }
+        }
+        ) {
+            id
+            title
+            version
+            description
+            active
+        }
+    }
+
+.. code-block:: json
+   :caption: ``themes`` query response
+
+    {
+        "data": {
+            "themes": [
+                {
+                    "id": "apex",
+                    "title": "APEX Theme",
+                    "version": "1.3.0",
+                    "description": "APEX - Bootstrap 5 TWIG Theme",
+                    "active": true
+                },
+                {
+                    "id": "wave",
+                    "title": "Wave Theme",
+                    "version": "3.0.1",
+                    "description": "Wave is OXID`s official responsive theme based on the CSS framework Bootstrap 4.",
+                    "active": true
+                }
+            ]
+        }
+    }
+
+Switch Theme
+------------
+
+In order to activate a theme by a given ID pass themeId as ``identifier``. If errors during the activation process
+occur, they will be raised and shown.
+
+.. code-block:: graphql
+   :caption: call to ``switchTheme`` query
+
+    mutation switchTheme{
+        switchTheme(identifier: "apex")
+    }
+
+List Modules
+------------
+Use this query to get the list of all modules. You can use filter like ``title`` to filter themes by there titles or
+``active`` to filter modules on basis of the status.
+
+.. code-block:: graphql
+   :caption: call to ``modules`` query
+
+    query modulesList {
+        modules(
+            filters: {
+                title: {
+                    contains: "GraphQL"
+                }
+                active: {
+                    equals: true
+                }
+            }
+        ) {
+            id
+            version
+            title
+            description
+            thumbnail
+            author
+            url
+            email
+            active
+        }
+    }
+
+.. code-block:: json
+   :caption: ``modules`` query response
+
+    {
+        "data": {
+            "modules": [
+                {
+                    "id": "oe_graphql_base",
+                    "version": "9.0.0",
+                    "title": "GraphQL Base",
+                    "description": "<span>OXID GraphQL API Framework</span>",
+                    "thumbnail": "logo.png",
+                    "author": "OXID eSales",
+                    "url": "www.oxid-esales.com",
+                    "email": "info@oxid-esales.com",
+                    "active": true
+                },
+                {
+                    "id": "oe_graphql_storefront",
+                    "version": "3.0.0",
+                    "title": "GraphQL Storefront",
+                    "description": "OXID GraphQL Storefront",
+                    "thumbnail": "logo.png",
+                    "author": "OXID eSales",
+                    "url": "https://github.com/OXID-eSales/graphql-storefront-module",
+                    "email": "some@email.com",
+                    "active": true
+                }
+            ]
+        }
+    }
+
+Activate/Deactivate Module
+--------------------------
+
+In order to de/activate a module by a given module id as ``moduleId``, you will receive response as Bool value if the
+module was de/activated. Otherwise you will receive an error message.
+
+.. code-block:: graphql
+   :caption: call to ``activateModule`` query
+
+    mutation activateModule{
+        activateModule(moduleId: "awesomeModule")
+    }
+
+.. code-block:: json
+   :caption: ``activateModule`` query response
+
+    {
+        "data": {
+            "activateModule": true
+        }
+    }
+
+.. important::
+   Some modules can't be deactivated as they are listed in the ``module_blocklist.yaml``.`
+   This yaml-file contains a list of modules which are necessary to handle configurations or de/activate modules via
+   GraphQL. Modules like ``oe_graphql_base`` and ``oe_graphql_configuration_access`` are listed there.
 
