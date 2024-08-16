@@ -22,7 +22,7 @@ Interface Documentation
         architecture
         development
         consuming/index
-        GraphQL schema <https://oxid-esales.github.io/oxapi-documentation/9.0>
+        GraphQL schema <https://oxid-esales.github.io/oxapi-documentation/10.0>
         specification
         troubleshooting
         thirdpartypayments/index
