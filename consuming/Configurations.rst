@@ -199,7 +199,7 @@ occur, they will be raised and shown.
    :caption: call to ``switchTheme`` query
 
     mutation switchTheme{
-        switchTheme(identifier: "apex")
+        switchTheme(themeId: "apex")
     }
 
 List Modules
