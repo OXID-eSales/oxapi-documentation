@@ -1,6 +1,8 @@
 Extending a type
 =================
 
+.. _extending-a-type:
+
 In case you need to add fields to data types provided by another module (even OXID's GraphQL modules) you can just use the `Extending a type feature in GraphQLite <https://graphqlite.thecodingmachine.io/docs/extend-type>`_.
 
 Every data type can be extended via the ``@ExtendType`` annotation multiple times, even in the same module.

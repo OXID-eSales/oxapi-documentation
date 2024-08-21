@@ -84,7 +84,11 @@ for wrapping OXID eShop models
 
 We wanted to have the GraphQL API behave consistent to the (well known) existing system. The OXID eShop models are the central point which standard system and the GraphQL modules can share.
 
-One of the main advantages to use OXID eShop models through the ``oxNew()`` call is that the GraphQL API then also reflects the changes your modules introduce. This is also the reason, why we use the specific getters and only fall back to using ``getRawFieldData()`` if no specific getter is available.
+One of the main advantages to use OXID eShop models through the ``oxNew()`` call is that the GraphQL API then also reflects the changes your modules introduces when extending existing model methods.
+This is also the reason, why we use the specific getters and only fall back to using ``getRawFieldData()`` if no specific getter is available.
+
+.. note:: Let's assume a module changes the ``OxidEsales\Eshop\Application\Model\Category::getTitle()`` result. In that case a category DataType using ``Category::getTitle()`` to to deliver the title field via OXAPI will automatically respect the module's Category model changes.
+
 
 .. _final-classes:
 
@@ -94,3 +98,5 @@ for making classes final
 You might have noticed, that all classes in the GraphQL modules are ``final``. Therefore they can not be extended through OXID's module chain. It is technically not possible to extend data types by extending the class in the usuall PHP way anyway and we favour `composition over inheritance <https://en.wikipedia.org/wiki/Composition_over_inheritance>`_.
 
 The ``final`` class declaration makes this concept explicit!
+
+.. note:: Let's assume a module adds the ``OxidEsales\Eshop\Application\Model\Category::getSomething()`` method. In order to expose the ``something`` as field via OXAPI it is not possible to extend above mentioned category DataType via oxNew to add the ``something`` field. We made that class final. The consequence of 'composition over inheritance' is that the original class is protected from any accidental changes. Additional functionality can be added via :ref:`ExtendTypes<extending-a-type>`.
