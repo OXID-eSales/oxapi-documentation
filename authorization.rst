@@ -72,7 +72,8 @@ Logging in as a user should be done through the following query.
 
 .. code-block:: graphql
 
-   query ($username: String!, $password: String!) { login (username: $username, password: $password)
+   query {
+      login (username: "your-username", password: "your-password")
       {
          accessToken
          refreshToken
@@ -114,7 +115,8 @@ After the access token's lifetime elapses it will need to be refreshed. The
 This request must have the `HttpOnly` fingerprint cookie set during login.
 If both the token and the fingerprint-fingerprintHash pair are correct the
 client will receive a new `accessToken` in the response payload, containing a
-new `fingerprintHash` claim to go with a newly set `fingerprint` cookie.
+new `fingerprintHash` claim to go with a newly set `fingerprint` cookie. As
+always, for testing, you can manually decode the access token at `jwt.io <https://jwt.io>`_.
 
 **Response:**
 
