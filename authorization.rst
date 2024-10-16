@@ -50,7 +50,7 @@ If you want to have a brief look into the JWT you received head over
 to `jwt.io <https://jwt.io>`_.
 
 Using refresh tokens
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 Refresh tokens add a layer of security to the authentication workflow of your clientside application.
 
@@ -122,11 +122,11 @@ always, for testing, you can manually decode the access token at `jwt.io <https:
 
 .. code-block:: json
 
-{
-    "data": {
-        "refresh": "a-new-very-long-jwt-encoded-token"
+    {
+        "data": {
+            "refresh": "a-new-very-long-jwt-encoded-token"
+        }
     }
-}
 
 For more examples of using refresh tokens in a frontend client scenario please
 check out `hasura's sample code on the topic <https://github.com/hasura/jwt-guide>`_
