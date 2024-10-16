@@ -10,3 +10,4 @@ Consuming the API
         AdministrateCustomer
         PlaceOrder
         Configurations
+        StorefrontAdministration
