@@ -7,6 +7,12 @@ Administrate the storefront
    To use the queries and mutations of this module, admin rights are needed.
    This means that the user has to be assigned to the ``oxidadmin``-group.
 
+.. important::
+   The `GraphQL Storefront Administration module
+   <https://github.com/OXID-eSales/graphql-storefront-administration/>`_ is currently still
+   under development. We already have a prototype version which can be tried out.
+   If you are interested in working with this module, please contact us.
+
 What can be done?
 -----------------
 
