@@ -28,9 +28,9 @@ Creation:
 ^^^^^^^^^
 
 .. code-block:: graphql
-   :caption: call to ``adminProductCreate`` query
+   :caption: call to ``adminProductCreate`` mutation
 
-    query productCreate {
+    mutation productCreate {
         adminProductCreate(
             adminProductInput: {
                 id: "coolId"
@@ -41,7 +41,10 @@ Creation:
                     }
                 ]
             }
-        )
+        ) {
+            id
+            active
+        }
     }
 
 As a result of the creation we get back the AdminProductDataTypeInterface, which contains all of the interesting
@@ -53,11 +56,11 @@ Deletion:
 ^^^^^^^^^
 
 .. code-block:: graphql
-   :caption: call to ``adminProductDelete`` query
+   :caption: call to ``adminProductDelete`` mutation
 
-    query productDelete {
+    mutation productDelete {
         adminProductDelete(
-            id: "productId"
+            productId: "productId"
         )
     }
 
@@ -68,14 +71,17 @@ Modification:
 ^^^^^^^^^^^^^
 
 .. code-block:: graphql
-   :caption: call to ``adminProductModify`` query
+   :caption: call to ``adminProductModify`` mutation
 
-    query productModify {
+    mutation productModify {
         adminProductModify(
-            adminProduct: {
+            adminProductInput: {
                 id: "productId"
             }
-        )
+        ) {
+            id
+            active
+        }
     }
 
 To modify a product, the id of the product has to be passed. If a field was not set, it won't be updated. As a result,
@@ -85,14 +91,22 @@ Import:
 ^^^^^^^
 
 .. code-block:: graphql
-   :caption: call to ``adminProductsImport`` query
+   :caption: call to ``adminProductsImport`` mutation
 
-    query productImport {
+    mutation productImport {
         adminProductsImport(
-            adminProduct: {
-                id: "productId"
-            }
-        )
+            adminProductInputs: [
+                {
+                    id: "productId-1"
+                },
+                {
+                    id: "productId-2"
+                }
+            ]
+        ) {
+            id
+            active
+        }
     }
 
 The import works the same like the creation of a product. The only difference is, that multiple products can be created
@@ -110,7 +124,10 @@ Query an Admin-Product:
     query product {
         adminProduct(
             productId: "productId"
-        )
+        ) {
+            id
+            active
+        }
     }
 
 This query is only returning a single product. To get the product as ``AdminProductDataType`` only the ``productId`` is
