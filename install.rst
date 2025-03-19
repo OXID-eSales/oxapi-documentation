@@ -44,8 +44,8 @@ In case you are updating your module from older version to newer, please pass fl
 
 .. code-block:: bash
 
-    composer require oxid-esales/graphql-base ^v10.0.0 --with-all-dependencies
-    composer require oxid-esales/graphql-storefront ^v4.0.0 --with-all-dependencies
+    composer require oxid-esales/graphql-base ^v11.0.0 --with-all-dependencies
+    composer require oxid-esales/graphql-storefront ~v4.0.1 --with-all-dependencies
     composer require oxid-esales/graphql-configuration-access ^v1.2.0 --with-all-dependencies
 
 Activation
