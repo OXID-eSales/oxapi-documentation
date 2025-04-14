@@ -2,66 +2,28 @@ Caching
 =======
 
 .. important::
-    GraphQL schema caching is enabled using the file system, improving performance by avoiding repetitive schema
-    generation, especially for large schemas. The cache is not cleared automatically but can be manually cleared using
-    a console command.
+    As of this writing resolvers are not cached!
 
-As stated in other occurrences already, we are heavily relying on GraphQLite for our modules. GraphQLite creates
-the GraphQL schema by using PHP's reflection to scan and find controllers and data types. The result of this step
-can be `cached by GraphQLite itself <https://graphqlite.thecodingmachine.io/docs/other-frameworks#requirements>`_.
+As stated in other occurrences already, we are heavily relying on GraphQLite for our modules. GraphQLite creates the GraphQL schema by using PHP's reflection to scan and find controllers and data types. The result of this step can be `cached by GraphQLite itself <https://graphqlite.thecodingmachine.io/docs/other-frameworks#requirements>`_.
 
-The ``TheCodingMachine\GraphQLite\SchemaFactory`` needs the DI container and a PSR-16 cache. By default we pass it
-a FilesystemAdapter.
+The ``TheCodingMachine\GraphQLite\SchemaFactory`` needs the DI container and a PSR-16 cache. By default we pass it a null cache.
 
 .. code-block:: yaml
 
     oxidesales.graphqlbase.cacheadapter:
-        class: Symfony\Component\Cache\Adapter\FilesystemAdapter
-        arguments:
-            $namespace: 'oe_graphql_base-schema'
-            $directory: '@=service("OxidEsales\\EshopCommunity\\Internal\\Transition\\Utility\\ContextInterface").getCacheDirectory()'
+        class: Symfony\Component\Cache\Adapter\NullAdapter
 
     oxidesales.graphqlbase.cache:
         class: Symfony\Component\Cache\Psr16Cache
         arguments:
             $pool: '@oxidesales.graphqlbase.cacheadapter'
 
-Clear the cache
----------------
-
-If you need to manually clear the GraphQL schema cache, you can use the oe:graphql:cache-clear command. This ensures
-that any cached schema is removed, forcing GraphQLite to regenerate it on the next request.
-
-.. code-block:: bash
-
-    vendor/bin/oe-console oe:graphql:cache-clear
-
-When to use
-^^^^^^^^^^^
-
-* After making changes to GraphQL controllers or types
-* When switching the cache adapter
-* To troubleshoot issues related to stale schema data
-
-This command works regardless of the caching backend you are using, including FilesystemAdapter and NullAdapter.
-
 Change the cache
 ----------------
 
 There are two ways for you to change the caching backend, first is to provide another cache adapter, the second is to provide another PSR-16 cache implementation.
 
-Disable cache
-^^^^^^^^^^^^^
-
-If you want to disable caching entirely, you can use Symfony's NullAdapter. This ensures that GraphQLite does not
-persist schema caching and generates it dynamically on each request.
-
-.. code-block:: yaml
-
-    services:
-
-        oxidesales.graphqlbase.cacheadapter:
-            class: Symfony\Component\Cache\Adapter\NullAdapter
+In both cases you need to override the corresponding key in the DI container through the ``var/configuration/configurable_services.yaml`` file.
 
 Custom cache adapter
 ^^^^^^^^^^^^^^^^^^^^
