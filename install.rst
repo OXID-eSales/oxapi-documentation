@@ -24,7 +24,13 @@ If you want to read and update configurations you should also install the **OXID
 
     composer require oxid-esales/graphql-configuration-access
 
-Both modules will automatically install the **OXID GraphQL Base** module, which is needed for general GraphQL integration into the OXID eShop.
+The **OXID GraphQL Storefront Administration** module is needed when the whole shop needs to be administrated via GraphQL.
+
+.. code-block:: bash
+
+    composer require oxid-esales/graphql-storefront-administration
+
+All modules will automatically install the **OXID GraphQL Base** module, which is needed for general GraphQL integration into the OXID eShop.
 
 .. code-block:: bash
 
@@ -37,6 +43,7 @@ You should run migrations both after installing the module and after each module
     ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oe_graphql_base
     ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oe_graphql_storefront
     ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oe_graphql_configuration_access
+    ./vendor/bin/oe-eshop-doctrine_migration migrations:migrate oe_graphql_storefront_administration
 
 Alternatively, we can run all currently installed modules and shop migrations together if we do not specify the component:
 
@@ -55,6 +62,7 @@ In case you are updating your module from older version to newer, please pass fl
     composer require oxid-esales/graphql-base ^v11.0.0 --with-all-dependencies
     composer require oxid-esales/graphql-storefront ~v4.0.1 --with-all-dependencies
     composer require oxid-esales/graphql-configuration-access ^v2.0.0 --with-all-dependencies
+    composer require oxid-esales/graphql-storefront-administration ^v2.0.0 --with-all-dependencies
 
 Activation
 ----------
@@ -66,6 +74,7 @@ Now you need to activate the modules. You can do this in the OXID eShop administ
     vendor/bin/oe-console oe:module:activate oe_graphql_base
     vendor/bin/oe-console oe:module:activate oe_graphql_storefront
     vendor/bin/oe-console oe:module:activate oe_graphql_configuration_access
+    vendor/bin/oe-console oe:module:activate oe_graphql_storefront_administration
 
 .. important::
 
