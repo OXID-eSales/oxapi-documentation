@@ -61,7 +61,7 @@ In case you are updating your module from older version to newer, please pass fl
 
     composer require oxid-esales/graphql-base ^v11.0.0 --with-all-dependencies
     composer require oxid-esales/graphql-storefront ~v4.1.0 --with-all-dependencies
-    composer require oxid-esales/graphql-configuration-access ^v2.0.0 --with-all-dependencies
+    composer require oxid-esales/graphql-configuration-access ^v2.1.0 --with-all-dependencies
     composer require oxid-esales/graphql-storefront-administration ^v2.0.0 --with-all-dependencies
 
 Activation
