@@ -69,9 +69,6 @@ jobs:
           make up
           sleep 2
 
-      - name: Configure GitHub Token for Composer
-        run: composer config --global github-oauth.github.com ${{ secrets.GITHUB_TOKEN }}
-
       - name: Install module and dependencies
         run: |
           docker compose exec -T php composer require oxid-esales/graphql-base:${{env.BASE_MODULE_VERSION}} --no-update
