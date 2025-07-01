@@ -43,7 +43,7 @@ is needed if you want to
 See :doc:`Consuming the API - Read and update configurations <./consuming/Configurations>`.
 
 GraphQL-Storefront-Administration module
------------------------------------
+----------------------------------------
 
 `GraphQL-Storefront-Administration module <https://github.com/OXID-eSales/graphql-storefront-administration/>`_
 is used to administrate the whole shop. For example products can be created or user managed.
