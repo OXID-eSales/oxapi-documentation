@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>OrderPayment</title>
+    <title>oneOf</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -365,7 +365,7 @@
                 OrderItem
             </a>
         </li>
-        <li class="slds-is-active" title="OrderPayment">
+        <li  title="OrderPayment">
             <a href="orderpayment.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 OrderPayment
             </a>
@@ -780,7 +780,7 @@
                 include
             </a>
         </li>
-        <li  title="oneOf">
+        <li class="slds-is-active" title="oneOf">
             <a href="oneof.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 oneOf
             </a>
@@ -805,9 +805,10 @@
         </div>
     </div>
     <div class="container">
-        <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
-        <h1 class="slds-text-heading--large">OrderPayment</h1>
-        <div class="slds-text-body--regular"></div>
+        <p class="slds-text-title--caps slds-text-color--weak"></p>
+        <h1 class="slds-text-heading--large">oneOf</h1>
+        <div class="slds-text-body--regular"><p>Indicates that an Input Object is a OneOf Input Object (and thus requires exactly one of its fields be provided).</p>
+</div>
     </div>
 </section>
 <section>
@@ -818,7 +819,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">OrderPayment</span> {</li><li></li><li><span class="tab"><span class="meta">id</span>: <a class="support type" href="id.doc.html">ID</a>! </span></li><li></li><li><span class="tab"><span class="meta">updated</span>: <a class="support type" href="datetime.doc.html">DateTime</a> </span></li><li></li><li><span class="tab"><span class="meta">payment</span>: <a class="support type" href="paymentinterface.doc.html">PaymentInterface</a> </span></li><li></li><li><span class="tab"><span class="meta">values</span>: [<a class="support type" href="orderpaymentvalue.doc.html">OrderPaymentValue</a>!]! </span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:28px"><li><span class="keyword operator ts">directive</span> <span class="keyword operator ts">@oneOf</span> on <span class="keyword operator ts">INPUT_OBJECT</span></li></ul></code>
     </div>
 </section>
 <section>
@@ -829,7 +830,7 @@
             </a>
             Require by
         </h2>
-        <ul class="require-by"><li><a href="order.doc.html" title="Order - ">Order<em>null</em></a><li></ul>
+        <div class="require-by anyone">This element is not required by anyone</div>
     </div>
 </section>
 <footer>
