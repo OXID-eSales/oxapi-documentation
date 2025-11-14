@@ -241,7 +241,7 @@ Use this query to get the list of all modules. You can use filter like ``title``
             "modules": [
                 {
                     "id": "oe_graphql_base",
-                    "version": "9.0.0",
+                    "version": "12.0.0",
                     "title": "GraphQL Base",
                     "description": "<span>OXID GraphQL API Framework</span>",
                     "thumbnail": "logo.png",
@@ -252,7 +252,7 @@ Use this query to get the list of all modules. You can use filter like ``title``
                 },
                 {
                     "id": "oe_graphql_storefront",
-                    "version": "3.0.0",
+                    "version": "4.2.0",
                     "title": "GraphQL Storefront",
                     "description": "OXID GraphQL Storefront",
                     "thumbnail": "logo.png",
