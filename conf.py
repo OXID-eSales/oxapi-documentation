@@ -103,6 +103,7 @@ html_context = {
         ('8.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/8.0/'),
         ('9.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/9.0/'),
         ('10.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/10.0/'),
+        ('11.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/11.0/'),
         ('latest', 'https://docs.oxid-esales.com/interfaces/graphql/en/latest/')
     ],
     'theme_logo_only': True,
