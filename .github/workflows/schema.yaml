@@ -3,8 +3,8 @@ name: Schema
 env:
   PHP_VERSION: '8.2'
   MYSQL_VERSION: '8.0'
-  DOCUMENTATION_VERSION: '12.0'
-  BASE_MODULE_VERSION: '^12.0.0'
+  DOCUMENTATION_VERSION: '13.0'
+  BASE_MODULE_VERSION: '^13.0.0'
   STOREFRONT_MODULE_VERSION: '~4.2.0'
   CONFIGURATION_MODULE_VERSION: '~3.0.0'
   STOREFRONT_ADMINISTRATION_MODULE_VERSION: '~3.0.0'
@@ -24,7 +24,7 @@ jobs:
           git clone --recurse-submodules https://github.com/OXID-eSales/docker-eshop-sdk-recipes recipes/oxid-esales
 
       - name: Clone the shop
-        run: git clone --depth 1 https://github.com/OXID-eSales/oxideshop_ce.git --branch b-7.4.x --single-branch source
+        run: git clone --depth 1 https://github.com/OXID-eSales/oxideshop_ce.git --branch b-7.5.x --single-branch source
 
       - name: Prepare container configuration
         run: |
