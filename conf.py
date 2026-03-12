@@ -149,7 +149,8 @@ html_static_path = [
 ]
 
 html_css_files = [
-    'oxid.css'
+    'oxid.css',
+    'graphql-sdl.css'
 ]
 
 lexers['php'] = PhpLexer(startinline=True)

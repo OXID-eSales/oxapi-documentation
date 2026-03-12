@@ -1,0 +1,11 @@
+/* Suppress false error highlighting in GraphQL SDL code blocks.
+   The Pygments GraphQL lexer does not fully support Schema Definition
+   Language (SDL), causing type names and the ! modifier to be marked
+   as errors. This CSS neutralises those markers for blocks that carry
+   the .graphql-sdl class. */
+
+.graphql-sdl .highlight .err {
+    border: none;
+    background: none;
+    color: inherit;
+}

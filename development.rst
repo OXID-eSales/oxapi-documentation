@@ -38,7 +38,7 @@ done with composer scripts using ``composer static``.
 Dependencies between software layers
 ------------------------------------
 
-As you might have already read in the :doc:`/architecture` docs, we are using a
+As you might have already read in the :doc:`/architecture/index` docs, we are using a
 layered architecture, aka Hexagonal or Ports and Adapters. To help us not violating
 the boundaries of each layer, we use `Deptrac <https://github.com/sensiolabs-de/deptrac>`_
 to validate how our layers are depending on each others. You can find a pre

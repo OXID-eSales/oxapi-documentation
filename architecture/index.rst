@@ -14,16 +14,16 @@ The file system hierarchy in the ``src`` directory looks similar to this
     │   └── Infrastructure
     │       └── Repository.php
     └── Category
-        ├── Controller
-        │   └── Category.php
-        ├── DataType
-        │   ├── CategoryFilterList.php
-        │   └── Category.php
-        ├── Exception
-        │   └── CategoryNotFound.php
-        └── Service
-            ├── Category.php
-            └── RelationService.php
+        ├── Controller
+        │   └── Category.php
+        ├── DataType
+        │   ├── CategoryFilterList.php
+        │   └── Category.php
+        ├── Exception
+        │   └── CategoryNotFound.php
+        └── Service
+            ├── Category.php
+            └── RelationService.php
 
 The folders in the ``src`` directory are the contexts in which we are working. All models currently have a `Shared` context and then a context for every entity we need to expose via the GraphQL API.
 
@@ -34,7 +34,7 @@ The sole purpose of the controller is to be a slim layer which translates from t
 
 So most controllers look like this example
 
-.. literalinclude:: examples/architecture/Controller.php
+.. literalinclude:: ../examples/architecture/Controller.php
    :language: php
 
 Business
@@ -49,7 +49,7 @@ Classes in `DataType` are a facade to the OXID eShop models in our case and wrap
 
 A sample data type might look like this
 
-.. literalinclude:: examples/architecture/DataType.php
+.. literalinclude:: ../examples/architecture/DataType.php
     :language: php
 
 Services
@@ -59,7 +59,7 @@ Services are to be called from the controllers to retrieve the entities in quest
 
 A sample service might look like this
 
-.. literalinclude:: examples/architecture/Service.php
+.. literalinclude:: ../examples/architecture/Service.php
    :language: php
 
 Additionally to this, we put the relation services for the data types into the ``Service`` directory. Those are using the ``@ExtendType`` annotation an need to exist in the DI container under their fully qualified class name. Those relation services do not call OXID models directly, but only through the infrastructure layer.
@@ -94,3 +94,9 @@ for making classes final
 You might have noticed, that all classes in the GraphQL modules are ``final``. Therefore they can not be extended through OXID's module chain. It is technically not possible to extend data types by extending the class in the usuall PHP way anyway and we favour `composition over inheritance <https://en.wikipedia.org/wiki/Composition_over_inheritance>`_.
 
 The ``final`` class declaration makes this concept explicit!
+
+.. toctree::
+        :titlesonly:
+        :maxdepth: 1
+
+        interfaces
