@@ -111,7 +111,7 @@ html_context = {
     'display_github': True,
     'github_user': 'OXID-eSales',
     'github_repo': 'oxapi-documentation',
-    'github_version': '12.0-en/',
+    'github_version': '13.0-en/',
     'conf_py_path': '',
 }
 # Theme options are theme-specific and customize the look and feel of a theme
