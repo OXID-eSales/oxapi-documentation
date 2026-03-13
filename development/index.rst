@@ -76,7 +76,7 @@ You can extend from the GraphQL base modules ``OxidEsales\GraphQL\Base\Tests\Int
 or ``OxidEsales\GraphQL\Base\Tests\Integration\TokenTestCase`` in order to build
 integration tests for GraphQL queries you'd like to test.
 
-.. literalinclude:: examples/development/IntegrationTestPHPUnit.php
+.. literalinclude:: ../examples/development/IntegrationTestPHPUnit.php
    :language: php
 
 The ``TestCase`` class exports the following methods for you to use:
@@ -124,7 +124,13 @@ is pretty slim and tests are pretty fast.
                 depends: PhpBrowser
                 part: Json
 
-.. literalinclude:: examples/development/IntegrationTestCodeception.php
+.. literalinclude:: ../examples/development/IntegrationTestCodeception.php
    :language: php
 
 Happy hacking!
+
+.. toctree::
+        :titlesonly:
+        :maxdepth: 1
+
+        extending-types

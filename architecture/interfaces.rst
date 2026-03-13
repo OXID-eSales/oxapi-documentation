@@ -113,7 +113,6 @@ This allows a controller to declare ``Contact`` as the return type while the act
         }
     }
 
-
 Current Decision
 -----------------
 

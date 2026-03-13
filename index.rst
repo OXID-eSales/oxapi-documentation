@@ -20,7 +20,7 @@ Interface Documentation
         modules
         tutorials/index
         architecture/index
-        development
+        development/index
         consuming/index
         GraphQL schema <https://oxid-esales.github.io/oxapi-documentation/11.0>
         specification
