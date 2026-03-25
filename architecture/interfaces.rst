@@ -63,7 +63,36 @@ GraphQL interfaces are only necessary when your schema requires an **inheritance
 One interface, multiple implementations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A query returns different types that implement the same interface. Consumers use **inline fragments** to access type-specific fields:
+A query returns different types that implement the same interface. On the PHP side, the interface carries ``@Type`` and ``@Field``, while each implementation provides its own ``@Type``:
+
+.. code-block:: php
+
+    /** @Type() */
+    interface SearchResultInterface
+    {
+        /** @Field */
+        public function getId(): string;
+    }
+
+    /** @Type() */
+    class Product implements SearchResultInterface
+    {
+        public function getId(): string { ... }
+
+        /** @Field */
+        public function getTitle(): string { ... }
+    }
+
+    /** @Type() */
+    class Category implements SearchResultInterface
+    {
+        public function getId(): string { ... }
+
+        /** @Field */
+        public function getName(): string { ... }
+    }
+
+Consumers use **inline fragments** to access type-specific fields:
 
 .. code-block:: graphql
 
@@ -81,7 +110,25 @@ A query returns different types that implement the same interface. Consumers use
 Class inheritance (automatic interface generation)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When one implementation class extends another, GraphQLite **automatically** generates a GraphQL interface from the base class:
+When one ``@Type``-annotated class extends another, GraphQLite **automatically** generates a GraphQL interface from the base class. On the PHP side this is plain class inheritance:
+
+.. code-block:: php
+
+    /** @Type() */
+    class Contact
+    {
+        /** @Field */
+        public function getName(): string { ... }
+    }
+
+    /** @Type() */
+    class User extends Contact
+    {
+        /** @Field */
+        public function getEmail(): string { ... }
+    }
+
+GraphQLite turns this into the following schema — note how ``ContactInterface`` is created automatically without any PHP interface:
 
 .. code-block:: graphql
     :class: graphql-sdl
