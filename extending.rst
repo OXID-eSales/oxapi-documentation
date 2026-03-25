@@ -8,7 +8,7 @@ Every data type can be extended via the ``@ExtendType`` annotation multiple time
 .. important::
     Types, Controllers, Services, ... can not be extended through OXID's module chain!
 
-In case you wonder, see description about :ref:`why we made classes final<final-classes>`.
+In case you wonder, see description about :ref:`why we made classes final <final-classes>`.
 
 Extend the product type
 -----------------------
