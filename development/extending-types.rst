@@ -56,6 +56,11 @@ If you need to add multiple fields that all require data from the same source, e
 
     This approach is **only possible if the DataType class is not** ``final``.
 
+.. warning::
+
+    Class inheritance creates a **new** GraphQL type (e.g. ``ExtendedProduct``). Existing queries and mutations in the module still return the **original** type (e.g. ``Product``), so the new fields will never appear in their responses.
+    This approach is therefore only useful when you also build your **own query or mutation** that explicitly returns the extended type or the new created interface (see :ref:`Class inheritance (automatic interface generation) <class-inheritance-automatic-interface-generation>`). If you simply want to add fields to the responses of existing queries/mutations, use ``@ExtendType`` instead.
+
 .. code-block:: php
 
     /** @Type() */
@@ -106,6 +111,7 @@ Consumers access the new fields through inline fragments:
 - The schema becomes more complex — GraphQLite automatically generates an additional interface and type (e.g. ``ProductInterface``, ``Product``, ``ExtendedProduct``).
 - ``__typename`` changes from ``Product`` to ``ExtendedProduct``, which can affect client-side caching.
 - Consumers need to use inline fragments to access the new fields.
+- Existing queries and mutations are not affected — they still return the original type, so you must build your own query or mutation that returns the extended type or there interface.
 
 Extending input types
 ----------------------

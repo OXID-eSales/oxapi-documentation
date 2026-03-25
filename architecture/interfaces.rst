@@ -107,6 +107,8 @@ Consumers use **inline fragments** to access type-specific fields:
         }
     }
 
+.. _class-inheritance-automatic-interface-generation:
+
 Class inheritance (automatic interface generation)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
