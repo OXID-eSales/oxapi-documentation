@@ -16,7 +16,6 @@ Interface Documentation
         sorting
         caching
         exceptions/index
-        extending
         modules
         tutorials/index
         architecture/index

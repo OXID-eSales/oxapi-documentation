@@ -1,7 +1,7 @@
 services:
 
-    Full\Qualified\Namespace\Service\ProductExtendType:
-        class: Full\Qualified\Namespace\Service\ProductExtendType
+    Full\Qualified\Namespace\ExtendType\ProductExtendType:
+        class: Full\Qualified\Namespace\ExtendType\ProductExtendType
 
     Full\Qualified\Namespace\Shared\Service\NamespaceMapper:
         class: Full\Qualified\Namespace\Shared\Service\NamespaceMapper

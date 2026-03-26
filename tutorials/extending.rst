@@ -1,5 +1,5 @@
-Extend the data type
-====================
+Extend the data type with relations
+===================================
 
 Let's try to extend the GraphQL schema a little so we are able to fetch
 information about the manufacturer assigned to a product.
