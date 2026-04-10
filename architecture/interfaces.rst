@@ -1,7 +1,7 @@
 GraphQL Interfaces and Type Inheritance
 ========================================
 
-GraphQLite provides two clean patterns for mapping PHP interfaces to GraphQL types. Understanding when and how to use them is essential for designing a well-structured schema.
+If you use PHP interfaces, there are two patterns. Understanding when and how to use interface is essential for designing a well-structured schema.
 
 Pattern A: ``@Type`` on the Implementation Only
 ------------------------------------------------
