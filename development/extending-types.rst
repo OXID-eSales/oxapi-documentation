@@ -157,7 +157,7 @@ Consumers access the new fields through inline fragments:
 - The schema becomes more complex — GraphQLite automatically generates an additional interface and type (e.g. ``ProductInterface``, ``Product``, ``ExtendedProduct``).
 - ``__typename`` changes from ``Product`` to ``ExtendedProduct``, which can affect client-side caching.
 - Consumers need to use inline fragments to access the new fields.
-- Existing queries and mutations are not affected — they still return the original type, so you must build your own query or mutation that returns the extended type or there interface.
+- Existing queries and mutations are not affected — they still return the original type, so you must build your own query or mutation that returns the extended type or their interface.
 
 Extending input types
 ----------------------

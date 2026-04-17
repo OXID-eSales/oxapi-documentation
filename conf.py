@@ -93,7 +93,7 @@ todo_include_todos = False
 html_theme = 'sphinx_rtd_theme'
 
 html_context = {
-    'current_version': '12.0',
+    'current_version': '13.0',
     'versions': [
         ('5.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/5.0/'),
         ('5.1', 'https://docs.oxid-esales.com/interfaces/graphql/en/5.1/'),
@@ -104,7 +104,8 @@ html_context = {
         ('9.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/9.0/'),
         ('10.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/10.0/'),
         ('11.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/11.0/'),
-        ('12.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/12.0/')
+        ('12.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/12.0/'),
+        ('13.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/13.0/')
     ],
     'theme_logo_only': True,
     'show_sphinx': False,

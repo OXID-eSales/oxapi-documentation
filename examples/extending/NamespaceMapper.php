@@ -11,7 +11,7 @@ final class NamespaceMapper implements NamespaceMapperInterface
     public function getTypeNamespaceMapping(): array
     {
         return [
-            '\\Full\\Qualified\\Namespace\\ExtendType' => __DIR__ . '/../../ExtentType'
+            '\\Full\\Qualified\\Namespace\\ExtendType' => __DIR__ . '/../../ExtendType'
         ];
     }
 }
