@@ -174,16 +174,16 @@ Use this query to get the list of all themes. You can use filter like ``title`` 
                 {
                     "id": "apex",
                     "title": "APEX Theme",
-                    "version": "1.3.0",
+                    "version": "3.1.0",
                     "description": "APEX - Bootstrap 5 TWIG Theme",
                     "active": true
                 },
                 {
-                    "id": "wave",
-                    "title": "Wave Theme",
-                    "version": "3.0.1",
-                    "description": "Wave is OXID`s official responsive theme based on the CSS framework Bootstrap 4.",
-                    "active": true
+                    "id": "customtheme",
+                    "title": "Custom Theme",
+                    "version": "1.0.0",
+                    "description": "Project-specific custom theme",
+                    "active": false
                 }
             ]
         }
@@ -241,7 +241,7 @@ Use this query to get the list of all modules. You can use filter like ``title``
             "modules": [
                 {
                     "id": "oe_graphql_base",
-                    "version": "12.0.0",
+                    "version": "13.0.0",
                     "title": "GraphQL Base",
                     "description": "<span>OXID GraphQL API Framework</span>",
                     "thumbnail": "logo.png",
@@ -252,7 +252,7 @@ Use this query to get the list of all modules. You can use filter like ``title``
                 },
                 {
                     "id": "oe_graphql_storefront",
-                    "version": "4.2.0",
+                    "version": "5.0.0",
                     "title": "GraphQL Storefront",
                     "description": "OXID GraphQL Storefront",
                     "thumbnail": "logo.png",
