@@ -75,8 +75,9 @@ Modification:
 
     mutation productModify {
         adminProductModify(
+            id: "productId"
             adminProductInput: {
-                id: "productId"
+                active: false
             }
         ) {
             id
