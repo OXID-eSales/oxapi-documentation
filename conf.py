@@ -104,7 +104,8 @@ html_context = {
         ('9.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/9.0/'),
         ('10.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/10.0/'),
         ('11.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/11.0/'),
-        ('12.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/12.0/')
+        ('12.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/12.0/'),
+        ('13.0', 'https://docs.oxid-esales.com/interfaces/graphql/en/13.0/'),
     ],
     'theme_logo_only': True,
     'show_sphinx': False,
