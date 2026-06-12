@@ -263,7 +263,9 @@ the ``extensions``.
 Chosen Approach: Payload
 ========================
 
-The **Payload** approach is used because it fits all acceptance criteria.
+The **Payload** approach is used because it fits all acceptance criteria —
+combined with a mix of union types for specific errors and their type-specific
+fields.
 
 * **Union types** fail on extendability: to return new/different errors from
   another module, the controller would have to be adjusted, which results in a
@@ -277,7 +279,8 @@ The **Payload** approach is used because it fits all acceptance criteria.
 Type-safety with the Payload approach is not 100% (you cannot enforce specific
 errors for a given query/mutation), but the frontend knows from the schema that
 every result (payload) may contain one or more errors, each with a ``code`` and a
-``message``.
+``message``. And when specific errors are needed, fragments help to query the
+specific fields for the specific errors.
 
 
 Implementation (PHP)
@@ -541,7 +544,7 @@ LoginServiceDecorator
 
 .. code-block:: php
 
-   class LoginServiceDecorator extends LoginService
+   class LoginServiceDecorator implements LoginServiceInterface
    {
        public function __construct(
            private LoginServiceInterface $inner,
@@ -572,19 +575,13 @@ services.yaml
        $inner: '@.inner'
 
 With this decoration the login process in GraphQL is extended, and the existing
-controller transparently uses the new decorated ``login`` method. If the GraphQL
-module is not activated together with the security module (i.e. the
-``LoginServiceInterface`` does not exist), the decoration is simply ignored.
+controller transparently uses the new decorated ``login`` method. If the
+``LoginServiceInterface`` does not exist (i.e. the graphql-base module isn't
+activated), the decoration is simply ignored.
 
 To return a different error — optionally with extra fields — the new error only
 needs to implement ``UserErrorInterface``. Its additional fields can then be
 fetched with fragments (see *Request with an extra error field* above).
-
-Restrictions
-------------
-
-* Only **composition** (``@.inner``) must be used, to ensure that several
-  modules can extend the service without breaking the decoration chain.
 
 
 Notes
@@ -594,3 +591,5 @@ Notes
   GraphQLite. Its name consists of the ``Union`` prefix, the query/mutation name,
   and **all** possible return types. The naming strategy can be adjusted within
   the ``SchemaFactory``.
+* Only **composition** (``@.inner``) must be used, to ensure that several
+  modules can extend the service without breaking the decoration chain.
