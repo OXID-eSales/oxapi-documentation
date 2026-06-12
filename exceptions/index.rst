@@ -31,3 +31,4 @@ You can read more about `GraphQL errors in the official spec <http://spec.graphq
 
         Exceptions
         Partially Successful
+        Error Handling
