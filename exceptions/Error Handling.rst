@@ -35,6 +35,7 @@ for example, produced only:
 ...for a request like:
 
 .. code-block:: graphql
+   :class: graphql-sdl
 
    query settings {
        moduleSettings(moduleId: "somenonexistingmodule") {
@@ -141,6 +142,7 @@ A dedicated payload type wraps the actual result together with a
 * Each data type needs a separate ``userErrors`` field.
 
 .. code-block:: graphql
+   :class: graphql-sdl
 
    mutation {
      adminProductCreate(adminProductInput: { id: "newProduct" }) {
@@ -182,6 +184,7 @@ types.
 * More schema complexity.
 
 .. code-block:: graphql
+   :class: graphql-sdl
 
    mutation {
      adminProductCreate(input: { id: "newProduct" }) {
@@ -241,6 +244,7 @@ the ``extensions``.
 * Only a single error message can be returned.
 
 .. code-block:: graphql
+   :class: graphql-sdl
 
    mutation {
      adminProductCreate(adminProductInput: { id: "newProduct" }) {
@@ -408,6 +412,7 @@ Generated Schema
 ================
 
 .. code-block:: graphql
+   :class: graphql-sdl
 
    interface UserErrorInterface {
        code: String!
@@ -441,6 +446,7 @@ Basic request
 -------------
 
 .. code-block:: graphql
+   :class: graphql-sdl
 
    query {
      login(username: "admin", password: "admin") {
@@ -462,6 +468,7 @@ Type-specific fields (e.g. an ``id`` on a ``NotFoundError``) can be queried via
 inline fragments:
 
 .. code-block:: graphql
+   :class: graphql-sdl
 
    query {
      login(username: "admin", password: "admin") {
