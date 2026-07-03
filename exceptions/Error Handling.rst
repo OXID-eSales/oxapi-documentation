@@ -367,32 +367,61 @@ Data Types
 Service
 -------
 
-The service catches the known exceptions and turns them into ``UserError``
-entries instead of letting them bubble up as generic errors.
+The service contains the business logic and throws typed exceptions — it does
+**not** know about GraphQL errors or payloads.
 
 .. code-block:: php
 
-   public function login(?string $userName, ?string $password): LoginPayload
+   public function login(?string $userName, ?string $password): LoginInterface
    {
-       try {
-           $user = $this->legacyInfrastructure->login($userName, $password);
+       $user = $this->legacyInfrastructure->login($userName, $password);
 
-           return new LoginPayload(
-               new LoginDatatype(
-                   refreshToken: $this->refreshTokenService->createRefreshTokenForUser($user),
-                   accessToken: $this->tokenService->createTokenForUser($user),
-               ),
-           );
-       } catch (InvalidLogin $e) {
-           return new LoginPayload(
-               null,
-               [new UserError('oegqlb.login.invalid', 'Username/password combination is invalid')],
-           );
+       return new LoginDatatype(
+           refreshToken: $this->refreshTokenService->createRefreshTokenForUser($user),
+           accessToken: $this->tokenService->createTokenForUser($user),
+       );
+   }
+
+ExceptionConverter
+------------------
+
+The ``ExceptionConverter`` sits between the controller and the service. It
+catches the known exceptions thrown by the service and converts them into
+``ErrorInterface`` instances. Its return type is a union of the service's
+success type and ``ErrorInterface``.
+
+.. code-block:: php
+
+   class LoginExceptionConverter implements LoginExceptionConverterInterface
+   {
+       public function __construct(
+           private readonly LoginServiceInterface $loginService,
+       ) {
+       }
+
+       public function login(?string $userName, ?string $password): LoginInterface|ErrorInterface
+       {
+           try {
+               return $this->loginService->login($userName, $password);
+           } catch (InvalidLogin) {
+               return ValidationError::fromCode(ValidationError::INVALID_CREDENTIALS);
+           }
        }
    }
 
+The converter is registered as a Symfony service mapping the interface to the
+concrete class:
+
+.. code-block:: yaml
+
+   # services.yaml
+   OxidEsales\GraphQL\Base\Service\LoginExceptionConverterInterface:
+       class: OxidEsales\GraphQL\Base\Service\LoginExceptionConverter
+
 Controller
 ----------
+
+The controller calls the converter and checks whether the result is an error:
 
 .. code-block:: php
 
@@ -404,7 +433,13 @@ Controller
     */
    public function login(?string $username = null, ?string $password = null): LoginPayloadInterface
    {
-       return $this->loginService->login($username, $password);
+       $result = $this->loginExceptionConverter->login($username, $password);
+
+       if ($result instanceof ErrorInterface) {
+           return new LoginPayload(null, [$result]);
+       }
+
+       return new LoginPayload($result);
    }
 
 
@@ -543,30 +578,28 @@ meaningful errors. The example below adds a ``TwoFactorRequiredException`` from 
 security module.
 
 Without handling, the GraphQL login query would return a generic
-``Internal Server Error``. To show a meaningful error, the login service must
-also handle the new exception. This is done via **decoration (composition)**.
+``Internal Server Error``. To show a meaningful error, the **ExceptionConverter**
+must also handle the new exception. This is done via **decoration (composition)**
+of the converter's interface.
 
-LoginServiceDecorator
----------------------
+LoginExceptionConverterDecorator
+---------------------------------
 
 .. code-block:: php
 
-   class LoginServiceDecorator implements LoginServiceInterface
+   class LoginExceptionConverterDecorator implements LoginExceptionConverterInterface
    {
        public function __construct(
-           private LoginServiceInterface $inner,
+           private LoginExceptionConverterInterface $inner,
        ) {
        }
 
-       public function login(?string $userName, ?string $password): LoginPayload
+       public function login(?string $userName, ?string $password): LoginInterface|ErrorInterface
        {
            try {
                return $this->inner->login($userName, $password);
-           } catch (TwoFactorRequiredException $e) {
-               return new LoginPayload(
-                   null,
-                   [new UserError('oesm.login.2fa_required', '2FA authentication required.')],
-               );
+           } catch (TwoFactorRequiredException) {
+               return new AuthenticationError('oesm.login.2fa_required', '2FA authentication required.');
            }
        }
    }
@@ -576,18 +609,18 @@ services.yaml
 
 .. code-block:: yaml
 
-   OxidEsales\GraphQL\Customer\Service\LoginService:
-     decorates: OxidEsales\GraphQL\Base\Service\LoginServiceInterface
+   OxidEsales\GraphQL\Customer\Service\LoginExceptionConverterDecorator:
+     decorates: OxidEsales\GraphQL\Base\Service\LoginExceptionConverterInterface
      arguments:
        $inner: '@.inner'
 
 With this decoration the login process in GraphQL is extended, and the existing
-controller transparently uses the new decorated ``login`` method. If the
-``LoginServiceInterface`` does not exist (i.e. the graphql-base module isn't
-activated), the decoration is simply ignored.
+controller transparently uses the new decorated converter. If the
+``LoginExceptionConverterInterface`` does not exist (i.e. the graphql-base
+module isn't activated), the decoration is simply ignored.
 
 To return a different error — optionally with extra fields — the new error only
-needs to implement ``UserErrorInterface``. Its additional fields can then be
+needs to implement ``ErrorInterface``. Its additional fields can then be
 fetched with fragments (see *Request with an extra error field* above).
 
 
@@ -599,4 +632,4 @@ Notes
   and **all** possible return types. The naming strategy can be adjusted within
   the ``SchemaFactory``.
 * Only **composition** (``@.inner``) must be used, to ensure that several
-  modules can extend the service without breaking the decoration chain.
+  modules can extend exception-converter without breaking the decoration chain.
