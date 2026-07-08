@@ -415,8 +415,8 @@ concrete class:
 .. code-block:: yaml
 
    # services.yaml
-   OxidEsales\GraphQL\Base\Service\LoginExceptionConverterInterface:
-       class: OxidEsales\GraphQL\Base\Service\LoginExceptionConverter
+   OxidEsales\GraphQL\Base\ExceptionConverter\LoginExceptionConverterInterface:
+       class: OxidEsales\GraphQL\Base\ExceptionConverter\LoginExceptionConverter
 
 Controller
 ----------
@@ -610,7 +610,7 @@ services.yaml
 .. code-block:: yaml
 
    OxidEsales\GraphQL\Customer\Service\LoginExceptionConverterDecorator:
-     decorates: OxidEsales\GraphQL\Base\Service\LoginExceptionConverterInterface
+     decorates: OxidEsales\GraphQL\Base\ExceptionConverter\LoginExceptionConverterInterface
      arguments:
        $inner: '@.inner'
 
