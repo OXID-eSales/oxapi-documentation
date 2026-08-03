@@ -30,5 +30,6 @@ You can read more about `GraphQL errors in the official spec <http://spec.graphq
         :glob:
 
         Error Handling
+        Error DataTypes
         Exceptions
         Partially Successful
