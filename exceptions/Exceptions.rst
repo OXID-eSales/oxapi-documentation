@@ -5,7 +5,7 @@ Exceptions
    The pattern of exposing exceptions directly to the API consumer via ``ClientAware``
    exceptions is deprecated. Exceptions should still be thrown internally for flow control,
    but instead of propagating them as client-facing errors, they should be caught and
-   converted into Error DataTypes (implementing ``UserErrorInterface``) that are returned
+   converted into Error DataTypes (implementing ``ErrorInterface``) that are returned
    as part of the payload's ``userErrors`` array. See :doc:`Error Handling` for the
    current recommended pattern.
 

@@ -69,8 +69,8 @@ The error-handling solution must satisfy the following criteria:
 
 * Errors are returned with a **unique code** and a **short, human-readable
   message**.
-* Errors are **extendable with type-specific fields** (e.g. an ``id`` field for
-  *NotFound* errors), and those fields can be queried.
+* Errors are **extendable with type-specific fields** (e.g. an ``identifier``
+  field for *NotFound* errors), and those fields can be queried.
 * **Multiple modules** can extend the codes and add new GraphQL errors for an
   existing mutation.
 * If multiple modules extend a mutation, the implementations **must not cancel
@@ -290,27 +290,30 @@ specific fields for the specific errors.
 Implementation (PHP)
 ====================
 
-Data Types
-----------
+Error DataTypes
+---------------
+
+Every error implements ``ErrorInterface``. The shared ``code``/``message``
+handling lives in ``AbstractError``, so a concrete Error DataType only needs to
+add its type-specific fields (here: ``identifier``).
 
 .. code-block:: php
 
-   /** @Type() */
-   interface UserErrorInterface
+   #[Type]
+   interface ErrorInterface
    {
-       /** @Field() */
+       #[Field]
        public function code(): string;
 
-       /** @Field() */
+       #[Field]
        public function message(): string;
    }
 
-   /** @Type() */
-   final class UserError implements UserErrorInterface
+   abstract class AbstractError implements ErrorInterface
    {
        public function __construct(
-           private string $code,
-           private string $message,
+           private readonly string $code,
+           private readonly string $message,
        ) {
        }
 
@@ -327,10 +330,74 @@ Data Types
        }
    }
 
+   /**
+    * @Type()
+    */
+   class NotFoundError extends AbstractError
+   {
+       public const TOKEN = 'oegqlb.not_found.token';
+       public const USER = 'oegqlb.not_found.user';
+
+       public function __construct(
+           string $code,
+           string $message,
+           private readonly string $identifier,
+       ) {
+           parent::__construct($code, $message);
+       }
+
+       /** @Field() */
+       public function identifier(): string
+       {
+           return $this->identifier;
+       }
+
+       public static function fromCode(string $code, string $identifier): self
+       {
+           return new self($code, self::messages()[$code], $identifier);
+       }
+
+       /** @return array<string, string> */
+       private static function messages(): array
+       {
+           return [
+               self::TOKEN => 'The token was not found.',
+               self::USER => 'The user was not found.',
+           ];
+       }
+   }
+
+Payloads
+--------
+
+A payload carries the actual result together with a ``userErrors`` list. The
+shared ``userErrors`` handling lives in ``AbstractPayload``; a concrete payload
+(here: ``LoginPayload``) only adds its result field.
+
+.. code-block:: php
+
    interface PayloadInterface
    {
-       /** @return UserErrorInterface[] */
+       /** @return ErrorInterface[] */
        public function userErrors(): array;
+   }
+
+   abstract class AbstractPayload implements PayloadInterface
+   {
+       /** @param ErrorInterface[] $userErrors */
+       public function __construct(
+           private readonly array $userErrors = [],
+       ) {
+       }
+
+       /**
+        * @Field()
+        * @return ErrorInterface[]
+        */
+       public function userErrors(): array
+       {
+           return $this->userErrors;
+       }
    }
 
    interface LoginPayloadInterface extends PayloadInterface
@@ -339,28 +406,20 @@ Data Types
    }
 
    /** @Type() */
-   final class LoginPayload implements LoginPayloadInterface
+   final class LoginPayload extends AbstractPayload implements LoginPayloadInterface
    {
-       /** @param UserErrorInterface[] $userErrors */
+       /** @param ErrorInterface[] $userErrors */
        public function __construct(
-           private ?LoginInterface $login,
-           private array $userErrors = [],
+           private readonly ?LoginInterface $login,
+           array $userErrors = [],
        ) {
+           parent::__construct($userErrors);
        }
 
        /** @Field() */
        public function login(): ?LoginInterface
        {
            return $this->login;
-       }
-
-       /**
-        * @Field()
-        * @return UserErrorInterface[]
-        */
-       public function userErrors(): array
-       {
-           return $this->userErrors;
        }
    }
 
@@ -404,7 +463,7 @@ success type and ``ErrorInterface``.
            try {
                return $this->loginService->login($userName, $password);
            } catch (InvalidLogin) {
-               return ValidationError::fromCode(ValidationError::INVALID_CREDENTIALS);
+               return ValidationError::fromCode(ValidationError::CREDENTIALS, '');
            }
        }
    }
@@ -449,12 +508,18 @@ Generated Schema
 .. code-block:: graphql
    :class: graphql-sdl
 
-   interface UserErrorInterface {
+   interface ErrorInterface {
        code: String!
        message: String!
    }
 
-   type UserError implements UserErrorInterface {
+   type ValidationError implements ErrorInterface {
+       code: String!
+       message: String!
+       value: String!
+   }
+
+   type AuthenticationError implements ErrorInterface {
        code: String!
        message: String!
    }
@@ -466,7 +531,7 @@ Generated Schema
 
    type LoginPayload {
        login: Login
-       userErrors: [UserErrorInterface]!
+       userErrors: [ErrorInterface]!
    }
 
    type Query {
@@ -499,8 +564,8 @@ Basic request
 Request with an extra error field
 ----------------------------------
 
-Type-specific fields (e.g. an ``id`` on a ``NotFoundError``) can be queried via
-inline fragments:
+Type-specific fields (e.g. an ``identifier`` on a ``NotFoundError``) can be
+queried via inline fragments:
 
 .. code-block:: graphql
    :class: graphql-sdl
@@ -515,7 +580,7 @@ inline fragments:
          code
          message
          ... on NotFoundError {
-           id
+           identifier
          }
        }
      }
@@ -549,8 +614,8 @@ Response — failure
          "login": null,
          "userErrors": [
            {
-             "code": "INVALID_LOGIN",
-             "message": "Username/password combination is invalid"
+             "code": "oegqlb.validation.credentials",
+             "message": "The provided credentials are invalid."
            }
          ]
        }
