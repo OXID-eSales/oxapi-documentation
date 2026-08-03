@@ -31,5 +31,7 @@ You can read more about `GraphQL errors in the official spec <http://spec.graphq
 
         Error Handling
         Error DataTypes
+        Possible Errors graphql-base
+        Possible Errors graphql-storefront-administration
         Exceptions
         Partially Successful
