@@ -123,8 +123,20 @@ This operation returns no error DataTypes.
      - Code
      - Message
    * - :ref:`ImportError <edt-import-error>`
-     - every create code of :ref:`adminProductCreate <op-admin-product-create>`
-     - Wraps the underlying create error per input entry (copies its ``code`` and ``message``, adds an ``inputPosition``).
+     - ``oegqlsa.validation.product_id``
+     - The product id is invalid.
+   * - :ref:`ImportError <edt-import-error>`
+     - ``oegqlsa.id_already_exists.product``
+     - A product with the provided ID already exists.
+   * - :ref:`ImportError <edt-import-error>`
+     - ``oegqlsa.product.not_saved``
+     - The product could not be saved.
+   * - :ref:`ImportError <edt-import-error>`
+     - ``oegqlsa.not_found.download_file_in_ftp_dir``
+     - The download file was not found in the FTP directory.
+   * - :ref:`ImportError <edt-import-error>`
+     - ``oegqlsa.not_created.download_file``
+     - A download file with the provided ID could not be created.
    * - :ref:`NotFoundError <edt-sa-not-found>`
      - ``oegqlsa.not_found.product``
      - The product was not found (returned directly when a successfully imported product cannot be reloaded).
@@ -140,8 +152,17 @@ This operation returns no error DataTypes.
      - Code
      - Message
    * - :ref:`ImportError <edt-import-error>`
-     - every modify code of :ref:`adminProductModify <op-admin-product-modify>`
-     - Wraps the underlying modify error per input entry (copies its ``code`` and ``message``, adds an ``inputPosition``).
+     - ``oegqlsa.not_found.product``
+     - The product was not found.
+   * - :ref:`ImportError <edt-import-error>`
+     - ``oegqlsa.product.is_variant``
+     - The product is a variant.
+   * - :ref:`ImportError <edt-import-error>`
+     - ``oegqlsa.product.not_saved``
+     - The product could not be saved.
+   * - :ref:`ImportError <edt-import-error>`
+     - ``oegqlsa.product.language_fields_not_updated``
+     - The language fields for the product could not be updated.
    * - :ref:`NotFoundError <edt-sa-not-found>`
      - ``oegqlsa.not_found.product``
      - The product was not found (returned directly when a successfully modified product cannot be reloaded).
