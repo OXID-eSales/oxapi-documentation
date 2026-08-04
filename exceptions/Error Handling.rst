@@ -46,7 +46,7 @@ for example, produced only:
    }
 
 This is not a limitation of GraphQLite — it offers proper error handling. The
-problem is that the underlying code did not provide the necessary context to the
+problem is that the underlying shop did not provide the necessary context to the
 exceptions. A good error message, by contrast, looks like this (GraphQL standard
 syntax validation):
 
@@ -65,7 +65,9 @@ syntax validation):
 Goals / Acceptance Criteria
 ===========================
 
-The error-handling solution must satisfy the following criteria:
+The message above is still not perfect, because it misses information about the
+context for the frontend. The error-handling solution must satisfy the following
+criteria:
 
 * Errors are returned with a **unique code** and a **short, human-readable
   message**.
@@ -295,7 +297,8 @@ Error DataTypes
 
 Every error implements ``ErrorInterface``. The shared ``code``/``message``
 handling lives in ``AbstractError``, so a concrete Error DataType only needs to
-add its type-specific fields (here: ``identifier``).
+add its type-specific fields (e.g. ``value`` on ``ValidationError``) — or nothing
+at all when ``code`` and ``message`` suffice (e.g. ``AuthenticationError``).
 
 .. code-block:: php
 
@@ -333,36 +336,55 @@ add its type-specific fields (here: ``identifier``).
    /**
     * @Type()
     */
-   class NotFoundError extends AbstractError
+   final class ValidationError extends AbstractError
    {
-       public const TOKEN = 'oegqlb.not_found.token';
-       public const USER = 'oegqlb.not_found.user';
+       public const CREDENTIALS = 'oegqlb.validation.credentials';
 
        public function __construct(
            string $code,
            string $message,
-           private readonly string $identifier,
+           private readonly string $value = '',
        ) {
            parent::__construct($code, $message);
        }
 
        /** @Field() */
-       public function identifier(): string
+       public function value(): string
        {
-           return $this->identifier;
+           return $this->value;
        }
 
-       public static function fromCode(string $code, string $identifier): self
+       public static function fromCode(string $code, string $value): self
        {
-           return new self($code, self::messages()[$code], $identifier);
+           return new self($code, self::messages()[$code], $value);
        }
 
        /** @return array<string, string> */
        private static function messages(): array
        {
            return [
-               self::TOKEN => 'The token was not found.',
-               self::USER => 'The user was not found.',
+               self::CREDENTIALS => 'The provided credentials are invalid.',
+           ];
+       }
+   }
+
+   /**
+    * @Type()
+    */
+   final class AuthenticationError extends AbstractError
+   {
+       public const TOKEN_QUOTA_EXCEEDED = 'oegqlb.authentication.token_quota_exceeded';
+
+       public static function fromCode(string $code): self
+       {
+           return new self($code, self::messages()[$code]);
+       }
+
+       /** @return array<string, string> */
+       private static function messages(): array
+       {
+           return [
+               self::TOKEN_QUOTA_EXCEEDED => 'The token quota for this user has been exceeded.',
            ];
        }
    }
@@ -431,6 +453,10 @@ The service contains the business logic and throws typed exceptions — it does
 
 .. code-block:: php
 
+   /**
+    * @throws InvalidLogin
+    * @throws TokenQuota
+    */
    public function login(?string $userName, ?string $password): LoginInterface
    {
        $user = $this->legacyInfrastructure->login($userName, $password);
@@ -464,6 +490,8 @@ success type and ``ErrorInterface``.
                return $this->loginService->login($userName, $password);
            } catch (InvalidLogin) {
                return ValidationError::fromCode(ValidationError::CREDENTIALS, '');
+           } catch (TokenQuota) {
+               return AuthenticationError::fromCode(AuthenticationError::TOKEN_QUOTA_EXCEEDED);
            }
        }
    }
@@ -561,10 +589,12 @@ Basic request
      }
    }
 
+.. _eh-extra-error-field:
+
 Request with an extra error field
 ----------------------------------
 
-Type-specific fields (e.g. an ``identifier`` on a ``NotFoundError``) can be
+Type-specific fields (e.g. a ``value`` on a ``ValidationError``) can be
 queried via inline fragments:
 
 .. code-block:: graphql
@@ -579,8 +609,8 @@ queried via inline fragments:
        userErrors {
          code
          message
-         ... on NotFoundError {
-           identifier
+         ... on ValidationError {
+           value
          }
        }
      }
@@ -615,7 +645,8 @@ Response — failure
          "userErrors": [
            {
              "code": "oegqlb.validation.credentials",
-             "message": "The provided credentials are invalid."
+             "message": "The provided credentials are invalid.",
+             "value": ""
            }
          ]
        }
@@ -686,15 +717,12 @@ module isn't activated), the decoration is simply ignored.
 
 To return a different error — optionally with extra fields — the new error only
 needs to implement ``ErrorInterface``. Its additional fields can then be
-fetched with fragments (see *Request with an extra error field* above).
+fetched with fragments (see :ref:`Request with an extra error field
+<eh-extra-error-field>` above).
 
 
 Notes
 =====
 
-* The union type used for extra error fields is generated automatically by
-  GraphQLite. Its name consists of the ``Union`` prefix, the query/mutation name,
-  and **all** possible return types. The naming strategy can be adjusted within
-  the ``SchemaFactory``.
 * Only **composition** (``@.inner``) must be used, to ensure that several
   modules can extend exception-converter without breaking the decoration chain.
