@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./styles/graphdoc.css" />
-    <title>OrderInvoiceAddress</title>
+    <title>specifiedBy</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet"><link type="text/css" rel="stylesheet" href="./assets/code.css" /><link type="text/css" rel="stylesheet" href="./assets/require-by.css" />
 </head>
 <body class="slds-scrollable--y">
@@ -355,7 +355,7 @@
                 OrderFile
             </a>
         </li>
-        <li class="slds-is-active" title="OrderInvoiceAddress">
+        <li  title="OrderInvoiceAddress">
             <a href="orderinvoiceaddress.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 OrderInvoiceAddress
             </a>
@@ -790,7 +790,7 @@
                 skip
             </a>
         </li>
-        <li  title="specifiedBy">
+        <li class="slds-is-active" title="specifiedBy">
             <a href="specifiedby.doc.html" class="slds-navigation-list--vertical__action slds-text-link--reset slds-truncate">
                 specifiedBy
             </a>
@@ -810,9 +810,10 @@
         </div>
     </div>
     <div class="container">
-        <p class="slds-text-title--caps slds-text-color--weak">OBJECT</p>
-        <h1 class="slds-text-heading--large">OrderInvoiceAddress</h1>
-        <div class="slds-text-body--regular"></div>
+        <p class="slds-text-title--caps slds-text-color--weak"></p>
+        <h1 class="slds-text-heading--large">specifiedBy</h1>
+        <div class="slds-text-body--regular"><p>Exposes a URL that specifies the behavior of this scalar.</p>
+</div>
     </div>
 </section>
 <section>
@@ -823,7 +824,7 @@
             </a>
             GraphQL Schema definition
         </h2>
-        <code class="highlight"><ul class="code" style="padding-left:42px"><li><span class="keyword operator ts">type</span> <span class="identifier">OrderInvoiceAddress</span> {</li><li></li><li><span class="tab"><span class="meta">email</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">vatID</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">salutation</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">firstName</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">lastName</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">company</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">additionalInfo</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">street</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">streetNumber</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">zipCode</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">city</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">phone</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">fax</span>: <a class="support type" href="string.doc.html">String</a>! </span></li><li></li><li><span class="tab"><span class="meta">country</span>: <a class="support type" href="country.doc.html">Country</a> </span></li><li></li><li><span class="tab"><span class="meta">state</span>: <a class="support type" href="state.doc.html">State</a> </span></li><li>}</li></ul></code>
+        <code class="highlight"><ul class="code" style="padding-left:28px"><li><span class="keyword operator ts">directive</span> <span class="keyword operator ts">@specifiedBy</span>(<span class="meta">url</span>: <a class="support type" href="string.doc.html">String</a>!) on <span class="keyword operator ts">SCALAR</span></li></ul></code>
     </div>
 </section>
 <section>
@@ -834,7 +835,7 @@
             </a>
             Require by
         </h2>
-        <ul class="require-by"><li><a href="order.doc.html" title="Order - ">Order<em>null</em></a><li></ul>
+        <div class="require-by anyone">This element is not required by anyone</div>
     </div>
 </section>
 <footer>
