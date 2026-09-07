@@ -373,6 +373,7 @@ at all when ``code`` and ``message`` suffice (e.g. ``AuthenticationError``).
     */
    final class AuthenticationError extends AbstractError
    {
+       public const CREDENTIALS_INCORRECT = 'oegqlb.authentication.credentials_incorrect';
        public const TOKEN_QUOTA_EXCEEDED = 'oegqlb.authentication.token_quota_exceeded';
 
        public static function fromCode(string $code): self
@@ -384,6 +385,7 @@ at all when ``code`` and ``message`` suffice (e.g. ``AuthenticationError``).
        private static function messages(): array
        {
            return [
+               self::CREDENTIALS_INCORRECT => 'The provided credentials are invalid.',
                self::TOKEN_QUOTA_EXCEEDED => 'The token quota for this user has been exceeded.',
            ];
        }
@@ -644,9 +646,8 @@ Response — failure
          "login": null,
          "userErrors": [
            {
-             "code": "oegqlb.validation.credentials",
-             "message": "The provided credentials are invalid.",
-             "value": ""
+             "code": "oegqlb.authentication.credentials_incorrect",
+             "message": "The provided credentials are invalid."
            }
          ]
        }
