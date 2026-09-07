@@ -338,14 +338,13 @@ at all when ``code`` and ``message`` suffice (e.g. ``AuthenticationError``).
     */
    final class ValidationError extends AbstractError
    {
-       public const CREDENTIALS = 'oegqlb.validation.credentials';
+       public const FINGERPRINT = 'oegqlb.validation.fingerprint';
 
        public function __construct(
            string $code,
-           string $message,
            private readonly string $value = '',
        ) {
-           parent::__construct($code, $message);
+           parent::__construct($code, $this->messages()[$code]);
        }
 
        /** @Field() */
@@ -354,16 +353,11 @@ at all when ``code`` and ``message`` suffice (e.g. ``AuthenticationError``).
            return $this->value;
        }
 
-       public static function fromCode(string $code, string $value): self
-       {
-           return new self($code, self::messages()[$code], $value);
-       }
-
        /** @return array<string, string> */
-       private static function messages(): array
+       private function messages(): array
        {
            return [
-               self::CREDENTIALS => 'The provided credentials are invalid.',
+               self::FINGERPRINT => 'The fingerprint validation failed.',
            ];
        }
    }
@@ -373,17 +367,19 @@ at all when ``code`` and ``message`` suffice (e.g. ``AuthenticationError``).
     */
    final class AuthenticationError extends AbstractError
    {
+       public const CREDENTIALS_INCORRECT = 'oegqlb.authentication.credentials_incorrect';
        public const TOKEN_QUOTA_EXCEEDED = 'oegqlb.authentication.token_quota_exceeded';
 
-       public static function fromCode(string $code): self
+       public function __construct(string $code)
        {
-           return new self($code, self::messages()[$code]);
+           parent::__construct($code, $this->messages()[$code]);
        }
 
        /** @return array<string, string> */
-       private static function messages(): array
+       private function messages(): array
        {
            return [
+               self::CREDENTIALS_INCORRECT => 'The provided credentials are invalid.',
                self::TOKEN_QUOTA_EXCEEDED => 'The token quota for this user has been exceeded.',
            ];
        }
@@ -489,9 +485,9 @@ success type and ``ErrorInterface``.
            try {
                return $this->loginService->login($userName, $password);
            } catch (InvalidLogin) {
-               return ValidationError::fromCode(ValidationError::CREDENTIALS, '');
+               return new AuthenticationError(AuthenticationError::CREDENTIALS_INCORRECT);
            } catch (TokenQuota) {
-               return AuthenticationError::fromCode(AuthenticationError::TOKEN_QUOTA_EXCEEDED);
+               return new AuthenticationError(AuthenticationError::TOKEN_QUOTA_EXCEEDED);
            }
        }
    }
@@ -644,9 +640,8 @@ Response — failure
          "login": null,
          "userErrors": [
            {
-             "code": "oegqlb.validation.credentials",
-             "message": "The provided credentials are invalid.",
-             "value": ""
+             "code": "oegqlb.authentication.credentials_incorrect",
+             "message": "The provided credentials are invalid."
            }
          ]
        }
@@ -654,11 +649,45 @@ Response — failure
    }
 
 
+.. _eh-consume-by-type:
+
+Consuming errors: check the type, not the code
+==============================================
+
+Because every error is an explicit **type** in the schema, a consumer does
+**not** parse or pattern-match the ``code`` string to find out *what kind* of
+error occurred — the type already carries that information:
+
+* **Frontend (GraphQL):** branch on ``__typename`` and read the type-specific
+  fields via inline fragments.
+* **Backend (PHP):** branch with ``instanceof`` on the concrete Error DataType
+  (or on ``ErrorInterface`` to detect "any error at all").
+
+The ``code`` is then only needed for the *finer* sub-reason within a type and to
+resolve the user-facing message — never to determine the error category.
+
+.. code-block:: typescript
+
+   for (const error of result.userErrors) {
+     switch (error.__typename) {          // check the TYPE, not the code
+       case "NotFoundError":   return showNotFound(error.identifier);
+       case "ValidationError": return highlightField(error.value);
+       default:                return showGeneric(error.message);
+     }
+   }
+
+Without typed errors the consumer would instead have to parse the ``code``
+string (split ``oegqlb.not_found.token`` or match code prefixes) to recover the
+same categorisation — fragile, and easy to break when codes change.
+
+
 Frontend i18n
 =============
 
-The frontend resolves the user-facing text from the error code via translation
-keys:
+Once the error **type** has decided *how* to handle the error (see
+:ref:`eh-consume-by-type`), the ``code`` is used only to resolve the localized,
+user-facing text — it is **not** the discriminator. The frontend maps the code
+to a translation key:
 
 .. code-block:: text
 
@@ -678,6 +707,37 @@ Without handling, the GraphQL login query would return a generic
 must also handle the new exception. This is done via **decoration (composition)**
 of the converter's interface.
 
+The base ``AuthenticationError`` only knows its own codes and assigns the message
+in its constructor, so it cannot be reused for a module-specific code. Instead the
+module ships its own Error DataType — it only needs to implement ``ErrorInterface``
+(here via ``AbstractError``) and assign its own code and message.
+
+TwoFactorRequiredError
+----------------------
+
+.. code-block:: php
+
+   /**
+    * @Type()
+    */
+   final class TwoFactorRequiredError extends AbstractError
+   {
+       public const TWO_FA_REQUIRED = 'oesm.login.2fa_required';
+
+       public function __construct(string $code)
+       {
+           parent::__construct($code, $this->messages()[$code]);
+       }
+
+       /** @return array<string, string> */
+       private function messages(): array
+       {
+           return [
+               self::TWO_FA_REQUIRED => '2FA authentication required.',
+           ];
+       }
+   }
+
 LoginExceptionConverterDecorator
 ---------------------------------
 
@@ -695,7 +755,7 @@ LoginExceptionConverterDecorator
            try {
                return $this->inner->login($userName, $password);
            } catch (TwoFactorRequiredException) {
-               return new AuthenticationError('oesm.login.2fa_required', '2FA authentication required.');
+               return new TwoFactorRequiredError(TwoFactorRequiredError::TWO_FA_REQUIRED);
            }
        }
    }
