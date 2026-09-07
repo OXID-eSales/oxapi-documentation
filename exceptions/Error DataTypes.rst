@@ -47,6 +47,9 @@ AuthenticationError
    * - Constant
      - Code
      - Message
+   * - ``CREDENTIALS_INCORRECT``
+     - ``oegqlb.authentication.credentials_incorrect``
+     - The provided credentials are invalid.
    * - ``TOKEN_QUOTA_EXCEEDED``
      - ``oegqlb.authentication.token_quota_exceeded``
      - The token quota for this user has been exceeded.
@@ -105,9 +108,6 @@ Extra fields: ``value: String!``.
    * - Constant
      - Code
      - Message
-   * - ``CREDENTIALS``
-     - ``oegqlb.validation.credentials``
-     - The provided credentials are invalid.
    * - ``FINGERPRINT``
      - ``oegqlb.validation.fingerprint``
      - The fingerprint validation failed.
