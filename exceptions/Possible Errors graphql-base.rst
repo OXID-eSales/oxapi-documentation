@@ -30,8 +30,8 @@ appear in the operation's payload ``userErrors`` array.
    * - Error DataType
      - Code
      - Message
-   * - :ref:`ValidationError <edt-validation-error>`
-     - ``oegqlb.validation.credentials``
+   * - :ref:`AuthenticationError <edt-authentication-error>`
+     - ``oegqlb.authentication.credentials_incorrect``
      - The provided credentials are invalid.
    * - :ref:`AuthenticationError <edt-authentication-error>`
      - ``oegqlb.authentication.token_quota_exceeded``
@@ -47,8 +47,8 @@ appear in the operation's payload ``userErrors`` array.
    * - Error DataType
      - Code
      - Message
-   * - :ref:`ValidationError <edt-validation-error>`
-     - ``oegqlb.validation.credentials``
+   * - :ref:`AuthenticationError <edt-authentication-error>`
+     - ``oegqlb.authentication.credentials_incorrect``
      - The provided credentials are invalid.
    * - :ref:`AuthenticationError <edt-authentication-error>`
      - ``oegqlb.authentication.token_quota_exceeded``
