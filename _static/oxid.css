@@ -203,3 +203,8 @@ a, a:visited, a:hover {
 .wy-nav-top a:visited, .wy-nav-top a:hover {
     color: #fff;
 }
+
+.wy-table-responsive table td,
+.wy-table-responsive table td code.literal span.pre {
+    white-space: normal;
+}

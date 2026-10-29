@@ -42,7 +42,7 @@ AuthenticationError
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 40 30
+   :widths: 26 29 45
 
    * - Constant
      - Code
@@ -61,7 +61,7 @@ AuthorizationError
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 40 30
+   :widths: 31 24 45
 
    * - Constant
      - Code
@@ -82,7 +82,7 @@ Extra fields: ``identifier: String!``.
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 40 30
+   :widths: 8 28 64
 
    * - Constant
      - Code
@@ -103,7 +103,7 @@ Extra fields: ``value: String!``.
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 40 30
+   :widths: 17 38 45
 
    * - Constant
      - Code
@@ -140,7 +140,7 @@ extends them). Each exposes an additional ``identifier: String!`` field.
    * - ``NotDeletedError``
      - ``identifier``
      - A record could not be deleted.
-   * - ``IdAlreadyExistError``
+   * - ``IdAlreadyExistsError``
      - ``identifier``
      - A record with the given id already exists.
 
@@ -157,16 +157,19 @@ All codes contributed by this module follow the ``oegqlsa.<category>.<name>``
 naming scheme (``oegqlsa`` = **o**\ xid **e**\ Sales **g**\ raph\ **ql**
 **s**\ torefront-\ **a**\ dministration).
 
+The module's own Error DataTypes carry an ``Admin`` prefix in the GraphQL
+schema. The extended ``graphql-base`` errors keep their base type names.
+
 .. _edt-download-file-error:
 
-DownloadFileError
------------------
+AdminDownloadFileError
+----------------------
 
 Extra fields: ``fileId: String!``.
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 40 30
+   :widths: 24 31 45
 
    * - Constant
      - Code
@@ -177,8 +180,8 @@ Extra fields: ``fileId: String!``.
 
 .. _edt-import-error:
 
-ImportError
------------
+AdminImportError
+----------------
 
 Extra fields: ``inputPosition: Int!`` — the position of the failing entry in the
 import input list.
@@ -190,11 +193,11 @@ error that occurred while importing that entry).
 Example
 ~~~~~~~
 
-While importing a list of products, one entry fails (e.g. an
-``IdAlreadyExistError`` is thrown for the second product). Its ``code`` and
-``message`` are copied into a new ``ImportError``, and ``inputPosition`` is set to
-the position of the failing entry (1-based). That ``ImportError`` is then returned
-in the payload's ``userErrors``:
+While importing a list of products, one entry fails (e.g. the second product
+fails with an ``IdAlreadyExistsError``). Its ``code`` and ``message`` are copied
+into an ``AdminImportError``, and ``inputPosition`` is set to the position of the
+failing entry (1-based). That ``AdminImportError`` is then returned in the
+payload's ``userErrors``:
 
 .. code-block:: php
 
@@ -206,14 +209,14 @@ in the payload's ``userErrors``:
 
 .. _edt-product-error:
 
-ProductError
-------------
+AdminProductError
+-----------------
 
 Extra fields: ``productId: String!``.
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 42 28
+   :widths: 22 33 45
 
    * - Constant
      - Code
@@ -230,20 +233,17 @@ Extra fields: ``productId: String!``.
    * - ``NOT_SAVED``
      - ``oegqlsa.product.not_saved``
      - The product could not be saved.
-   * - ``LANGUAGE_FIELDS_NOT_UPDATED``
-     - ``oegqlsa.product.language_fields_not_updated``
-     - The language fields for the product could not be updated.
 
 .. _edt-product-attribute-error:
 
-ProductAttributeError
----------------------
+AdminProductAttributeError
+--------------------------
 
 Extra fields: ``productId: String!``, ``attributeId: String!``.
 
 .. list-table::
    :header-rows: 1
-   :widths: 33 40 27
+   :widths: 38 30 32
 
    * - Constant
      - Code
@@ -257,14 +257,14 @@ Extra fields: ``productId: String!``, ``attributeId: String!``.
 
 .. _edt-product-category-error:
 
-ProductCategoryError
---------------------
+AdminProductCategoryError
+-------------------------
 
 Extra fields: ``categoryId: String!``, ``productId: String!``.
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 42 28
+   :widths: 35 37 28
 
    * - Constant
      - Code
@@ -275,17 +275,20 @@ Extra fields: ``categoryId: String!``, ``productId: String!``.
    * - ``CATEGORY_NOT_ASSIGNED``
      - ``oegqlsa.product_category.not_assigned``
      - The category is not assigned to the product.
+   * - ``PRICE_CATEGORY_NOT_ASSIGNABLE``
+     - ``oegqlsa.product_category.price_category_not_assignable``
+     - A price category cannot be assigned to a product.
 
 .. _edt-product-shop-error:
 
-ProductShopError
-----------------
+AdminProductShopError
+---------------------
 
 Extra fields: ``productId: String!``, ``subshopId: Int!``.
 
 .. list-table::
    :header-rows: 1
-   :widths: 32 42 26
+   :widths: 33 34 33
 
    * - Constant
      - Code
@@ -297,16 +300,41 @@ Extra fields: ``productId: String!``, ``subshopId: Int!``.
      - ``oegqlsa.product_shop.not_assigned_to_subshop``
      - The product is not assigned to the subshop.
 
-.. _edt-product-seo-error:
+.. _edt-product-selection-list-error:
 
-ProductSeoError
----------------
+AdminProductSelectionListError
+------------------------------
 
-Extra fields: ``productId: String!``.
+Extra fields: ``selectionListId: String!``, ``productId: String!``.
 
 .. list-table::
    :header-rows: 1
-   :widths: 32 40 28
+   :widths: 39 29 32
+
+   * - Constant
+     - Code
+     - Message
+   * - ``SELECTION_LIST_ALREADY_ASSIGNED``
+     - ``oegqlsa.product_selection_list.already_assigned``
+     - The selection list is already assigned to the product.
+   * - ``SELECTION_LIST_NOT_ASSIGNED``
+     - ``oegqlsa.product_selection_list.not_assigned``
+     - The selection list is not assigned to the product.
+   * - ``SELECTION_LIST_ASSIGNMENT_FAILED``
+     - ``oegqlsa.product_selection_list.assignment_failed``
+     - The selection list could not be assigned to the product.
+
+.. _edt-product-seo-error:
+
+AdminProductSeoError
+--------------------
+
+Extra fields: ``productId: String!``, ``seoType: SeoArticleType!``,
+``relatedObjectId: String`` (nullable).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 33 34 33
 
    * - Constant
      - Code
@@ -317,6 +345,9 @@ Extra fields: ``productId: String!``.
    * - ``RELATED_OBJECT_NOT_ASSIGNED``
      - ``oegqlsa.seo.related_object_not_assigned``
      - The related object is not assigned to the product.
+   * - ``MISSING_RELATED_OBJECT_ID``
+     - ``oegqlsa.seo.missing_related_object_id``
+     - A related object id is required for this SEO type.
 
 
 .. _sfa-base-code-extensions:
@@ -327,7 +358,7 @@ Additional codes for ``graphql-base`` error types
 The module also extends the generic ``graphql-base`` Error DataTypes with its own
 codes. These are **not** new GraphQL types — the errors returned are still the
 base types (``NotFoundError``, ``ValidationError``, ``NotCreatedError``,
-``NotUpdatedError``, ``NotDeletedError``, ``IdAlreadyExistError``). The module
+``NotUpdatedError``, ``NotDeletedError``, ``IdAlreadyExistsError``). The module
 only registers additional ``oegqlsa.*`` codes and their messages for them.
 
 .. _edt-sa-not-found:
@@ -337,7 +368,7 @@ NotFoundError (additional codes)
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 42 28
+   :widths: 30 31 39
 
    * - Constant
      - Code
@@ -375,6 +406,12 @@ NotFoundError (additional codes)
    * - ``SCALE_PRICE``
      - ``oegqlsa.not_found.scale_price``
      - The scale price was not found.
+   * - ``SELECTION_LIST``
+     - ``oegqlsa.not_found.selection_list``
+     - The selection list was not found.
+   * - ``LANGUAGE``
+     - ``oegqlsa.not_found.language``
+     - No language was found for the provided locale.
 
 .. _edt-sa-validation:
 
@@ -383,7 +420,7 @@ ValidationError (additional codes)
 
 .. list-table::
    :header-rows: 1
-   :widths: 33 40 27
+   :widths: 30 31 39
 
    * - Constant
      - Code
@@ -411,11 +448,14 @@ NotCreatedError (additional codes)
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 42 28
+   :widths: 17 38 45
 
    * - Constant
      - Code
      - Message
+   * - ``ATTRIBUTE``
+     - ``oegqlsa.not_created.attribute``
+     - An attribute with the provided ID could not be created.
    * - ``DOWNLOAD_FILE``
      - ``oegqlsa.not_created.download_file``
      - A download file with the provided ID could not be created.
@@ -433,14 +473,20 @@ NotUpdatedError (additional codes)
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 42 28
+   :widths: 29 30 41
 
    * - Constant
      - Code
      - Message
+   * - ``ATTRIBUTE``
+     - ``oegqlsa.not_updated.attribute``
+     - An attribute with the provided ID could not be updated.
    * - ``DOWNLOAD_FILE``
      - ``oegqlsa.not_updated.download_file``
      - A download file with the provided ID could not be updated.
+   * - ``PRODUCT_LANGUAGE_FIELDS``
+     - ``oegqlsa.not_updated.product_language_fields``
+     - The language fields of the product with the provided ID could not be updated.
    * - ``SCALE_PRICE``
      - ``oegqlsa.not_updated.scale_price``
      - A scale price with the provided ID could not be updated.
@@ -455,11 +501,14 @@ NotDeletedError (additional codes)
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 42 28
+   :widths: 13 35 52
 
    * - Constant
      - Code
      - Message
+   * - ``ATTRIBUTE``
+     - ``oegqlsa.not_deleted.attribute``
+     - An attribute with the provided ID could not be deleted.
    * - ``PRODUCT``
      - ``oegqlsa.not_deleted.product``
      - A product with the provided ID could not be deleted.
@@ -469,16 +518,19 @@ NotDeletedError (additional codes)
 
 .. _edt-sa-id-already-exist:
 
-IdAlreadyExistError (additional codes)
+IdAlreadyExistsError (additional codes)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 42 28
+   :widths: 17 38 45
 
    * - Constant
      - Code
      - Message
+   * - ``ATTRIBUTE``
+     - ``oegqlsa.id_already_exists.attribute``
+     - An attribute with the provided ID already exists.
    * - ``DOWNLOAD_FILE``
      - ``oegqlsa.id_already_exists.download_file``
      - A download file with the provided ID already exists.
@@ -507,8 +559,8 @@ Summary
      - 8 (4 with codes, 4 generic)
      - 8
    * - ``graphql-storefront-administration`` (own types)
-     - 7
-     - 14 (``ImportError`` has no predefined codes)
+     - 8
+     - 18 (``AdminImportError`` has no predefined codes)
    * - ``graphql-storefront-administration`` (base-type extensions)
      - reuses 6 base types
-     - 28
+     - 35

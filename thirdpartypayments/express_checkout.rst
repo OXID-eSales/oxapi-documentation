@@ -31,7 +31,9 @@ group and the rights to manipulate a basket can be given to that virtual user gr
 .. code-block:: graphql
 
     query {
-        token
+        token {
+            token
+        }
     }
 
 Please refer to :doc:`Authorization <../authorization>` for more details.

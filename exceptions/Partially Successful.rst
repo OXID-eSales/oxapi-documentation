@@ -6,7 +6,7 @@ Partially Successful
    :doc:`Error Handling` page instead, which describes the current recommended pattern.
    The new pattern supports returning multiple errors simultaneously via a ``userErrors``
    array, and can return both data and errors within the same payload — as done by the
-   import flow, which returns the imported data together with one ``ImportError`` per
+   import flow, which returns the imported data together with one ``AdminImportError`` per
    failed entry.
 
 GraphQL allows for the response to have a ``data`` and ``errors`` key. If you

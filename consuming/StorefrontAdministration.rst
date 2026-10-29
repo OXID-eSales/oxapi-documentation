@@ -42,14 +42,16 @@ Creation:
                 ]
             }
         ) {
-            id
-            active
+            adminProduct {
+                id
+                active
+            }
         }
     }
 
-As a result of the creation we get back the AdminProductDataTypeInterface, which contains all of the interesting
-information about the new product. By default ``isActive``` and ``isHidden`` will be set to ``false``. If no ``id`` was
-passed, an unique id will be generated and set.
+As a result of the creation we get back an ``AdminProductPayload``. Its ``adminProduct`` field contains the new product
+as ``AdminProductDataType`` with all of the interesting information. By default ``isActive`` and ``isHidden`` will be
+set to ``false``. If no ``id`` was passed, an unique id will be generated and set.
 
 
 Deletion:
@@ -61,10 +63,12 @@ Deletion:
     mutation productDelete {
         adminProductDelete(
             productId: "productId"
-        )
+        ) {
+            success
+        }
     }
 
-If the deletion was successful, ``true`` will be returned.
+The mutation returns a ``BooleanPayload``. If the deletion was successful, ``success`` is ``true``.
 
 
 Modification:
@@ -77,16 +81,18 @@ Modification:
         adminProductModify(
             id: "productId"
             adminProductInput: {
-                active: false
+                isActive: false
             }
         ) {
-            id
-            active
+            adminProduct {
+                id
+                active
+            }
         }
     }
 
 To modify a product, the id of the product has to be passed. If a field was not set, it won't be updated. As a result,
-the ``AdminProductDataType`` is returned.
+an ``AdminProductPayload`` with the modified ``AdminProductDataType`` is returned.
 
 Import:
 ^^^^^^^
@@ -96,7 +102,7 @@ Import:
 
     mutation productImport {
         adminProductsImport(
-            adminProductInputs: [
+            adminProductsInput: [
                 {
                     id: "productId-1"
                 },
@@ -104,16 +110,27 @@ Import:
                     id: "productId-2"
                 }
             ]
+            onFail: ROLLBACK_WHOLE_IMPORT
         ) {
-            id
-            active
+            adminProducts {
+                id
+                active
+            }
         }
     }
 
 The import works the same like the creation of a product. The only difference is, that multiple products can be created
-at once. If the import fails at a specific point, a message will be shown with data like ``id`` and ``title`` and the
-thrown error, to make it possible to identify the failed product and the problem. The result is a list of all imported
-products as ``AdminProductDataType``.
+at once. The result is an ``AdminProductsPayload`` whose ``adminProducts`` field contains all imported products as
+``AdminProductDataType``.
+
+If the import of a product fails, an ``AdminImportError`` is returned in ``userErrors``. It contains the ``code`` and
+``message`` of the underlying error and the ``inputPosition`` of the failed product in the input list, to make it
+possible to identify the failed product and the problem. The ``onFail`` argument defines what happens in this case:
+
+* ``ROLLBACK_WHOLE_IMPORT`` (default): the whole import is rolled back and only the first ``AdminImportError`` is
+  returned.
+* ``ROLLBACK_FAILING_PRODUCT``: only the failing products are skipped. All other products are imported and one
+  ``AdminImportError`` per failed product is returned.
 
 
 Query an Admin-Product:
@@ -126,10 +143,12 @@ Query an Admin-Product:
         adminProduct(
             productId: "productId"
         ) {
-            id
-            active
+            adminProduct {
+                id
+                active
+            }
         }
     }
 
-This query is only returning a single product. To get the product as ``AdminProductDataType`` only the ``productId`` is
-needed.
+This query is only returning a single product. To get the product as ``AdminProductDataType`` inside an
+``AdminProductPayload`` only the ``productId`` is needed.

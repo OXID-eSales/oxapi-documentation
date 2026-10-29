@@ -25,7 +25,7 @@ appear in the operation's payload ``userErrors`` array.
 
 .. list-table::
    :header-rows: 1
-   :widths: 24 34 42
+   :widths: 23 32 45
 
    * - Error DataType
      - Code
@@ -42,7 +42,7 @@ appear in the operation's payload ``userErrors`` array.
 
 .. list-table::
    :header-rows: 1
-   :widths: 24 34 42
+   :widths: 23 32 45
 
    * - Error DataType
      - Code
@@ -59,7 +59,7 @@ appear in the operation's payload ``userErrors`` array.
 
 .. list-table::
    :header-rows: 1
-   :widths: 24 34 42
+   :widths: 22 33 45
 
    * - Error DataType
      - Code
@@ -73,7 +73,7 @@ appear in the operation's payload ``userErrors`` array.
 
 .. list-table::
    :header-rows: 1
-   :widths: 24 34 42
+   :widths: 23 32 45
 
    * - Error DataType
      - Code
@@ -93,7 +93,7 @@ appear in the operation's payload ``userErrors`` array.
 
 .. list-table::
    :header-rows: 1
-   :widths: 24 34 42
+   :widths: 22 33 45
 
    * - Error DataType
      - Code
@@ -110,7 +110,7 @@ appear in the operation's payload ``userErrors`` array.
 
 .. list-table::
    :header-rows: 1
-   :widths: 24 34 42
+   :widths: 17 28 55
 
    * - Error DataType
      - Code

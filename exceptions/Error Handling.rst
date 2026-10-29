@@ -148,7 +148,13 @@ A dedicated payload type wraps the actual result together with a
 
    mutation {
      adminProductCreate(adminProductInput: { id: "newProduct" }) {
-       id
+       adminProduct {
+         id
+       }
+       userErrors {
+         code
+         message
+       }
      }
    }
 
@@ -156,10 +162,10 @@ A dedicated payload type wraps the actual result together with a
 
    {
      "data": {
-       "productCreate": {
-         "product": null,
+       "adminProductCreate": {
+         "adminProduct": null,
          "userErrors": [
-           { "code": "PRODUCT_ID_ALREADY_EXIST", "message": "A Product with the provided id already exists" }
+           { "code": "oegqlsa.id_already_exists.product", "message": "A product with the provided ID already exists." }
          ]
        }
      }
@@ -189,7 +195,7 @@ types.
    :class: graphql-sdl
 
    mutation {
-     adminProductCreate(input: { id: "newProduct" }) {
+     adminProductCreate(adminProductInput: { id: "newProduct" }) {
        __typename
        ... on AdminProductDataType {
          id
@@ -198,12 +204,12 @@ types.
        ... on ValidationError {
          code
          message
-         field
+         value
        }
-       ... on AlreadyExistError {
+       ... on IdAlreadyExistsError {
          code
          message
-         id
+         identifier
        }
      }
    }
@@ -213,10 +219,10 @@ types.
    {
      "data": {
        "adminProductCreate": {
-         "__typename": "AlreadyExistError",
-         "code": "oe.already_exist.product",
-         "message": "A Product with id 'cool-id' already exists",
-         "id": "cool-id"
+         "__typename": "IdAlreadyExistsError",
+         "code": "oegqlsa.id_already_exists.product",
+         "message": "A product with the provided ID already exists.",
+         "identifier": "newProduct"
        }
      }
    }
@@ -259,8 +265,8 @@ the ``extensions``.
    {
      "errors": [
        {
-         "message": "A Product with the provided id already exists",
-         "extensions": { "code": "PRODUCT_ID_ALREADY_EXIST" }
+         "message": "A product with the provided ID already exists.",
+         "extensions": { "code": "oegqlsa.id_already_exists.product" }
        }
      ]
    }
@@ -548,18 +554,18 @@ Generated Schema
        message: String!
    }
 
-   type Login {
+   interface LoginInterface {
        accessToken: String!
        refreshToken: String!
    }
 
    type LoginPayload {
-       login: Login
-       userErrors: [ErrorInterface]!
+       login: LoginInterface
+       userErrors: [ErrorInterface!]!
    }
 
    type Query {
-       login(username: String, password: String): LoginPayload!
+       login(username: String, password: String): LoginPayload
    }
 
 

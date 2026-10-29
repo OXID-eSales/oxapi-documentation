@@ -26,7 +26,9 @@ to be used in future requests.
         token (
             username: "admin",
             password: "admin"
-        )
+        ) {
+            token
+        }
     }
 
 **Response:**
@@ -35,7 +37,9 @@ to be used in future requests.
 
     {
         "data": {
-            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            "token": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            }
         }
     }
 
@@ -75,8 +79,10 @@ Logging in as a user should be done through the following query.
    query {
       login (username: "your-username", password: "your-password")
       {
-         accessToken
-         refreshToken
+         login {
+            accessToken
+            refreshToken
+         }
       }
    }
 
@@ -86,8 +92,12 @@ Logging in as a user should be done through the following query.
 
    {
       "data": {
-         "accessToken": "a-very-long-jwt-encoded-token"
-         "refreshToken": "your-refresh-token"
+         "login": {
+            "login": {
+               "accessToken": "a-very-long-jwt-encoded-token",
+               "refreshToken": "your-refresh-token"
+            }
+         }
       }
    }
 
@@ -109,7 +119,9 @@ After the access token's lifetime elapses it will need to be refreshed. The
       refresh (
          refreshToken: "your-refresh-token",
          fingerprintHash: "from-access-token-claims"
-      )
+      ) {
+         token
+      }
    }
 
 This request must have the `HttpOnly` fingerprint cookie set during login.
@@ -124,7 +136,9 @@ always, for testing, you can manually decode the access token at `jwt.io <https:
 
     {
         "data": {
-            "refresh": "a-new-very-long-jwt-encoded-token"
+            "refresh": {
+                "token": "a-new-very-long-jwt-encoded-token"
+            }
         }
     }
 

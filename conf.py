@@ -21,7 +21,10 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 import datetime
+import html
 import sphinx_rtd_theme
+from docutils import nodes
+from sphinx.transforms.post_transforms import SphinxPostTransform
 
 # adding PhpLexer
 from sphinx.highlighting import lexers
@@ -229,3 +232,35 @@ texinfo_documents = [
 
 # Use PHP syntax highlighting in code examples by default
 highlight_language='php'
+
+
+# -- Line breaks for long inline code in tables ---------------------------
+
+class BreakTableCodeAtDots(SphinxPostTransform):
+    """Allow line breaks after dots in inline code inside tables (e.g. long error codes)."""
+    default_priority = 900
+    formats = ('html',)
+
+    def run(self, **kwargs):
+        for literal in list(self.document.findall(nodes.literal)):
+            text = literal.astext()
+            if '.' not in text or not self.is_in_table(literal):
+                continue
+            parts = '.<wbr>'.join(html.escape(part) for part in text.split('.'))
+            literal.replace_self(nodes.raw(
+                '',
+                '<code class="docutils literal notranslate"><span class="pre">' + parts + '</span></code>',
+                format='html'
+            ))
+
+    @staticmethod
+    def is_in_table(node):
+        while node is not None:
+            if isinstance(node, nodes.table):
+                return True
+            node = node.parent
+        return False
+
+
+def setup(app):
+    app.add_post_transform(BreakTableCodeAtDots)
