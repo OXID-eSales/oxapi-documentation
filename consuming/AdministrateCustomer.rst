@@ -53,7 +53,9 @@ access and further update your account
         token(
             username: "newuser@oxid.de"
             password: "password"
-        )
+        ) {
+            token
+        }
     }
 
 .. code-block:: json
@@ -61,7 +63,9 @@ access and further update your account
 
     {
         "data": {
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3QubG9jYWwvIn0.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0LmxvY2FsLyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3QubG9jYWwvIiwiaWF0IjoxNjUzNDgwMjI4LjIyMjQwOCwibmJmIjoxNjUzNDgwMjI4LjIyMjQwOCwiZXhwIjoxNjUzNTA5MDI4LjIyNzkwNSwic2hvcGlkIjoxLCJ1c2VybmFtZSI6InVzZXJAb3hpZC1lc2FsZXMuY29tIiwidXNlcmlkIjoiZTdhZjFjM2I3ODZmZDAyOTA2Y2NkNzU2OThmNGU2YjkiLCJ1c2VyYW5vbnltb3VzIjpmYWxzZSwidG9rZW5pZCI6Ijc5ZTEwMjVjNjJhOWFiNTY2YzZmMzdlYzliMDlhYjJlIn0.JrfP112Th23o4sPB22w7Bq0eYISy_9A7zvYmjOMcvqcBpyt5QibeBSPUCtk2-PFLJ2bWZwGepDOG-gy8-cLunw"
+            "token": {
+                "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3QubG9jYWwvIn0.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0LmxvY2FsLyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3QubG9jYWwvIiwiaWF0IjoxNjUzNDgwMjI4LjIyMjQwOCwibmJmIjoxNjUzNDgwMjI4LjIyMjQwOCwiZXhwIjoxNjUzNTA5MDI4LjIyNzkwNSwic2hvcGlkIjoxLCJ1c2VybmFtZSI6InVzZXJAb3hpZC1lc2FsZXMuY29tIiwidXNlcmlkIjoiZTdhZjFjM2I3ODZmZDAyOTA2Y2NkNzU2OThmNGU2YjkiLCJ1c2VyYW5vbnltb3VzIjpmYWxzZSwidG9rZW5pZCI6Ijc5ZTEwMjVjNjJhOWFiNTY2YzZmMzdlYzliMDlhYjJlIn0.JrfP112Th23o4sPB22w7Bq0eYISy_9A7zvYmjOMcvqcBpyt5QibeBSPUCtk2-PFLJ2bWZwGepDOG-gy8-cLunw"
+            }
         }
     }
 

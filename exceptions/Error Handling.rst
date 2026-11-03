@@ -8,18 +8,6 @@ OXAPI. The goal is to provide consumers with precise, actionable error messages
 approach type-safe, extendable by modules and compatible with the GraphQL
 specification.
 
-.. note::
-   The ``login`` query on this page is only an example of the payload-based
-   error handling. In the current ``graphql-base`` version 14, the queries and
-   mutations do not return payloads yet. The base controllers will return
-   payloads starting with ``graphql-base`` version ``15.0.0-beta.1``, which is
-   also compatible with OXID eShop 7.6.
-
-   The payload and Error DataTypes already exist in version 14 and can already
-   be used, e.g. in your own modules. The ``graphql-storefront-administration``
-   module already returns payloads in its queries and mutations (see
-   :doc:`Possible Errors graphql-storefront-administration`).
-
 .. contents::
    :local:
    :depth: 2
