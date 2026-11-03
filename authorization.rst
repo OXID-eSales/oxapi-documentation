@@ -26,9 +26,7 @@ to be used in future requests.
         token (
             username: "admin",
             password: "admin"
-        ) {
-            token
-        }
+        )
     }
 
 **Response:**
@@ -37,9 +35,7 @@ to be used in future requests.
 
     {
         "data": {
-            "token": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-            }
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
         }
     }
 
@@ -79,10 +75,8 @@ Logging in as a user should be done through the following query.
    query {
       login (username: "your-username", password: "your-password")
       {
-         login {
-            accessToken
-            refreshToken
-         }
+         accessToken
+         refreshToken
       }
    }
 
@@ -93,10 +87,8 @@ Logging in as a user should be done through the following query.
    {
       "data": {
          "login": {
-            "login": {
-               "accessToken": "a-very-long-jwt-encoded-token",
-               "refreshToken": "your-refresh-token"
-            }
+            "accessToken": "a-very-long-jwt-encoded-token",
+            "refreshToken": "your-refresh-token"
          }
       }
    }
@@ -119,9 +111,7 @@ After the access token's lifetime elapses it will need to be refreshed. The
       refresh (
          refreshToken: "your-refresh-token",
          fingerprintHash: "from-access-token-claims"
-      ) {
-         token
-      }
+      )
    }
 
 This request must have the `HttpOnly` fingerprint cookie set during login.
@@ -136,9 +126,7 @@ always, for testing, you can manually decode the access token at `jwt.io <https:
 
     {
         "data": {
-            "refresh": {
-                "token": "a-new-very-long-jwt-encoded-token"
-            }
+            "refresh": "a-new-very-long-jwt-encoded-token"
         }
     }
 
