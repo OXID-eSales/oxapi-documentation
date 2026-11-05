@@ -178,6 +178,27 @@ Extra fields: ``fileId: String!``.
      - ``oegqlsa.download_file.has_valid_downloads``
      - You cannot delete this file, as long as it has valid downloads.
 
+.. _edt-file-upload-error:
+
+AdminFileUploadError
+--------------------
+
+Extra fields: ``filename: String!`` — the client file name of the uploaded file.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 24 31 45
+
+   * - Constant
+     - Code
+     - Message
+   * - ``UPLOAD_DISABLED``
+     - ``oegqlsa.file_upload.disabled``
+     - File upload is disabled in demo shop.
+   * - ``UPLOAD_FAILED``
+     - ``oegqlsa.file_upload.failed``
+     - File upload failed.
+
 .. _edt-import-error:
 
 AdminImportError
@@ -385,6 +406,9 @@ NotFoundError (additional codes)
    * - ``PRODUCT_IMAGE``
      - ``oegqlsa.not_found.product_image``
      - The product image was not found.
+   * - ``MEDIA``
+     - ``oegqlsa.not_found.media``
+     - The media was not found.
    * - ``ATTRIBUTE``
      - ``oegqlsa.not_found.attribute``
      - The attribute was not found.
@@ -440,6 +464,18 @@ ValidationError (additional codes)
    * - ``STATE_ISO_ALPHA_2``
      - ``oegqlsa.validation.state_iso_alpha_2``
      - The state ISO alpha-2 code is invalid.
+   * - ``MEDIA_DESCRIPTION``
+     - ``oegqlsa.validation.media_description``
+     - The media description must not be empty.
+   * - ``MEDIA_URL``
+     - ``oegqlsa.validation.media_url``
+     - The media url is invalid.
+   * - ``MEDIA_FILENAME``
+     - ``oegqlsa.validation.media_filename``
+     - The media filename contains invalid characters.
+   * - ``MEDIA_FILE_TYPE``
+     - ``oegqlsa.validation.media_file_type``
+     - The media file type is not allowed.
 
 .. _edt-sa-not-created:
 
@@ -465,6 +501,9 @@ NotCreatedError (additional codes)
    * - ``STATE``
      - ``oegqlsa.not_created.state``
      - A state with the provided ID could not be created.
+   * - ``MEDIA``
+     - ``oegqlsa.not_created.media``
+     - A media with the provided URL could not be created.
 
 .. _edt-sa-not-updated:
 
@@ -484,6 +523,9 @@ NotUpdatedError (additional codes)
    * - ``DOWNLOAD_FILE``
      - ``oegqlsa.not_updated.download_file``
      - A download file with the provided ID could not be updated.
+   * - ``MEDIA``
+     - ``oegqlsa.not_updated.media``
+     - A media with the provided ID could not be updated.
    * - ``PRODUCT_LANGUAGE_FIELDS``
      - ``oegqlsa.not_updated.product_language_fields``
      - The language fields of the product with the provided ID could not be updated.
@@ -515,6 +557,9 @@ NotDeletedError (additional codes)
    * - ``STATE``
      - ``oegqlsa.not_deleted.state``
      - A state with the provided ID could not be deleted.
+   * - ``MEDIA``
+     - ``oegqlsa.not_deleted.media``
+     - A media with the provided ID could not be deleted.
 
 .. _edt-sa-id-already-exist:
 

@@ -852,6 +852,104 @@ This operation returns no error DataTypes.
      - ``oegqlsa.download_file.has_valid_downloads``
      - You cannot delete this file, as long as it has valid downloads.
 
+``adminProductAddMediaUrl``
+---------------------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 24 31 45
+
+   * - Error DataType
+     - Code
+     - Message
+   * - :ref:`NotFoundError <edt-sa-not-found>`
+     - ``oegqlsa.not_found.product``
+     - The product was not found.
+   * - :ref:`ValidationError <edt-sa-validation>`
+     - ``oegqlsa.validation.media_description``
+     - The media description must not be empty.
+   * - :ref:`ValidationError <edt-sa-validation>`
+     - ``oegqlsa.validation.media_url``
+     - The media url is invalid.
+   * - :ref:`NotCreatedError <edt-sa-not-created>`
+     - ``oegqlsa.not_created.media``
+     - A media with the provided URL could not be created.
+   * - :ref:`NotFoundError <edt-sa-not-found>`
+     - ``oegqlsa.not_found.media``
+     - The media was not found.
+
+``adminProductUploadMedia``
+---------------------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 24 31 45
+
+   * - Error DataType
+     - Code
+     - Message
+   * - :ref:`NotFoundError <edt-sa-not-found>`
+     - ``oegqlsa.not_found.product``
+     - The product was not found.
+   * - :ref:`ValidationError <edt-sa-validation>`
+     - ``oegqlsa.validation.media_description``
+     - The media description must not be empty.
+   * - :ref:`AdminFileUploadError <edt-file-upload-error>`
+     - ``oegqlsa.file_upload.disabled``
+     - File upload is disabled in demo shop.
+   * - :ref:`AdminFileUploadError <edt-file-upload-error>`
+     - ``oegqlsa.file_upload.failed``
+     - File upload failed.
+   * - :ref:`ValidationError <edt-sa-validation>`
+     - ``oegqlsa.validation.media_filename``
+     - The media filename contains invalid characters.
+   * - :ref:`ValidationError <edt-sa-validation>`
+     - ``oegqlsa.validation.media_file_type``
+     - The media file type is not allowed.
+   * - :ref:`NotCreatedError <edt-sa-not-created>`
+     - ``oegqlsa.not_created.media``
+     - A media with the provided URL could not be created.
+   * - :ref:`NotFoundError <edt-sa-not-found>`
+     - ``oegqlsa.not_found.media``
+     - The media was not found.
+
+``adminMediaModify``
+--------------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 24 31 45
+
+   * - Error DataType
+     - Code
+     - Message
+   * - :ref:`ValidationError <edt-sa-validation>`
+     - ``oegqlsa.validation.media_description``
+     - The media description must not be empty.
+   * - :ref:`NotFoundError <edt-sa-not-found>`
+     - ``oegqlsa.not_found.media``
+     - The media was not found.
+   * - :ref:`NotUpdatedError <edt-sa-not-updated>`
+     - ``oegqlsa.not_updated.media``
+     - A media with the provided ID could not be updated.
+
+``adminMediaDelete``
+--------------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 24 31 45
+
+   * - Error DataType
+     - Code
+     - Message
+   * - :ref:`NotFoundError <edt-sa-not-found>`
+     - ``oegqlsa.not_found.media``
+     - The media was not found.
+   * - :ref:`NotDeletedError <edt-sa-not-deleted>`
+     - ``oegqlsa.not_deleted.media``
+     - A media with the provided ID could not be deleted.
+
 ``adminScalePriceCreate``
 -------------------------
 
