@@ -252,7 +252,7 @@ Use this query to get the list of all modules. You can use filter like ``title``
                 },
                 {
                     "id": "oe_graphql_storefront",
-                    "version": "5.1.0",
+                    "version": "6.0.0",
                     "title": "GraphQL Storefront",
                     "description": "OXID GraphQL Storefront",
                     "thumbnail": "logo.png",
