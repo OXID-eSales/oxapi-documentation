@@ -866,14 +866,14 @@ This operation returns no error DataTypes.
      - ``oegqlsa.not_found.product``
      - The product was not found.
    * - :ref:`ValidationError <edt-sa-validation>`
-     - ``oegqlsa.validation.media_description``
+     - ``oegqlsa.validation.media_description_empty``
      - The media description must not be empty.
    * - :ref:`ValidationError <edt-sa-validation>`
      - ``oegqlsa.validation.media_url``
      - The media url is invalid.
    * - :ref:`NotCreatedError <edt-sa-not-created>`
      - ``oegqlsa.not_created.media``
-     - A media with the provided URL could not be created.
+     - A media with the provided name could not be created.
    * - :ref:`NotFoundError <edt-sa-not-found>`
      - ``oegqlsa.not_found.media``
      - The media was not found.
@@ -892,7 +892,7 @@ This operation returns no error DataTypes.
      - ``oegqlsa.not_found.product``
      - The product was not found.
    * - :ref:`ValidationError <edt-sa-validation>`
-     - ``oegqlsa.validation.media_description``
+     - ``oegqlsa.validation.media_description_empty``
      - The media description must not be empty.
    * - :ref:`AdminFileUploadError <edt-file-upload-error>`
      - ``oegqlsa.file_upload.disabled``
@@ -901,14 +901,14 @@ This operation returns no error DataTypes.
      - ``oegqlsa.file_upload.failed``
      - File upload failed.
    * - :ref:`ValidationError <edt-sa-validation>`
-     - ``oegqlsa.validation.media_filename``
-     - The media filename contains invalid characters.
+     - ``oegqlsa.validation.filename``
+     - The filename contains invalid characters.
    * - :ref:`ValidationError <edt-sa-validation>`
-     - ``oegqlsa.validation.media_file_type``
-     - The media file type is not allowed.
+     - ``oegqlsa.validation.file_type``
+     - The file type is not allowed.
    * - :ref:`NotCreatedError <edt-sa-not-created>`
      - ``oegqlsa.not_created.media``
-     - A media with the provided URL could not be created.
+     - A media with the provided name could not be created.
    * - :ref:`NotFoundError <edt-sa-not-found>`
      - ``oegqlsa.not_found.media``
      - The media was not found.
@@ -924,7 +924,7 @@ This operation returns no error DataTypes.
      - Code
      - Message
    * - :ref:`ValidationError <edt-sa-validation>`
-     - ``oegqlsa.validation.media_description``
+     - ``oegqlsa.validation.media_description_empty``
      - The media description must not be empty.
    * - :ref:`NotFoundError <edt-sa-not-found>`
      - ``oegqlsa.not_found.media``

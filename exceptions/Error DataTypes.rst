@@ -464,18 +464,18 @@ ValidationError (additional codes)
    * - ``STATE_ISO_ALPHA_2``
      - ``oegqlsa.validation.state_iso_alpha_2``
      - The state ISO alpha-2 code is invalid.
-   * - ``MEDIA_DESCRIPTION``
-     - ``oegqlsa.validation.media_description``
+   * - ``MEDIA_DESCRIPTION_EMPTY``
+     - ``oegqlsa.validation.media_description_empty``
      - The media description must not be empty.
    * - ``MEDIA_URL``
      - ``oegqlsa.validation.media_url``
      - The media url is invalid.
-   * - ``MEDIA_FILENAME``
-     - ``oegqlsa.validation.media_filename``
-     - The media filename contains invalid characters.
-   * - ``MEDIA_FILE_TYPE``
-     - ``oegqlsa.validation.media_file_type``
-     - The media file type is not allowed.
+   * - ``FILENAME``
+     - ``oegqlsa.validation.filename``
+     - The filename contains invalid characters.
+   * - ``FILE_TYPE``
+     - ``oegqlsa.validation.file_type``
+     - The file type is not allowed.
 
 .. _edt-sa-not-created:
 
@@ -503,7 +503,7 @@ NotCreatedError (additional codes)
      - A state with the provided ID could not be created.
    * - ``MEDIA``
      - ``oegqlsa.not_created.media``
-     - A media with the provided URL could not be created.
+     - A media with the provided name could not be created.
 
 .. _edt-sa-not-updated:
 
